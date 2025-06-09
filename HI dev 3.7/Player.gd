@@ -35,6 +35,6 @@ func _physics_process(delta):
 		
 	else:
 		velocity.x = move_toward(velocity.x, 0,  walk_speed * deceleration)
-		animated_sprite.play("Idle")
+		animated_sprite.play("Idle1")
 
 	move_and_slide()
