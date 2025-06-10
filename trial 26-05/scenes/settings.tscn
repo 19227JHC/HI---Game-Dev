@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://ct0hrtoe7lyih"]
+[gd_scene load_steps=3 format=3 uid="uid://ct0hrtoe7lyih"]
 
 [ext_resource type="Script" path="res://scenes/settings.gd" id="1_0igk8"]
+[ext_resource type="AudioStream" uid="uid://4r1klx2r4wx1" path="res://Wayfarin' Stranger (Alto) Audio Only.mp3" id="2_d410u"]
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -23,13 +24,22 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_vertical = 4
 
+[node name="VolLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Volume"
+
 [node name="Volume" type="HSlider" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+
+[node name="MuteLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Mute"
 
 [node name="CheckBox" type="CheckBox" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_d410u")
 
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/Volume" to="." method="_on_volume_value_changed"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/CheckBox" to="." method="_on_check_box_toggled"]
