@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://cerw21rinlb38"]
+
+[ext_resource type="Texture2D" uid="uid://c45tw68h8ysse" path="res://Assets/rightedit - transparent bg.png" id="1_obhh3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kcij4"]
+atlas = ExtResource("1_obhh3")
+region = Rect2(0, 0, 34, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_olc4u"]
+atlas = ExtResource("1_obhh3")
+region = Rect2(34, 0, 34, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yfcki"]
+atlas = ExtResource("1_obhh3")
+region = Rect2(68, 0, 34, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_04yr0"]
+atlas = ExtResource("1_obhh3")
+region = Rect2(102, 0, 34, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gewxh"]
+atlas = ExtResource("1_obhh3")
+region = Rect2(136, 0, 34, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kkhpf"]
+atlas = ExtResource("1_obhh3")
+region = Rect2(170, 0, 34, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rmgh7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kcij4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_olc4u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yfcki")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_04yr0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gewxh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kkhpf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[node name="Book" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(29, -41)
+sprite_frames = SubResource("SpriteFrames_rmgh7")
+frame = 2
+frame_progress = 0.878441
