@@ -1,0 +1,173 @@
+[gd_scene load_steps=13 format=3 uid="uid://c5ea5yed0s5yf"]
+
+[ext_resource type="Script" path="res://Scenes/settings.gd" id="1_4tdos"]
+[ext_resource type="FontFile" uid="uid://cg03ls2khnai" path="res://fonts/dogica.otf" id="1_50as0"]
+[ext_resource type="FontFile" uid="uid://dytmi3e7gkhj0" path="res://fonts/pixely[1].ttf" id="2_g03gn"]
+[ext_resource type="Shader" path="res://Scenes/settings.gdshader" id="2_oouox"]
+[ext_resource type="AudioStream" uid="uid://mhqes1q4k26a" path="res://Wayfarin_ Stranger (Alto) Audio Only.mp3" id="4_q1a28"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hku50"]
+shader = ExtResource("2_oouox")
+shader_parameter/lod = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mym27"]
+bg_color = Color(0.666667, 0.541176, 0.756863, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4dfl1"]
+bg_color = Color(0.397429, 0.644458, 0.704941, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_32ugk"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_7isb8"]
+resource_name = "blur"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.822]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_d0tod"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ivke1"]
+_data = {
+"RESET": SubResource("Animation_d0tod"),
+"blur": SubResource("Animation_7isb8")
+}
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4tdos")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_hku50")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="ColorRect"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 304.0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="volume_label" type="Label" parent="ColorRect/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 5
+size_flags_stretch_ratio = 0.0
+theme_override_fonts/font = ExtResource("1_50as0")
+text = "VOLUME"
+
+[node name="volume" type="HSlider" parent="ColorRect/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 5
+size_flags_stretch_ratio = 0.0
+
+[node name="mute_label" type="Label" parent="ColorRect/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 5
+size_flags_stretch_ratio = 0.0
+theme_override_fonts/font = ExtResource("1_50as0")
+text = "MUTE"
+
+[node name="mute" type="CheckBox" parent="ColorRect/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 5
+size_flags_stretch_ratio = 0.0
+
+[node name="resolution" type="OptionButton" parent="ColorRect/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+item_count = 3
+selected = 2
+popup/item_0/text = "1980x1080"
+popup/item_0/id = 0
+popup/item_1/text = "1600x900"
+popup/item_1/id = 1
+popup/item_2/text = "1280x720"
+popup/item_2/id = 2
+
+[node name="return_button" type="Button" parent="ColorRect/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+theme_override_constants/h_separation = 100
+theme_override_fonts/font = ExtResource("2_g03gn")
+theme_override_styles/normal = SubResource("StyleBoxFlat_mym27")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4dfl1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_32ugk")
+text = "RETURN"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_q1a28")
+autoplay = true
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../ColorRect")
+libraries = {
+"": SubResource("AnimationLibrary_ivke1")
+}
+
+[connection signal="value_changed" from="ColorRect/PanelContainer/VBoxContainer/volume" to="." method="_on_volume_value_changed"]
+[connection signal="toggled" from="ColorRect/PanelContainer/VBoxContainer/mute" to="." method="_on_mute_toggled"]
+[connection signal="item_selected" from="ColorRect/PanelContainer/VBoxContainer/resolution" to="." method="_on_resolution_item_selected"]
+[connection signal="pressed" from="ColorRect/PanelContainer/VBoxContainer/return_button" to="." method="_on_return_button_pressed"]

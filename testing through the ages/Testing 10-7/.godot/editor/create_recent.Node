@@ -1,0 +1,15 @@
+AnimationTree
+CanvasLayer
+PanelContainer
+ColorRect
+AnimationPlayer
+Button
+VBoxContainer
+RayCast2D
+StaticBody2D
+CollisionPolygon2D
+CollisionShape2D
+TileMap
+OptionButton
+Camera2D
+AudioStreamPlayer2D

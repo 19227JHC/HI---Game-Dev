@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3 uid="uid://jv4nmtu2f44i"]
+
+[ext_resource type="Script" path="res://Scenes/input_button.gd" id="1_6pjd3"]
+[ext_resource type="FontFile" uid="uid://cg03ls2khnai" path="res://fonts/dogica.otf" id="1_ocge8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ytbvt"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ahy8v"]
+bg_color = Color(1, 1, 1, 0.584314)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jj0j6"]
+
+[node name="InputButton" type="Button"]
+custom_minimum_size = Vector2(0, 35)
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("1_ocge8")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ytbvt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ahy8v")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ahy8v")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jj0j6")
+script = ExtResource("1_6pjd3")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="LabelAction" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("1_ocge8")
+theme_override_font_sizes/font_size = 14
+text = "Action name"
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="LabelInput" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("1_ocge8")
+theme_override_font_sizes/font_size = 14
+text = "input key"
+vertical_alignment = 1

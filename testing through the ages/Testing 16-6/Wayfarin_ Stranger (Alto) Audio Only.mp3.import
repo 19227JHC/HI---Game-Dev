@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://mhqes1q4k26a"
+path="res://.godot/imported/Wayfarin_ Stranger (Alto) Audio Only.mp3-519209df0e53f558af87fc877131b0c1.mp3str"
+
+[deps]
+
+source_file="res://Wayfarin_ Stranger (Alto) Audio Only.mp3"
+dest_files=["res://.godot/imported/Wayfarin_ Stranger (Alto) Audio Only.mp3-519209df0e53f558af87fc877131b0c1.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
