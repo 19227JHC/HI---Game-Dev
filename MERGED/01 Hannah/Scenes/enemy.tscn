@@ -1,10 +1,10 @@
-[gd_scene load_steps=129 format=3 uid="uid://ba8mn0j2r0kku"]
+[gd_scene load_steps=130 format=3 uid="uid://ba8mn0j2r0kku"]
 
 [ext_resource type="Script" path="res://01 Hannah/Scripts/enemy.gd" id="1_ugsde"]
-[ext_resource type="Texture2D" uid="uid://xooo3t48gpjs" path="res://01 Hannah/Assets/Attack.png" id="1_yvp5a"]
-[ext_resource type="Texture2D" uid="uid://4sbasb84oc0f" path="res://01 Hannah/Assets/Death.png" id="2_m0lwv"]
-[ext_resource type="Texture2D" uid="uid://rt4m3s5i0v64" path="res://01 Hannah/Assets/Idle (2).png" id="3_esl7w"]
-[ext_resource type="Texture2D" uid="uid://n7gv1jvxbnv2" path="res://01 Hannah/Assets/Walk (1).png" id="4_ffpxg"]
+[ext_resource type="Texture2D" uid="uid://bhogmjryuk7y6" path="res://01 Hannah/Assets/Attack.png" id="1_yvp5a"]
+[ext_resource type="Texture2D" uid="uid://bq6uhoe0k44no" path="res://01 Hannah/Assets/Death.png" id="2_m0lwv"]
+[ext_resource type="Texture2D" uid="uid://b4uhf1aq0rebt" path="res://01 Hannah/Assets/Idle (2).png" id="3_esl7w"]
+[ext_resource type="Texture2D" uid="uid://cmh1sydiopcwl" path="res://01 Hannah/Assets/Walk (1).png" id="4_ffpxg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wkhoo"]
 atlas = ExtResource("1_yvp5a")
@@ -513,9 +513,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_eduox")
 }],
-"loop": true,
+"loop": false,
 "name": &"e_attack_b",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -542,9 +542,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wy8rn")
 }],
-"loop": true,
+"loop": false,
 "name": &"e_attack_f",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -571,9 +571,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_m6aa6")
 }],
-"loop": true,
+"loop": false,
 "name": &"e_attack_l",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -600,9 +600,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_tm6jh")
 }],
-"loop": true,
+"loop": false,
 "name": &"e_attack_r",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -626,7 +626,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xpwsn")
 }],
-"loop": true,
+"loop": false,
 "name": &"e_death_b",
 "speed": 5.0
 }, {
@@ -652,7 +652,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_agji3")
 }],
-"loop": true,
+"loop": false,
 "name": &"e_death_f",
 "speed": 5.0
 }, {
@@ -678,7 +678,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mtu3l")
 }],
-"loop": true,
+"loop": false,
 "name": &"e_death_l",
 "speed": 5.0
 }, {
@@ -704,7 +704,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_cnh8o")
 }],
-"loop": true,
+"loop": false,
 "name": &"e_death_r",
 "speed": 5.0
 }, {
@@ -929,32 +929,65 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2yp7g"]
+radius = 7.0
+height = 16.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_6si41"]
 radius = 47.0956
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2yp7g"]
-radius = 6.0
-height = 22.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_i1m02"]
+radius = 14.0357
 
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_ugsde")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ugsby")
-animation = &"e_walk_f"
+animation = &"e_idle_f"
+frame_progress = 0.122552
 offset = Vector2(2.08165e-12, -6)
+
+[node name="Enemy_collision" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 2)
+shape = SubResource("CapsuleShape2D_2yp7g")
+debug_color = Color(0.901771, 2.2141e-06, 8.37509e-07, 0.419608)
 
 [node name="detection_area" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area"]
+[node name="Detection_collsion" type="CollisionShape2D" parent="detection_area"]
 position = Vector2(1, -4)
 shape = SubResource("CircleShape2D_6si41")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, -4)
-shape = SubResource("CapsuleShape2D_2yp7g")
+[node name="e_hitbox" type="Area2D" parent="."]
+position = Vector2(1, 0)
+collision_layer = 32
+collision_mask = 2
 
+[node name="e_hitbox_collision" type="CollisionShape2D" parent="e_hitbox"]
+position = Vector2(-1, -4)
+scale = Vector2(1.00455, 1)
+shape = SubResource("CircleShape2D_i1m02")
+debug_color = Color(0.806921, 0.414808, 0, 0.42)
+
+[node name="take_damage" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="attack_timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="attack_cooldown_timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]
+[connection signal="body_entered" from="e_hitbox" to="." method="_on_e_hitbox_body_entered"]
+[connection signal="body_exited" from="e_hitbox" to="." method="_on_e_hitbox_body_exited"]
+[connection signal="timeout" from="take_damage" to="." method="_on_take_damage_timeout"]
+[connection signal="timeout" from="attack_timer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="attack_cooldown_timer" to="." method="_on_attack_cooldown_timer_timeout"]

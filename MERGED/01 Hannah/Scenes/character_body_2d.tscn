@@ -1,9 +1,9 @@
 [gd_scene load_steps=127 format=3 uid="uid://7tjglc500p1e"]
 
-[ext_resource type="Texture2D" uid="uid://xooo3t48gpjs" path="res://01 Hannah/Assets/Attack.png" id="1_x0k46"]
-[ext_resource type="Texture2D" uid="uid://t0vvp2bkwd71" path="res://01 Hannah/Assets/DeathF.png" id="2_vwvwb"]
-[ext_resource type="Texture2D" uid="uid://rt4m3s5i0v64" path="res://01 Hannah/Assets/Idle (2).png" id="3_s4o4x"]
-[ext_resource type="Texture2D" uid="uid://n7gv1jvxbnv2" path="res://01 Hannah/Assets/Walk (1).png" id="4_6bah8"]
+[ext_resource type="Texture2D" uid="uid://bhogmjryuk7y6" path="res://01 Hannah/Assets/Attack.png" id="1_x0k46"]
+[ext_resource type="Texture2D" uid="uid://bq6uhoe0k44no" path="res://01 Hannah/Assets/Death.png" id="2_vwvwb"]
+[ext_resource type="Texture2D" uid="uid://b4uhf1aq0rebt" path="res://01 Hannah/Assets/Idle (2).png" id="3_s4o4x"]
+[ext_resource type="Texture2D" uid="uid://cmh1sydiopcwl" path="res://01 Hannah/Assets/Walk (1).png" id="4_6bah8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wkhoo"]
 atlas = ExtResource("1_x0k46")

@@ -1,11 +1,11 @@
-[gd_scene load_steps=49 format=3 uid="uid://batlsr4q5ikn0"]
+[gd_scene load_steps=50 format=3 uid="uid://batlsr4q5ikn0"]
 
-[ext_resource type="Script" path="res://Scripts/player.gd" id="1_vyinv"]
-[ext_resource type="Texture2D" uid="uid://oaowwa8clp0t" path="res://01 Hannah/Assets/stab - modified, not to our design yet (1).png" id="2_xemvi"]
-[ext_resource type="Texture2D" uid="uid://s17lud8vkig8" path="res://01 Hannah/Assets/Idle - changed.png" id="3_2spam"]
-[ext_resource type="Texture2D" uid="uid://du0s3cnh4pe1f" path="res://01 Hannah/Assets/Idle - changedF.png" id="4_xctjo"]
-[ext_resource type="Texture2D" uid="uid://2cvb3io0vh1r" path="res://01 Hannah/Assets/Walk - modified.png" id="5_p34eq"]
-[ext_resource type="Texture2D" uid="uid://jbp2cal081ju" path="res://01 Hannah/Assets/WalkF.png" id="6_jn38m"]
+[ext_resource type="Script" path="res://01 Hannah/Scripts/player.gd" id="1_vyinv"]
+[ext_resource type="Texture2D" uid="uid://e5jlsix0oagx" path="res://01 Hannah/Assets/stab - modified, not to our design yet (1).png" id="2_xemvi"]
+[ext_resource type="Texture2D" uid="uid://dx3d5xjr6c2h7" path="res://01 Hannah/Assets/Idle - changed.png" id="3_2spam"]
+[ext_resource type="Texture2D" uid="uid://ccxtwq8ra5cqx" path="res://01 Hannah/Assets/Idle - changedF.png" id="4_xctjo"]
+[ext_resource type="Texture2D" uid="uid://cb4shli2ms6oo" path="res://01 Hannah/Assets/Walk - modified.png" id="5_p34eq"]
+[ext_resource type="Texture2D" uid="uid://bhs4n2iebeli5" path="res://01 Hannah/Assets/WalkF.png" id="6_jn38m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8txet"]
 atlas = ExtResource("2_xemvi")
@@ -354,19 +354,42 @@ animations = [{
 radius = 6.0
 height = 20.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_6n4yk"]
+radius = 11.0
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 3
 script = ExtResource("1_vyinv")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -15)
 sprite_frames = SubResource("SpriteFrames_8h4sx")
-animation = &"idle_front"
+animation = &"attack_left"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -12)
 shape = SubResource("CapsuleShape2D_eorvo")
 debug_color = Color(0.939734, 0.173491, 0.444357, 0.42)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
+[node name="p_hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="p_hitbox"]
+position = Vector2(1, -12)
+scale = Vector2(1, 0.955188)
+shape = SubResource("CircleShape2D_6n4yk")
+
+[node name="attack_cooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="deal_attack" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[connection signal="body_entered" from="p_hitbox" to="." method="_on_p_hitbox_body_entered"]
+[connection signal="body_exited" from="p_hitbox" to="." method="_on_p_hitbox_body_exited"]
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="deal_attack" to="." method="_on_deal_attack_timeout"]

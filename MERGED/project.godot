@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="Testing"
-run/main_scene="res://Scenes/MainMenu.tscn"
+run/main_scene="res://02 Irene/Scenes - I/UI/MainMenu.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-config/icon="res://Assets/icon.png"
+config/icon="res://02 Irene/Assets - I/icon.png"
 
 [autoload]
 
 SceneManager="*res://SceneManager.gd"
+gobal="*res://01 Hannah/Scripts/gobal.gd"
 
 [display]
 
@@ -68,6 +69,7 @@ attack={
 2d_physics/layer_1="Environment"
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Interactions"
+2d_physics/layer_4="Enemy"
 2d_physics/layer_9="Objects/Props"
 
 [rendering]

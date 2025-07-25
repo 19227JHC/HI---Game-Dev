@@ -1,77 +1,79 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1753429559
+::res://::1753438847
 icon.svg::CompressedTexture2D::6072529517676822342::1750999459::1750999459::1::::<><>::
 SceneManager.gd::GDScript::-1::1752393970::0::1::::<>Node<>::
-Wayfarin_ Stranger (Alto) Audio Only.mp3::AudioStreamMP3::857696369346053290::1750999459::1750999459::1::::<><>::
-::res://01 Hannah/::1752483456
-::res://01 Hannah/Assets/::1752483498
-Attack.png::CompressedTexture2D::1644121232612048544::1752482994::1752483498::1::::<><>::
-back - transparent bg.png::CompressedTexture2D::8774007267036525530::1752482994::1752483498::1::::<><>::
-back and right transparent book only.png::CompressedTexture2D::2570625387528711642::1752482994::1752483498::1::::<><>::
-Death - modified.png::CompressedTexture2D::2382959678280880066::1752482994::1752483498::1::::<><>::
-Death.png::CompressedTexture2D::2072696930572564735::1752482994::1752483498::1::::<><>::
-DeathF.png::CompressedTexture2D::1386510861113847702::1752482994::1752483498::1::::<><>::
-Idle (2).png::CompressedTexture2D::1234217241325817367::1752482994::1752483498::1::::<><>::
-Idle - changed.png::CompressedTexture2D::1319036651220868493::1752482994::1752483498::1::::<><>::
-Idle - changedF.png::CompressedTexture2D::8615791401277133169::1752482994::1752483498::1::::<><>::
-Idle.png::CompressedTexture2D::4075946795729752336::1752482994::1752483498::1::::<><>::
-rightedit - transparent bg.png::CompressedTexture2D::1865340233682013956::1752482994::1752483498::1::::<><>::
-stab - modified, not to our design yet (1).png::CompressedTexture2D::983534293313286969::1752482994::1752483498::1::::<><>::
-Walk (1).png::CompressedTexture2D::978918239548213617::1752482994::1752483498::1::::<><>::
-Walk - modified.png::CompressedTexture2D::1900505860059572633::1752482994::1752483498::1::::<><>::
-Walk.png::CompressedTexture2D::654283282553341793::1752482994::1752483498::1::::<><>::
-WalkF.png::CompressedTexture2D::634723047404506150::1752482994::1752483498::1::::<><>::
-::res://01 Hannah/Scenes/::1753355389
-character_body_2d.tscn::PackedScene::2285823923686431948::1753355389::0::1::::<><>::uid://xooo3t48gpjs::::res://01 Hannah/Assets/Attack.png<>uid://t0vvp2bkwd71::::res://01 Hannah/Assets/DeathF.png<>uid://rt4m3s5i0v64::::res://01 Hannah/Assets/Idle (2).png<>uid://n7gv1jvxbnv2::::res://01 Hannah/Assets/Walk (1).png
-enemy.tscn::PackedScene::2455298297048496904::1753355389::0::1::::<><>::res://01 Hannah/Scripts/enemy.gd<>uid://xooo3t48gpjs::::res://01 Hannah/Assets/Attack.png<>uid://4sbasb84oc0f::::res://01 Hannah/Assets/Death.png<>uid://rt4m3s5i0v64::::res://01 Hannah/Assets/Idle (2).png<>uid://n7gv1jvxbnv2::::res://01 Hannah/Assets/Walk (1).png
-main.tscn::PackedScene::3144398139276255422::1752483144::0::1::::<><>::uid://batlsr4q5ikn0::::res://Scenes/player.tscn<>uid://ba8mn0j2r0kku::::res://Scenes/enemy.tscn
-player.tscn::PackedScene::2426344830694619867::1753355389::0::1::::<><>::res://Scripts/player.gd<>uid://oaowwa8clp0t::::res://01 Hannah/Assets/stab - modified, not to our design yet (1).png<>uid://s17lud8vkig8::::res://01 Hannah/Assets/Idle - changed.png<>uid://du0s3cnh4pe1f::::res://01 Hannah/Assets/Idle - changedF.png<>uid://2cvb3io0vh1r::::res://01 Hannah/Assets/Walk - modified.png<>uid://jbp2cal081ju::::res://01 Hannah/Assets/WalkF.png
-::res://01 Hannah/Scripts/::1752483456
-enemy.gd::GDScript::-1::1752482994::0::1::::<>CharacterBody2D<>::
-player.gd::GDScript::-1::1752482994::0::1::::<>CharacterBody2D<>::
-::res://Assets/::1752483404
-icon.png::CompressedTexture2D::4625594501838174355::1750999461::1750999461::1::::<><>::
-noticeboard-800.png::CompressedTexture2D::5169623716575688352::1750999461::1750999461::1::::<><>::
-::res://Assets/2D one/::1752375162
-Classroom Props First Spritesheet 1.png::CompressedTexture2D::387580292999510313::1750999461::1750999461::1::::<><>::
-Computer Room Spritesheet 1.png::CompressedTexture2D::2048758384523971392::1750999461::1750999461::1::::<><>::
-Computer Room Spritesheet 5.png::CompressedTexture2D::863313955348807613::1750999461::1750999461::1::::<><>::
-strokespritesheet20125.png::CompressedTexture2D::484333823150741404::1750999461::1750999461::1::::<><>::
-strokespritesheet20127.png::CompressedTexture2D::6549409393896988684::1750999461::1750999461::1::::<><>::
-strokespritesheet20133.png::CompressedTexture2D::4315485831901467757::1750999461::1750999461::1::::<><>::
-::res://Assets/ocean_nostalgia/::1752375162
-Grounds 1.1.png::CompressedTexture2D::7511565678852303989::1750999461::1750999461::1::::<><>::
-removed_bg_ocean_nostalgia_classroom.png::CompressedTexture2D::8936222430674058763::1750999461::1750999461::1::::<><>::
-School_A4.png::CompressedTexture2D::981548099068106422::1750999461::1750999461::1::::<><>::
-School_A5.png::CompressedTexture2D::1976193296793214953::1750999461::1750999461::1::::<><>::
-School_B.png::CompressedTexture2D::258527630868798012::1750999461::1750999461::1::::<><>::
-::res://Assets/Traditional School Asset pack 32x32/::1752375162
-Autotiles walls.png::CompressedTexture2D::1145727063086689652::1750999461::1750999461::1::::<><>::
-Grounds 1.1.png::CompressedTexture2D::3857431035718382808::1750999461::1750999461::1::::<><>::
-Props 1.1.png::CompressedTexture2D::6772370901931495240::1750999461::1750999461::1::::<><>::
-Structures1.1.png::CompressedTexture2D::878325264597291318::1750999461::1750999461::1::::<><>::
-Walls 1.1.png::CompressedTexture2D::3766564586283808820::1750999461::1750999461::1::::<><>::
-::res://fonts/::1752375162
-dogica.otf::FontFile::154332487652663156::1750999461::1750999461::1::::<><>::
-pixely[1].ttf::FontFile::8883761844279027607::1750999461::1750999461::1::::<><>::
-::res://Scenes/::1753355419
-dialogue.gd::GDScript::-1::1753355387::0::1::::<>Node<>::
-dialogue.tscn::PackedScene::4002254690233037025::1753355389::0::1::::<><>::res://Scenes/dialogue.gd
+::res://01 Hannah/::1753435155
+::res://01 Hannah/Assets/::1753435192
+Attack.png::CompressedTexture2D::2907030109289056287::1753345816::1753435191::1::::<><>::
+back - transparent bg.png::CompressedTexture2D::6574927115489162832::1753345816::1753435191::1::::<><>::
+back and right transparent book only.png::CompressedTexture2D::5406487200798302348::1753345816::1753435191::1::::<><>::
+Death - modified.png::CompressedTexture2D::8547351212231958424::1753345816::1753435191::1::::<><>::
+Death.png::CompressedTexture2D::3574665475346678244::1753345816::1753435191::1::::<><>::
+DeathF.png::CompressedTexture2D::2266269267063601516::1753345816::1753435191::1::::<><>::
+Idle (2).png::CompressedTexture2D::4463620018564277213::1753345816::1753435191::1::::<><>::
+Idle - changed.png::CompressedTexture2D::8831644979417399770::1753345816::1753435191::1::::<><>::
+Idle - changedF.png::CompressedTexture2D::4961893545459844495::1753345816::1753435191::1::::<><>::
+Idle.png::CompressedTexture2D::3857936047904209195::1753345816::1753435191::1::::<><>::
+rightedit - transparent bg.png::CompressedTexture2D::6528407900990443599::1753345816::1753435191::1::::<><>::
+stab - modified, not to our design yet (1).png::CompressedTexture2D::343253762699486403::1753345816::1753435191::1::::<><>::
+Walk (1).png::CompressedTexture2D::5631170187000826775::1753345816::1753435192::1::::<><>::
+Walk - modified.png::CompressedTexture2D::4904003163677921814::1753345816::1753435192::1::::<><>::
+Walk.png::CompressedTexture2D::4148922479386241687::1753345816::1753435192::1::::<><>::
+WalkF.png::CompressedTexture2D::2916686827515532298::1753345816::1753435192::1::::<><>::
+::res://01 Hannah/Scenes/::1753438755
+character_body_2d.tscn::PackedScene::2285823923686431948::1753435242::0::1::::<><>::uid://bhogmjryuk7y6::::res://01 Hannah/Assets/Attack.png<>uid://bq6uhoe0k44no::::res://01 Hannah/Assets/Death.png<>uid://b4uhf1aq0rebt::::res://01 Hannah/Assets/Idle (2).png<>uid://cmh1sydiopcwl::::res://01 Hannah/Assets/Walk (1).png
+enemy.tscn::PackedScene::2455298297048496904::1753438755::0::1::::<><>::res://01 Hannah/Scripts/enemy.gd<>uid://bhogmjryuk7y6::::res://01 Hannah/Assets/Attack.png<>uid://bq6uhoe0k44no::::res://01 Hannah/Assets/Death.png<>uid://b4uhf1aq0rebt::::res://01 Hannah/Assets/Idle (2).png<>uid://cmh1sydiopcwl::::res://01 Hannah/Assets/Walk (1).png
+player.tscn::PackedScene::2426344830694619867::1753438755::0::1::::<><>::res://01 Hannah/Scripts/player.gd<>uid://e5jlsix0oagx::::res://01 Hannah/Assets/stab - modified, not to our design yet (1).png<>uid://dx3d5xjr6c2h7::::res://01 Hannah/Assets/Idle - changed.png<>uid://ccxtwq8ra5cqx::::res://01 Hannah/Assets/Idle - changedF.png<>uid://cb4shli2ms6oo::::res://01 Hannah/Assets/Walk - modified.png<>uid://bhs4n2iebeli5::::res://01 Hannah/Assets/WalkF.png
+::res://01 Hannah/Scripts/::1753436284
+enemy.gd::GDScript::-1::1753436284::0::1::::<>CharacterBody2D<>::
+gobal.gd::GDScript::-1::1753435769::0::1::::<>Node<>::
+player.gd::GDScript::-1::1753345816::0::1::::<>CharacterBody2D<>::
+::res://02 Irene/::1753434365
+Wayfarin_ Stranger (Alto) Audio Only.mp3::AudioStreamMP3::857696369346053290::1750999459::1753433523::1::::<><>::
+::res://02 Irene/Assets - I/::1753434325
+icon.png::CompressedTexture2D::4625594501838174355::1750999461::1753434325::1::::<><>::
+noticeboard-800.png::CompressedTexture2D::5169623716575688352::1750999461::1753434325::1::::<><>::
+::res://02 Irene/Assets - I/2D one/::1753434325
+Classroom Props First Spritesheet 1.png::CompressedTexture2D::387580292999510313::1750999461::1753434325::1::::<><>::
+Computer Room Spritesheet 1.png::CompressedTexture2D::2048758384523971392::1750999461::1753434325::1::::<><>::
+Computer Room Spritesheet 5.png::CompressedTexture2D::863313955348807613::1750999461::1753434325::1::::<><>::
+strokespritesheet20125.png::CompressedTexture2D::484333823150741404::1750999461::1753434325::1::::<><>::
+strokespritesheet20127.png::CompressedTexture2D::6549409393896988684::1750999461::1753434325::1::::<><>::
+strokespritesheet20133.png::CompressedTexture2D::4315485831901467757::1750999461::1753434325::1::::<><>::
+::res://02 Irene/Assets - I/ocean_nostalgia/::1753434325
+Grounds 1.1.png::CompressedTexture2D::7511565678852303989::1750999461::1753434325::1::::<><>::
+removed_bg_ocean_nostalgia_classroom.png::CompressedTexture2D::8936222430674058763::1750999461::1753434325::1::::<><>::
+School_A4.png::CompressedTexture2D::981548099068106422::1750999461::1753434325::1::::<><>::
+School_A5.png::CompressedTexture2D::1976193296793214953::1750999461::1753434325::1::::<><>::
+School_B.png::CompressedTexture2D::258527630868798012::1750999461::1753434325::1::::<><>::
+::res://02 Irene/Assets - I/Traditional School Asset pack 32x32/::1753434325
+Autotiles walls.png::CompressedTexture2D::1145727063086689652::1750999461::1753434325::1::::<><>::
+Grounds 1.1.png::CompressedTexture2D::3857431035718382808::1750999461::1753434325::1::::<><>::
+Props 1.1.png::CompressedTexture2D::6772370901931495240::1750999461::1753434325::1::::<><>::
+Structures1.1.png::CompressedTexture2D::878325264597291318::1750999461::1753434325::1::::<><>::
+Walls 1.1.png::CompressedTexture2D::3766564586283808820::1750999461::1753434325::1::::<><>::
+::res://02 Irene/fonts - I/::1753434342
+dogica.otf::FontFile::154332487652663156::1750999461::1753434342::1::::<><>::
+pixely[1].ttf::FontFile::8883761844279027607::1750999461::1753434342::1::::<><>::
+::res://02 Irene/Scenes - I/::1753433779
+::res://02 Irene/Scenes - I/levels and all that/::1753438799
+dialogue.tscn::PackedScene::4002254690233037025::1753438799::0::1::::<><>::res://02 Irene/Scripts - I/levels and all that - script/dialogue.gd<>uid://cg03ls2khnai::::res://02 Irene/fonts - I/dogica.otf
+input_button.tscn::PackedScene::676836194265044078::1753434365::0::1::::<><>::res://02 Irene/Scripts - I/levels and all that - script/input_button.gd<>uid://cg03ls2khnai::::res://02 Irene/fonts - I/dogica.otf
+main.tscn::PackedScene::3144398139276255422::1753438755::0::1::::<><>::res://02 Irene/Scripts - I/levels and all that - script/main.gd<>uid://c3qt7u7j3vebo::::res://02 Irene/Assets - I/Traditional School Asset pack 32x32/Props 1.1.png<>uid://batlsr4q5ikn0::::res://01 Hannah/Scenes/player.tscn<>uid://bu7tlcmvar86o::::res://02 Irene/Assets - I/Traditional School Asset pack 32x32/Grounds 1.1.png<>uid://ba8mn0j2r0kku::::res://01 Hannah/Scenes/enemy.tscn<>uid://qk87sxe4au5y::::res://02 Irene/Assets - I/Traditional School Asset pack 32x32/Autotiles walls.png<>uid://mhqes1q4k26a::::res://02 Irene/Wayfarin_ Stranger (Alto) Audio Only.mp3<>uid://dxh6avnoqpyq::::res://02 Irene/Assets - I/ocean_nostalgia/School_B.png<>uid://mrp5hoyyagty::::res://02 Irene/Assets - I/Traditional School Asset pack 32x32/Structures1.1.png<>uid://btws1eksgd5wy::::res://02 Irene/Assets - I/Traditional School Asset pack 32x32/Walls 1.1.png<>uid://d0k1jpgaul8hb::::res://02 Irene/Assets - I/ocean_nostalgia/removed_bg_ocean_nostalgia_classroom.png<>uid://d12r8d5c8hufq::::res://02 Irene/Scenes - I/UI/pause.tscn
+::res://02 Irene/Scenes - I/UI/::1753438755
+MainMenu.tscn::PackedScene::6321375733521900863::1753438755::0::1::::<><>::res://02 Irene/Scripts - I/UI - script/MainMenu.gd<>uid://cfwg7hdqrxa53::::res://02 Irene/Assets - I/noticeboard-800.png<>uid://c5ea5yed0s5yf::::res://02 Irene/Scenes - I/UI/settings.tscn<>uid://dytmi3e7gkhj0::::res://02 Irene/fonts - I/pixely[1].ttf<>uid://mhqes1q4k26a::::res://02 Irene/Wayfarin_ Stranger (Alto) Audio Only.mp3
+pause.tscn::PackedScene::9041001509153101842::1753434510::0::1::::<><>::res://02 Irene/Scripts - I/UI - script/pause.gd<>res://02 Irene/Scripts - I/UI - script/pause.gdshader
+settings.tscn::PackedScene::6886819028270638381::1753434510::0::1::::<><>::res://02 Irene/Scripts - I/UI - script/settings.gd<>uid://cg03ls2khnai::::res://02 Irene/fonts - I/dogica.otf<>uid://dytmi3e7gkhj0::::res://02 Irene/fonts - I/pixely[1].ttf<>uid://jv4nmtu2f44i::::res://02 Irene/Scenes - I/levels and all that/input_button.tscn<>uid://mhqes1q4k26a::::res://02 Irene/Wayfarin_ Stranger (Alto) Audio Only.mp3
+::res://02 Irene/Scripts - I/::1753433806
+::res://02 Irene/Scripts - I/levels and all that - script/::1753438799
+dialogue.gd::GDScript::-1::1753438799::0::1::::<>Node<>::
 input_button.gd::GDScript::-1::1752386916::0::1::::<>Button<>::
-input_button.tscn::PackedScene::676836194265044078::1752392050::0::1::::<><>::res://Scenes/input_button.gd<>uid://cg03ls2khnai::::res://fonts/dogica.otf
 main.gd::GDScript::-1::1752378426::0::1::::<>Node2D<>::
-main.tscn::PackedScene::3144398139276255422::1753355387::0::1::::<><>::res://Scenes/main.gd<>uid://c3qt7u7j3vebo::::res://Assets/Traditional School Asset pack 32x32/Props 1.1.png<>uid://batlsr4q5ikn0::::res://01 Hannah/Scenes/player.tscn<>uid://bu7tlcmvar86o::::res://Assets/Traditional School Asset pack 32x32/Grounds 1.1.png<>uid://ba8mn0j2r0kku::::res://01 Hannah/Scenes/enemy.tscn<>uid://qk87sxe4au5y::::res://Assets/Traditional School Asset pack 32x32/Autotiles walls.png<>uid://mhqes1q4k26a::::res://Wayfarin_ Stranger (Alto) Audio Only.mp3<>uid://dxh6avnoqpyq::::res://Assets/ocean_nostalgia/School_B.png<>uid://mrp5hoyyagty::::res://Assets/Traditional School Asset pack 32x32/Structures1.1.png<>uid://btws1eksgd5wy::::res://Assets/Traditional School Asset pack 32x32/Walls 1.1.png<>uid://d0k1jpgaul8hb::::res://Assets/ocean_nostalgia/removed_bg_ocean_nostalgia_classroom.png<>uid://d12r8d5c8hufq::::res://Scenes/pause.tscn
-MainMenu.gd::GDScript::-1::1752394068::0::1::::<>Control<>::
-MainMenu.gdshader::Shader::-1::1752145490::0::1::::<><>::
-MainMenu.tscn::PackedScene::6321375733521900863::1753355387::0::1::::<><>::res://Scenes/MainMenu.gd<>uid://cfwg7hdqrxa53::::res://Assets/noticeboard-800.png<>uid://c5ea5yed0s5yf::::res://Scenes/settings.tscn<>uid://dytmi3e7gkhj0::::res://fonts/pixely[1].ttf<>uid://mhqes1q4k26a::::res://Wayfarin_ Stranger (Alto) Audio Only.mp3
-pause.gd::GDScript::-1::1752394068::0::1::::<>Control<>::
-pause.gdshader::Shader::-1::1753355419::0::1::::<><>::
-pause.tscn::PackedScene::9041001509153101842::1753355389::0::1::::<><>::res://Scenes/pause.gd<>res://Scenes/pause.gdshader
-return_button.gd::GDScript::-1::1750999461::0::1::::<>Button<>::
-settings.gd::GDScript::-1::1752393691::0::1::::<>Control<>::
-settings.gdshader::Shader::-1::1753355419::0::1::::<><>::
-settings.tscn::PackedScene::6886819028270638381::1753355387::0::1::::<><>::res://Scenes/settings.gd<>uid://cg03ls2khnai::::res://fonts/dogica.otf<>uid://dytmi3e7gkhj0::::res://fonts/pixely[1].ttf<>uid://jv4nmtu2f44i::::res://Scenes/input_button.tscn<>uid://mhqes1q4k26a::::res://Wayfarin_ Stranger (Alto) Audio Only.mp3
-trial_map.tscn::PackedScene::7013628198115687580::1753355389::0::1::::<><>::uid://4go0sp0qroqa::::res://Assets/2D one/Computer Room Spritesheet 1.png<>uid://g5u533ywcs4k::::res://Assets/2D one/strokespritesheet20125.png<>uid://b2qpok36kmksb::::res://Assets/2D one/strokespritesheet20133.png<>uid://c0kt20dwcytc3::::res://Assets/2D one/strokespritesheet20127.png<>uid://fr0nj08psusv::::res://Assets/2D one/Classroom Props First Spritesheet 1.png
-::res://Scenes/settings/::1752386536
-::res://Scripts/::1752375162
 player.gd::GDScript::-1::1750999461::0::1::::<>CharacterBody2D<>::
+::res://02 Irene/Scripts - I/UI - script/::1753434838
+MainMenu.gd::GDScript::-1::1753434838::0::1::::<>Control<>::
+pause.gd::GDScript::-1::1753434741::0::1::::<>Control<>::
+pause.gdshader::Shader::-1::1753432835::0::1::::<><>::
+return_button.gd::GDScript::-1::1750999461::0::1::::<>Button<>::
+settings.gd::GDScript::-1::1753434741::0::1::::<>Control<>::
+settings.gdshader::Shader::-1::1753432835::0::1::::<><>::
