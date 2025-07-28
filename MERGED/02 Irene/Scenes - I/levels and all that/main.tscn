@@ -52913,7 +52913,7 @@ collision_layer = 8
 collision_mask = 7
 
 [node name="TileMap" type="TileMap" parent="."]
-position = Vector2(2, 0)
+position = Vector2(-48, -7)
 scale = Vector2(2, 2)
 tile_set = SubResource("TileSet_gtpo7")
 format = 2
