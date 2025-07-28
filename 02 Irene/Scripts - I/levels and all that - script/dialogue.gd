@@ -1,11 +1,15 @@
 extends Node
 
-@onready var skip_button = $SkipButton
-@onready var skip_all_button = $SkipAllButton
-@onready var confirm_skip = $ConfirmSkip
+@onready var skip_button = $CanvasLayer2/VBoxContainer/SkipButton
+@onready var skip_all_button = $CanvasLayer2/VBoxContainer/SkipAllButton
+@onready var confirm_skip = $CanvasLayer2/ConfirmSkip
 
-@onready var dialogue_label = $DialogueLabel
-@onready var options_box = $OptionsBox
+@onready var dialogue_label = $CanvasLayer2/DialogueLabel
+@onready var options_box = $CanvasLayer2/OptionsBox
+
+@onready var glitch_material := $CanvasLayer/Glitch.material as ShaderMaterial
+@onready var glitch_sound := $GlitchRect/GlitchSound
+
 var buttons = []
 
 var skipping = false
@@ -15,11 +19,12 @@ var state = "start"
 var moral_points = 0
 
 func _ready():
-	buttons = $OptionsBox.get_children()
+	buttons = $CanvasLayer2/OptionsBox.get_children()
 	for i in buttons.size():
 		buttons[i].pressed.connect(func(): _on_button_pressed(i))
 	show_dialogue()
 
+#--------------------------------------------dialogues----------------------------------------------
 func show_dialogue():
 	if skip_all:
 		start_game()
@@ -102,6 +107,7 @@ func show_dialogue():
 		"start_game":
 			get_tree().change_scene_to_file("res://02 Irene/Scenes - I/levels and all that/main.tscn")
 
+#----------------------------------------dialogue logic---------------------------------------------
 func _on_button_pressed(index):
 	match state:
 		"choice_1":
@@ -153,15 +159,41 @@ func show_options(option_texts):
 		else:
 			buttons[i].hide()
 
+#----------------------------------------play sequence----------------------------------------------
+var glitch_keywords = [
+	"screams",
+	"player",
+	"limbs strewn",
+	"cruel",
+	"karma",
+	"unknown disease",
+	"save our world",
+	"dying"
+]
+
 func play_sequence(lines):
 	for line in lines:
 		if skip_all:
-			return  # don't run start_game here anymore!
+			return
+
+		# Check if line contains any glitch-trigger keyword
+		var triggered = false
+		for keyword in glitch_keywords:
+			if line.to_lower().contains(keyword):
+				triggered = true
+				break
+
+		if triggered:
+			await trigger_glitch()
+
 		dialogue_label.text = line
+
 		if skipping:
 			continue
+
 		await get_tree().create_timer(2).timeout
 
+#----------------------------------on [what] button pressed-----------------------------------------
 func _on_skip_button_pressed():
 	skipping = true
 
@@ -177,3 +209,16 @@ func _on_confirm_skip_confirmed():
 #---------------------------so logic is logic-ing for confirm skip----------------------------------
 func start_game():
 	get_tree().change_scene_to_file("res://02 Irene/Scenes - I/levels and all that/main.tscn")
+
+#-------------------------------------------glitches------------------------------------------------
+func trigger_glitch():
+	glitch_material.set_shader_parameter("glitch_active", true)
+	glitch_material.set_shader_parameter("shake_rate", 1.0)
+	glitch_material.set_shader_parameter("shake_power", 0.05)
+	#glitch_sound.play()
+
+	await get_tree().create_timer(0.5).timeout
+
+	glitch_material.set_shader_parameter("glitch_active", false)
+	glitch_material.set_shader_parameter("shake_rate", 0.0)
+	glitch_material.set_shader_parameter("shake_power", 0.0)

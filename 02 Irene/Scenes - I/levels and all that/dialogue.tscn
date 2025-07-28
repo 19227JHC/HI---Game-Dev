@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://bxaysx2wbu4b2"]
+[gd_scene load_steps=13 format=3 uid="uid://bxaysx2wbu4b2"]
 
 [ext_resource type="Script" path="res://02 Irene/Scripts - I/levels and all that - script/dialogue.gd" id="1_ey6jv"]
+[ext_resource type="Shader" path="res://02 Irene/Scripts - I/levels and all that - script/dialogue.gdshader" id="2_bwabt"]
 [ext_resource type="FontFile" uid="uid://cg03ls2khnai" path="res://02 Irene/fonts - I/dogica.otf" id="2_r1h6a"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2vjqy"]
@@ -87,6 +88,15 @@ Button/styles/hover = SubResource("StyleBoxFlat_t52et")
 Button/styles/normal = SubResource("StyleBoxFlat_emple")
 Button/styles/pressed = SubResource("StyleBoxFlat_h2jr7")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ualyd"]
+shader = ExtResource("2_bwabt")
+shader_parameter/shake_power = 0.03
+shader_parameter/shake_rate = 0.2
+shader_parameter/shake_speed = 5.0
+shader_parameter/shake_block_size = 30.5
+shader_parameter/shake_color_rate = 0.01
+shader_parameter/glitch_active = false
+
 [node name="dialogue" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -96,14 +106,15 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ey6jv")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2"]
 offset_left = 1068.0
 offset_top = 18.0
 offset_right = 1263.0
 offset_bottom = 102.0
 
-[node name="SkipAllButton" type="Button" parent="VBoxContainer"]
+[node name="SkipAllButton" type="Button" parent="CanvasLayer2/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
@@ -111,7 +122,7 @@ theme_override_fonts/font = ExtResource("2_r1h6a")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_2vjqy")
 text = "Skip All"
 
-[node name="SkipButton" type="Button" parent="VBoxContainer"]
+[node name="SkipButton" type="Button" parent="CanvasLayer2/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
@@ -119,17 +130,13 @@ theme_override_fonts/font = ExtResource("2_r1h6a")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_2vjqy")
 text = "Skip"
 
-[node name="DialogueLabel" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+[node name="DialogueLabel" type="Label" parent="CanvasLayer2"]
+anchors_preset = 14
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -393.0
-offset_top = -263.0
-offset_right = 394.0
-offset_bottom = 27.0
+offset_top = -191.0
+offset_bottom = 74.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_r1h6a")
@@ -137,8 +144,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_d3t7m")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="OptionsBox" type="VBoxContainer" parent="."]
-layout_mode = 1
+[node name="OptionsBox" type="VBoxContainer" parent="CanvasLayer2"]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -150,33 +156,45 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_constants/separation = 10
 
-[node name="Button" type="Button" parent="OptionsBox"]
+[node name="Button" type="Button" parent="CanvasLayer2/OptionsBox"]
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
 theme_override_fonts/font = ExtResource("2_r1h6a")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_2vjqy")
 
-[node name="Button2" type="Button" parent="OptionsBox"]
+[node name="Button2" type="Button" parent="CanvasLayer2/OptionsBox"]
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
 theme_override_fonts/font = ExtResource("2_r1h6a")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_2vjqy")
 
-[node name="Button3" type="Button" parent="OptionsBox"]
+[node name="Button3" type="Button" parent="CanvasLayer2/OptionsBox"]
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
 theme_override_fonts/font = ExtResource("2_r1h6a")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_2vjqy")
 
-[node name="ConfirmSkip" type="ConfirmationDialog" parent="."]
+[node name="ConfirmSkip" type="ConfirmationDialog" parent="CanvasLayer2"]
 theme = SubResource("Theme_l7uag")
 ok_button_text = "Yeah, totally. Skip it all!"
 dialog_text = "Are you sure? This will negatively impact your experience. We will automatically treat this as \"Yes, I want to help.\""
 cancel_button_text = "Okay, I'll do the dialogues."
 
-[connection signal="pressed" from="VBoxContainer/SkipAllButton" to="." method="_on_skip_all_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/SkipButton" to="." method="_on_skip_button_pressed"]
-[connection signal="confirmed" from="ConfirmSkip" to="." method="_on_confirm_skip_confirmed"]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Glitch" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_ualyd")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[connection signal="pressed" from="CanvasLayer2/VBoxContainer/SkipAllButton" to="." method="_on_skip_all_button_pressed"]
+[connection signal="pressed" from="CanvasLayer2/VBoxContainer/SkipButton" to="." method="_on_skip_button_pressed"]
+[connection signal="confirmed" from="CanvasLayer2/ConfirmSkip" to="." method="_on_confirm_skip_confirmed"]

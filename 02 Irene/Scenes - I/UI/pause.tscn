@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d12r8d5c8hufq"]
+[gd_scene load_steps=11 format=3 uid="uid://d12r8d5c8hufq"]
 
 [ext_resource type="Script" path="res://02 Irene/Scripts - I/UI - script/pause.gd" id="1_lakyi"]
 [ext_resource type="Shader" path="res://02 Irene/Scripts - I/UI - script/pause.gdshader" id="2_2y15g"]
@@ -6,6 +6,14 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_465cl"]
 shader = ExtResource("2_2y15g")
 shader_parameter/lod = 0.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_agydh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_61a0e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dqp4f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tych7"]
 
 [sub_resource type="Animation" id="Animation_kpejs"]
 length = 0.001
@@ -105,28 +113,34 @@ theme_override_constants/separation = 20
 
 [node name="Resume" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
+focus_mode = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(0.282353, 0.282353, 0.282353, 1)
 theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
 theme_override_constants/outline_size = 0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_agydh")
 text = "Resume"
 flat = true
 icon_alignment = 1
 
 [node name="Restart" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
+focus_mode = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(0.282353, 0.282353, 0.282353, 1)
 theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_61a0e")
 text = "Restart"
 flat = true
 icon_alignment = 1
 
 [node name="Settings" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
+focus_mode = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(0.282353, 0.282353, 0.282353, 1)
 theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dqp4f")
 text = "Settings"
 flat = true
 icon_alignment = 1
@@ -134,9 +148,11 @@ icon_alignment = 1
 [node name="Exit_To_Menu" type="Button" parent="PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
+focus_mode = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(0.282353, 0.282353, 0.282353, 1)
 theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tych7")
 text = "Exit To Menu"
 flat = true
 icon_alignment = 1
