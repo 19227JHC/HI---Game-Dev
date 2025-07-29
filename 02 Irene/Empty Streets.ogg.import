@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://v4u7pdm1xybw"
+path="res://.godot/imported/Empty Streets.ogg-f0385a042a345eba19fdd746cb5bbe3f.oggvorbisstr"
+
+[deps]
+
+source_file="res://02 Irene/Empty Streets.ogg"
+dest_files=["res://.godot/imported/Empty Streets.ogg-f0385a042a345eba19fdd746cb5bbe3f.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
