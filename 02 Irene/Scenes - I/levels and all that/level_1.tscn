@@ -1,17 +1,17 @@
 [gd_scene load_steps=31 format=3 uid="uid://bk2f1pkuxc7yo"]
 
-[ext_resource type="Script" path="res://02 Irene/Scripts - I/levels and all that - script/main.gd" id="1_rpwk5"]
-[ext_resource type="Texture2D" uid="uid://c3qt7u7j3vebo" path="res://02 Irene/Assets - I/Traditional School Asset pack 32x32/Props 1.1.png" id="2_tl2ah"]
-[ext_resource type="PackedScene" uid="uid://batlsr4q5ikn0" path="res://01 Hannah/Scenes/player.tscn" id="2_v4r1c"]
-[ext_resource type="Texture2D" uid="uid://bu7tlcmvar86o" path="res://02 Irene/Assets - I/Traditional School Asset pack 32x32/Grounds 1.1.png" id="3_2x4ur"]
-[ext_resource type="PackedScene" uid="uid://ba8mn0j2r0kku" path="res://01 Hannah/Scenes/enemy.tscn" id="3_ksly1"]
-[ext_resource type="Texture2D" uid="uid://qk87sxe4au5y" path="res://02 Irene/Assets - I/Traditional School Asset pack 32x32/Autotiles walls.png" id="4_qy8ra"]
-[ext_resource type="Texture2D" uid="uid://dxh6avnoqpyq" path="res://02 Irene/Assets - I/ocean_nostalgia/School_B.png" id="5_myo12"]
-[ext_resource type="Texture2D" uid="uid://mrp5hoyyagty" path="res://02 Irene/Assets - I/Traditional School Asset pack 32x32/Structures1.1.png" id="6_kpu1n"]
-[ext_resource type="Texture2D" uid="uid://btws1eksgd5wy" path="res://02 Irene/Assets - I/Traditional School Asset pack 32x32/Walls 1.1.png" id="7_8dyxc"]
-[ext_resource type="Texture2D" uid="uid://d0k1jpgaul8hb" path="res://02 Irene/Assets - I/ocean_nostalgia/removed_bg_ocean_nostalgia_classroom.png" id="8_negn8"]
-[ext_resource type="AudioStream" uid="uid://brthprpjwdlgq" path="res://02 Irene/Empty Streets.ogg" id="11_p0hig"]
-[ext_resource type="PackedScene" uid="uid://d12r8d5c8hufq" path="res://02 Irene/Scenes - I/UI/pause.tscn" id="12_c3ccc"]
+[ext_resource type="Script" path="res://02 Irene/Scripts - I/levels and all that - script/main.gd" id="1_4kf3l"]
+[ext_resource type="PackedScene" uid="uid://ba8mn0j2r0kku" path="res://01 Hannah/Scenes/enemy.tscn" id="2_atih0"]
+[ext_resource type="PackedScene" uid="uid://batlsr4q5ikn0" path="res://01 Hannah/Scenes/player.tscn" id="3_2jqg1"]
+[ext_resource type="Texture2D" uid="uid://c3qt7u7j3vebo" path="res://02 Irene/Assets - I/Traditional School Asset pack 32x32/Props 1.1.png" id="4_12pnd"]
+[ext_resource type="Texture2D" uid="uid://btws1eksgd5wy" path="res://02 Irene/Assets - I/Traditional School Asset pack 32x32/Walls 1.1.png" id="5_s47cn"]
+[ext_resource type="Texture2D" uid="uid://qk87sxe4au5y" path="res://02 Irene/Assets - I/Traditional School Asset pack 32x32/Autotiles walls.png" id="6_t6nbf"]
+[ext_resource type="Texture2D" uid="uid://dxh6avnoqpyq" path="res://02 Irene/Assets - I/ocean_nostalgia/School_B.png" id="7_6aaxe"]
+[ext_resource type="Texture2D" uid="uid://mrp5hoyyagty" path="res://02 Irene/Assets - I/Traditional School Asset pack 32x32/Structures1.1.png" id="8_7ttk7"]
+[ext_resource type="Texture2D" uid="uid://bu7tlcmvar86o" path="res://02 Irene/Assets - I/Traditional School Asset pack 32x32/Grounds 1.1.png" id="9_eo6x4"]
+[ext_resource type="Texture2D" uid="uid://d0k1jpgaul8hb" path="res://02 Irene/Assets - I/ocean_nostalgia/removed_bg_ocean_nostalgia_classroom.png" id="10_xhf2o"]
+[ext_resource type="AudioStream" uid="uid://brthprpjwdlgq" path="res://02 Irene/Empty Streets.ogg" id="11_ikvif"]
+[ext_resource type="PackedScene" uid="uid://d12r8d5c8hufq" path="res://02 Irene/Scenes - I/UI/pause.tscn" id="12_cioy4"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_3ct67"]
 tile_data = PackedInt32Array(0, 2490376, 20, 65536, 2490376, 21, 1, 2555912, 20, 65537, 2555912, 21, 2, 2621448, 20, 65538, 2621448, 21, 3, 2686984, 20, 65539, 2686984, 21, 4, 2555912, 20, 65540, 2555912, 21, 5, 2621448, 20, 65541, 2621448, 21, 6, 2686984, 20, 65542, 2686984, 21, 7, 2752520, 20, 65543, 2752520, 21, 8, 2621448, 20, 65544, 2621448, 21, 9, 2686984, 20, 65545, 2686984, 21, 10, 2752520, 20, 65546, 2752520, 21, 11, 2555912, 20, 65547, 2555912, 21, 12, 2621448, 20, 65548, 2621448, 21, 13, 2686984, 20, 65549, 2686984, 21, 14, 2752520, 20, 65550, 2752520, 21, 15, 2686984, 20, 65551, 2686984, 21, 16, 2555912, 20, 65552, 2555912, 21, 17, 2621448, 20, 65553, 2621448, 21, 18, 2686984, 20, 65554, 2686984, 21, 19, 2752520, 20, 65555, 2752520, 21, 20, 2621448, 20, 65556, 2621448, 21, 21, 2555912, 20, 65557, 2555912, 21, 22, 2621448, 20, 65558, 2621448, 21, 23, 2686984, 20, 65559, 2686984, 21, 24, 2752520, 20, 65560, 2752520, 21, 25, 2555912, 20, 65561, 2555912, 21, 26, 2621448, 20, 65562, 2621448, 21, 27, 2686984, 20, 65563, 2686984, 21, 28, 2752520, 20, 65564, 2752520, 21, 29, 2555912, 20, 65565, 2555912, 21, 30, 2621448, 20, 65566, 2621448, 21, 31, 2686984, 20, 65567, 2686984, 21, 32, 2752520, 20, 65568, 2752520, 21, 33, 2555912, 20, 65569, 2555912, 21, 34, 2621448, 20, 65570, 2621448, 21, 35, 2686984, 20, 65571, 2686984, 21, 36, 2555912, 20, 65572, 2555912, 21, 37, 2621448, 20, 65573, 2621448, 21, 38, 2686984, 20, 65574, 2686984, 21, 39, 2555912, 20, 65575, 2555912, 21, 40, 2621448, 20, 65576, 2621448, 21, 41, 2686984, 20, 65577, 2686984, 21, 42, 2752520, 20, 65578, 2752520, 21, 43, 2818056, 20, 65579, 2818056, 21)
@@ -38,7 +38,7 @@ tile_data = PackedInt32Array(0, 3538952, 4, 65536, 3538952, 5, 131072, 3538952, 
 tile_data = PackedInt32Array(0, 2883592, 22, 65536, 2883592, 23, 131072, 2883592, 24, 1, 2949128, 22, 65537, 2949128, 23, 131073, 2949128, 24)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3w2pw"]
-texture = ExtResource("2_tl2ah")
+texture = ExtResource("4_12pnd")
 texture_region_size = Vector2i(8, 8)
 6:0/0 = 0
 6:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -11567,7 +11567,7 @@ texture_region_size = Vector2i(8, 8)
 51:63/0/physics_layer_1/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qb1nd"]
-texture = ExtResource("7_8dyxc")
+texture = ExtResource("5_s47cn")
 texture_region_size = Vector2i(8, 8)
 16:4/0 = 0
 16:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -24129,7 +24129,7 @@ texture_region_size = Vector2i(8, 8)
 56:27/0/physics_layer_1/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rxpeq"]
-texture = ExtResource("4_qy8ra")
+texture = ExtResource("6_t6nbf")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
@@ -25732,7 +25732,7 @@ texture = ExtResource("4_qy8ra")
 15:19/0/physics_layer_1/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6m7v1"]
-texture = ExtResource("5_myo12")
+texture = ExtResource("7_6aaxe")
 texture_region_size = Vector2i(8, 8)
 16:0/0 = 0
 16:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -40201,7 +40201,7 @@ texture_region_size = Vector2i(8, 8)
 63:63/0/physics_layer_1/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b6ntp"]
-texture = ExtResource("6_kpu1n")
+texture = ExtResource("8_7ttk7")
 2:1/0 = 0
 2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:1/0/physics_layer_0/angular_velocity = 0.0
@@ -42544,7 +42544,7 @@ texture = ExtResource("6_kpu1n")
 20:28/0/physics_layer_1/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bl1bx"]
-texture = ExtResource("3_2x4ur")
+texture = ExtResource("9_eo6x4")
 texture_region_size = Vector2i(8, 8)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -47668,7 +47668,7 @@ texture_region_size = Vector2i(8, 8)
 31:31/0/physics_layer_1/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3xo0i"]
-texture = ExtResource("8_negn8")
+texture = ExtResource("10_xhf2o")
 texture_region_size = Vector2i(8, 8)
 24:0/0 = 0
 24:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -52218,7 +52218,7 @@ pattern_6 = SubResource("TileMapPattern_fsm18")
 pattern_7 = SubResource("TileMapPattern_jsicr")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_snou3"]
-texture = ExtResource("8_negn8")
+texture = ExtResource("10_xhf2o")
 12:0/0 = 0
 12:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 12:0/0/physics_layer_0/angular_velocity = 0.0
@@ -52898,16 +52898,16 @@ physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_snou3")
 
 [node name="Main" type="Node2D"]
-script = ExtResource("1_rpwk5")
+script = ExtResource("1_4kf3l")
 
-[node name="Enemy" parent="." instance=ExtResource("3_ksly1")]
+[node name="Enemy" parent="." instance=ExtResource("2_atih0")]
 z_index = 4
 position = Vector2(1020, 461)
 scale = Vector2(2, 2)
 collision_layer = 8
 collision_mask = 263
 
-[node name="Player" parent="." instance=ExtResource("2_v4r1c")]
+[node name="Player" parent="." instance=ExtResource("3_2jqg1")]
 z_index = 4
 position = Vector2(806, 516)
 scale = Vector2(2, 2)
@@ -52941,9 +52941,9 @@ layer_0/tile_data = PackedInt32Array(131095, 1245184, 14, 196631, 1245184, 15, 1
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(-1, 1)
-stream = ExtResource("11_p0hig")
+stream = ExtResource("11_ikvif")
 autoplay = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Pause" parent="CanvasLayer" instance=ExtResource("12_c3ccc")]
+[node name="Pause" parent="CanvasLayer" instance=ExtResource("12_cioy4")]
