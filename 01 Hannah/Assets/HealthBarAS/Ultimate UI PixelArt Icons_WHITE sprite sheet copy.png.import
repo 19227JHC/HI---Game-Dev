@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddb35q7s5m7g5"
-path="res://.godot/imported/Idle (2).png-af548f4b77c918c653119667af190774.ctex"
+uid="uid://cdnb83yak0y53"
+path="res://.godot/imported/Ultimate UI PixelArt Icons_WHITE sprite sheet copy.png-56b4250369dbce96433fd540f51ac03c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://01 Hannah/Assets/Idle (2).png"
-dest_files=["res://.godot/imported/Idle (2).png-af548f4b77c918c653119667af190774.ctex"]
+source_file="res://01 Hannah/Assets/HealthBarAS/Ultimate UI PixelArt Icons_WHITE sprite sheet copy.png"
+dest_files=["res://.godot/imported/Ultimate UI PixelArt Icons_WHITE sprite sheet copy.png-56b4250369dbce96433fd540f51ac03c.ctex"]
 
 [params]
 

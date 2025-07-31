@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddb35q7s5m7g5"
-path="res://.godot/imported/Idle (2).png-af548f4b77c918c653119667af190774.ctex"
+uid="uid://djprlqqf1nhch"
+path="res://.godot/imported/HealthBar2.png-b9491ffc640a3b3a2379a6a6ce990f38.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://01 Hannah/Assets/Idle (2).png"
-dest_files=["res://.godot/imported/Idle (2).png-af548f4b77c918c653119667af190774.ctex"]
+source_file="res://01 Hannah/Assets/HealthBarAS/HealthBar2.png"
+dest_files=["res://.godot/imported/HealthBar2.png-b9491ffc640a3b3a2379a6a6ce990f38.ctex"]
 
 [params]
 

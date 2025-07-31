@@ -1,39 +1,40 @@
-[gd_scene load_steps=5 format=3 uid="uid://bk2f1pkuxc7yo"]
+[gd_scene load_steps=8 format=3 uid="uid://bk2f1pkuxc7yo"]
 
-[ext_resource type="PackedScene" uid="uid://batlsr4q5ikn0" path="res://Scenes/player.tscn" id="1_b2v05"]
-[ext_resource type="PackedScene" uid="uid://ba8mn0j2r0kku" path="res://Scenes/enemy.tscn" id="2_lu4vs"]
-[ext_resource type="Script" path="res://Scripts/Healthbar.gd" id="3_6vqoh"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jljri"]
-bg_color = Color(0.709804, 0, 0, 1)
-draw_center = false
+[ext_resource type="PackedScene" uid="uid://batlsr4q5ikn0" path="res://01 Hannah/Scenes/player.tscn" id="1_b2v05"]
+[ext_resource type="PackedScene" uid="uid://ba8mn0j2r0kku" path="res://01 Hannah/Scenes/enemy.tscn" id="2_lu4vs"]
+[ext_resource type="Script" path="res://01 Hannah/Scripts/Healthbar.gd" id="3_6vqoh"]
+[ext_resource type="Texture2D" uid="uid://djprlqqf1nhch" path="res://01 Hannah/Assets/HealthBarAS/HealthBar2.png" id="3_io0or"]
+[ext_resource type="Texture2D" uid="uid://cdnb83yak0y53" path="res://01 Hannah/Assets/HealthBarAS/Ultimate UI PixelArt Icons_WHITE sprite sheet copy.png" id="4_mmqpa"]
+[ext_resource type="PackedScene" uid="uid://b8tflxy7ivyaq" path="res://02 Irene/Scenes - I/UI/dead.tscn" id="6_eio5h"]
+[ext_resource type="PackedScene" uid="uid://d12r8d5c8hufq" path="res://02 Irene/Scenes - I/UI/pause.tscn" id="13_7655x"]
 
 [node name="Main" type="Node2D"]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, -9)
-zoom = Vector2(4, 4)
-
 [node name="Player" parent="." instance=ExtResource("1_b2v05")]
-position = Vector2(0, 1)
+position = Vector2(644, 544)
+scale = Vector2(2, 2)
 
 [node name="Enemy" parent="." instance=ExtResource("2_lu4vs")]
-position = Vector2(84, -4)
+position = Vector2(801, 441)
+scale = Vector2(2, 2)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Healthbar" type="ProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("player")]
-offset_left = 14.0
-offset_top = 16.0
-offset_right = 378.0
-offset_bottom = 117.0
-theme_override_constants/outline_size = 5
-theme_override_styles/background = SubResource("StyleBoxFlat_jljri")
-value = 100.0
-show_percentage = false
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("player")]
+offset_left = 4.0
+offset_top = 5.0
+offset_right = 128.0
+offset_bottom = 21.0
+scale = Vector2(3, 3)
+texture_under = ExtResource("3_io0or")
+texture_progress = ExtResource("4_mmqpa")
+texture_progress_offset = Vector2(1, 3)
+tint_under = Color(0, 0, 0, 1)
+tint_progress = Color(0.737255, 0.137255, 0, 1)
 script = ExtResource("3_6vqoh")
 player = NodePath("../../Player")
+metadata/_edit_use_anchors_ = true
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Pause" parent="CanvasLayer" instance=ExtResource("13_7655x")]
+
+[node name="Death" parent="CanvasLayer" instance=ExtResource("6_eio5h")]

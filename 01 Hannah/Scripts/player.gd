@@ -51,6 +51,7 @@ func enemy_attack():
 	if player_alive:
 		currentHealth -= 20
 		healthChanged.emit()
+		print(currentHealth)
 
 func play_walk_animation(direction):
 	if direction.x > 0:
