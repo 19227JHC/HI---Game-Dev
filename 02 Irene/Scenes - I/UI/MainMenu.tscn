@@ -4,7 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://cfwg7hdqrxa53" path="res://02 Irene/Assets - I/noticeboard-800.png" id="1_irka3"]
 [ext_resource type="PackedScene" uid="uid://c5ea5yed0s5yf" path="res://02 Irene/Scenes - I/UI/settings.tscn" id="2_4lhw6"]
 [ext_resource type="FontFile" uid="uid://dytmi3e7gkhj0" path="res://02 Irene/fonts - I/pixely[1].ttf" id="2_jm0x6"]
+<<<<<<< HEAD
 [ext_resource type="AudioStream" uid="uid://ca5ckwx8bdwmv" path="res://02 Irene/Empty Streets.ogg" id="4_nqses"]
+=======
+[ext_resource type="AudioStream" uid="uid://v4u7pdm1xybw" path="res://02 Irene/Empty Streets.ogg" id="4_y6j8m"]
+>>>>>>> a4e3e6fb96e618128df2ebfff01bb984c8e6fb12
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6x8xo"]
 texture = ExtResource("1_irka3")
@@ -83,7 +87,11 @@ flat = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(403.5, 245.5)
+<<<<<<< HEAD
 stream = ExtResource("4_nqses")
+=======
+stream = ExtResource("4_y6j8m")
+>>>>>>> a4e3e6fb96e618128df2ebfff01bb984c8e6fb12
 autoplay = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

@@ -6,11 +6,19 @@
 [ext_resource type="Texture2D" uid="uid://bu7tlcmvar86o" path="res://02 Irene/Assets - I/Traditional School Asset pack 32x32/Grounds 1.1.png" id="3_2x4ur"]
 [ext_resource type="PackedScene" uid="uid://ba8mn0j2r0kku" path="res://01 Hannah/Scenes/enemy.tscn" id="3_ksly1"]
 [ext_resource type="Texture2D" uid="uid://qk87sxe4au5y" path="res://02 Irene/Assets - I/Traditional School Asset pack 32x32/Autotiles walls.png" id="4_qy8ra"]
+<<<<<<< HEAD:02 Irene/Scenes - I/levels and all that/level1.tscn
 [ext_resource type="Texture2D" uid="uid://mrp5hoyyagty" path="res://02 Irene/Assets - I/Traditional School Asset pack 32x32/Structures1.1.png" id="6_kpu1n"]
 [ext_resource type="Texture2D" uid="uid://btws1eksgd5wy" path="res://02 Irene/Assets - I/Traditional School Asset pack 32x32/Walls 1.1.png" id="7_8dyxc"]
 [ext_resource type="Texture2D" uid="uid://d0k1jpgaul8hb" path="res://02 Irene/Assets - I/ocean_nostalgia/removed_bg_ocean_nostalgia_classroom.png" id="8_negn8"]
 [ext_resource type="AudioStream" uid="uid://ca5ckwx8bdwmv" path="res://02 Irene/Empty Streets.ogg" id="11_p0hig"]
 [ext_resource type="PackedScene" uid="uid://b8tflxy7ivyaq" path="res://02 Irene/Scenes - I/UI/dead.tscn" id="12_5xajj"]
+=======
+[ext_resource type="Texture2D" uid="uid://dxh6avnoqpyq" path="res://02 Irene/Assets - I/ocean_nostalgia/School_B.png" id="5_myo12"]
+[ext_resource type="Texture2D" uid="uid://mrp5hoyyagty" path="res://02 Irene/Assets - I/Traditional School Asset pack 32x32/Structures1.1.png" id="6_kpu1n"]
+[ext_resource type="Texture2D" uid="uid://btws1eksgd5wy" path="res://02 Irene/Assets - I/Traditional School Asset pack 32x32/Walls 1.1.png" id="7_8dyxc"]
+[ext_resource type="Texture2D" uid="uid://d0k1jpgaul8hb" path="res://02 Irene/Assets - I/ocean_nostalgia/removed_bg_ocean_nostalgia_classroom.png" id="8_negn8"]
+[ext_resource type="AudioStream" uid="uid://v4u7pdm1xybw" path="res://02 Irene/Empty Streets.ogg" id="11_p0hig"]
+>>>>>>> a4e3e6fb96e618128df2ebfff01bb984c8e6fb12:02 Irene/Scenes - I/levels and all that/main.tscn
 [ext_resource type="PackedScene" uid="uid://d12r8d5c8hufq" path="res://02 Irene/Scenes - I/UI/pause.tscn" id="12_c3ccc"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_3ct67"]
@@ -38431,18 +38439,32 @@ sources/0 = SubResource("TileSetAtlasSource_snou3")
 script = ExtResource("1_rpwk5")
 
 [node name="Player" parent="." instance=ExtResource("2_v4r1c")]
+<<<<<<< HEAD:02 Irene/Scenes - I/levels and all that/level1.tscn
 z_index = 4
 position = Vector2(815, 370)
 scale = Vector2(2, 2)
+=======
+visible = false
+z_index = 4
+position = Vector2(437, 529)
+scale = Vector2(1.75, 1.75)
+>>>>>>> a4e3e6fb96e618128df2ebfff01bb984c8e6fb12:02 Irene/Scenes - I/levels and all that/main.tscn
 collision_layer = 2
 collision_mask = 269
 
 [node name="Enemy" parent="." instance=ExtResource("3_ksly1")]
+<<<<<<< HEAD:02 Irene/Scenes - I/levels and all that/level1.tscn
 z_index = 4
 position = Vector2(654, 256)
 scale = Vector2(2, 2)
 collision_layer = 8
 collision_mask = 263
+=======
+visible = false
+z_index = 4
+position = Vector2(699, 491)
+scale = Vector2(1.75, 1.75)
+>>>>>>> a4e3e6fb96e618128df2ebfff01bb984c8e6fb12:02 Irene/Scenes - I/levels and all that/main.tscn
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(-48, -11)

@@ -2,7 +2,11 @@
 
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
+<<<<<<< HEAD
 uid="uid://ca5ckwx8bdwmv"
+=======
+uid="uid://v4u7pdm1xybw"
+>>>>>>> a4e3e6fb96e618128df2ebfff01bb984c8e6fb12
 path="res://.godot/imported/Empty Streets.ogg-f0385a042a345eba19fdd746cb5bbe3f.oggvorbisstr"
 
 [deps]
