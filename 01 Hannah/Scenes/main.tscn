@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://bk2f1pkuxc7yo"]
+
+[ext_resource type="PackedScene" uid="uid://batlsr4q5ikn0" path="res://Scenes/player.tscn" id="1_b2v05"]
+[ext_resource type="PackedScene" uid="uid://ba8mn0j2r0kku" path="res://Scenes/enemy.tscn" id="2_lu4vs"]
+[ext_resource type="Script" path="res://Scripts/Healthbar.gd" id="3_6vqoh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jljri"]
+bg_color = Color(0.709804, 0, 0, 1)
+draw_center = false
+
+[node name="Main" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -9)
+zoom = Vector2(4, 4)
+
+[node name="Player" parent="." instance=ExtResource("1_b2v05")]
+position = Vector2(0, 1)
+
+[node name="Enemy" parent="." instance=ExtResource("2_lu4vs")]
+position = Vector2(84, -4)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Healthbar" type="ProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("player")]
+offset_left = 14.0
+offset_top = 16.0
+offset_right = 378.0
+offset_bottom = 117.0
+theme_override_constants/outline_size = 5
+theme_override_styles/background = SubResource("StyleBoxFlat_jljri")
+value = 100.0
+show_percentage = false
+script = ExtResource("3_6vqoh")
+player = NodePath("../../Player")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0

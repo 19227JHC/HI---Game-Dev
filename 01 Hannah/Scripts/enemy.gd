@@ -6,7 +6,6 @@ var dead = false
 var player_chase = false
 var player = null
 var last_direction := Vector2.DOWN
-
 var health = 100
 var player_inattack_range = false
 var can_take_damage = true
@@ -29,8 +28,6 @@ func _ready():
 	last_direction = Vector2.DOWN  # Ensure direction is initialized
 	play_idle_animation()
 	change_state(IDLE)
-	
-
 
 func _physics_process(_delta):
 	match state:
@@ -39,12 +36,11 @@ func _physics_process(_delta):
 		CHASE:
 			state_chase()
 		ATTACK:
-			pass # Attack is handled in animation callback
+			state_attack()
 		DEAD:
 			state_dead()
 
 	deal_with_damage()
-
 
 # FSM TRANSITION 
 
@@ -88,6 +84,12 @@ func state_chase():
 	else:
 		change_state(IDLE)
 
+func state_attack():
+	if not is_attacking and attack_cooldown and player_inattack_range:
+		start_attack()
+	elif not player_inattack_range:
+		change_state(CHASE if player_chase else IDLE)
+
 func state_dead():
 	$detection_area/Detection_collsion.disabled = true
 	$Enemy_collision.disabled = true
@@ -103,9 +105,9 @@ func start_attack():
 	velocity = Vector2.ZERO
 
 	play_attack_animation()
+
 	if player and player.has_method("enemy_attack"):
-		player.health -= 20
-		print("Player Health: ", player.health)
+		player.enemy_attack()
 
 	$attack_cooldown_timer.start()
 
@@ -184,6 +186,7 @@ func _on_e_hitbox_body_exited(body):
 func deal_with_damage():
 	if player_inattack_range and gobal.player_current_attack:
 		if can_take_damage:
+			
 			health -= 20
 			$take_damage.start()
 			can_take_damage = false
@@ -194,16 +197,23 @@ func deal_with_damage():
 func _on_take_damage_timeout():
 	can_take_damage = true
 
-# CALLBACKS 	
+# CALLBACKS 
 
 func _on_animated_sprite_2d_animation_finished():
 	if is_attacking:
 		is_attacking = false
 		if not dead:
-			change_state(CHASE if player_chase else IDLE)
+			if player_inattack_range:
+				change_state(ATTACK)  # Continue attacking while player in range
+			else:
+				change_state(CHASE if player_chase else IDLE)
+
+		
 
 func _on_attack_timer_timeout():
 	is_attacking = false
 
 func _on_attack_cooldown_timer_timeout():
 	attack_cooldown = true
+	if player_inattack_range and not dead:
+		change_state(ATTACK)  # Queue next attack immediately

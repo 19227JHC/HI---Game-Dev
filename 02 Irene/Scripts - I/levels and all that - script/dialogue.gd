@@ -208,7 +208,7 @@ func _on_confirm_skip_confirmed():
 
 #---------------------------so logic is logic-ing for confirm skip----------------------------------
 func start_game():
-	get_tree().change_scene_to_file("res://02 Irene/Scenes - I/levels and all that/main.tscn")
+	get_tree().change_scene_to_file("res://02 Irene/Scenes - I/levels and all that/level1.tscn")
 
 #-------------------------------------------glitches------------------------------------------------
 func trigger_glitch():

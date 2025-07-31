@@ -16,7 +16,7 @@ shader_parameter/lod = 0.0
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tych7"]
 
 [sub_resource type="Animation" id="Animation_kpejs"]
-length = 0.001
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true

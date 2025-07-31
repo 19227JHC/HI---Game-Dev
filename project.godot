@@ -17,7 +17,7 @@ config/icon="res://02 Irene/Assets - I/icon.png"
 
 [autoload]
 
-SceneManager="*res://SceneManager.gd"
+SceneManager="*res://02 Irene/SceneManager.gd"
 gobal="*res://01 Hannah/Scripts/gobal.gd"
 
 [display]

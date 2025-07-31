@@ -195,6 +195,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
 [connection signal="pressed" from="CanvasLayer2/VBoxContainer/SkipAllButton" to="." method="_on_skip_all_button_pressed"]
 [connection signal="pressed" from="CanvasLayer2/VBoxContainer/SkipButton" to="." method="_on_skip_button_pressed"]
 [connection signal="confirmed" from="CanvasLayer2/ConfirmSkip" to="." method="_on_confirm_skip_confirmed"]

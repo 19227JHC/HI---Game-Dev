@@ -934,14 +934,12 @@ radius = 7.0
 height = 16.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6si41"]
-radius = 47.0956
+radius = 58.0086
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_i1m02"]
-radius = 14.0357
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dq1d3"]
+size = Vector2(21.9456, 20)
 
 [node name="Enemy" type="CharacterBody2D"]
-collision_layer = 8
-collision_mask = 263
 script = ExtResource("1_ugsde")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -969,9 +967,9 @@ collision_layer = 32
 collision_mask = 2
 
 [node name="e_hitbox_collision" type="CollisionShape2D" parent="e_hitbox"]
-position = Vector2(-1, -4)
+position = Vector2(-1, -2)
 scale = Vector2(1.00455, 1)
-shape = SubResource("CircleShape2D_i1m02")
+shape = SubResource("RectangleShape2D_dq1d3")
 debug_color = Color(0.806921, 0.414808, 0, 0.42)
 
 [node name="take_damage" type="Timer" parent="."]
