@@ -1,12 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bk2f1pkuxc7yo"]
+[gd_scene load_steps=6 format=3 uid="uid://bk2f1pkuxc7yo"]
 
-[ext_resource type="PackedScene" uid="uid://batlsr4q5ikn0" path="res://Scenes/player.tscn" id="1_b2v05"]
-[ext_resource type="PackedScene" uid="uid://ba8mn0j2r0kku" path="res://Scenes/enemy.tscn" id="2_lu4vs"]
-[ext_resource type="Script" path="res://Scripts/Healthbar.gd" id="3_6vqoh"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jljri"]
-bg_color = Color(0.709804, 0, 0, 1)
-draw_center = false
+[ext_resource type="PackedScene" uid="uid://batlsr4q5ikn0" path="res://01 Hannah/Scenes/player.tscn" id="1_b2v05"]
+[ext_resource type="PackedScene" uid="uid://ba8mn0j2r0kku" path="res://01 Hannah/Scenes/enemy.tscn" id="2_lu4vs"]
+[ext_resource type="Script" path="res://01 Hannah/Scripts/Healthbar.gd" id="3_6vqoh"]
+[ext_resource type="Texture2D" uid="uid://dp7q1l6pmrs1r" path="res://01 Hannah/Assets/HealthBarAS/HealthBar2.png" id="3_io0or"]
+[ext_resource type="Texture2D" uid="uid://b60jt18uoo1gd" path="res://01 Hannah/Assets/HealthBarAS/Ultimate UI PixelArt Icons_WHITE sprite sheet copy.png" id="4_mmqpa"]
 
 [node name="Main" type="Node2D"]
 
@@ -22,18 +20,17 @@ position = Vector2(84, -4)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Healthbar" type="ProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("player")]
-offset_left = 14.0
-offset_top = 16.0
-offset_right = 378.0
-offset_bottom = 117.0
-theme_override_constants/outline_size = 5
-theme_override_styles/background = SubResource("StyleBoxFlat_jljri")
-value = 100.0
-show_percentage = false
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("player")]
+offset_left = 4.0
+offset_top = 5.0
+offset_right = 128.0
+offset_bottom = 21.0
+scale = Vector2(3, 3)
+texture_under = ExtResource("3_io0or")
+texture_progress = ExtResource("4_mmqpa")
+texture_progress_offset = Vector2(1, 3)
+tint_under = Color(0, 0, 0, 1)
+tint_progress = Color(0.737255, 0.137255, 0, 1)
 script = ExtResource("3_6vqoh")
 player = NodePath("../../Player")
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true

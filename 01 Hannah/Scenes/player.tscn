@@ -1,12 +1,12 @@
 [gd_scene load_steps=67 format=3 uid="uid://batlsr4q5ikn0"]
 
 [ext_resource type="Script" path="res://01 Hannah/Scripts/player.gd" id="1_vyinv"]
-[ext_resource type="Texture2D" uid="uid://e5jlsix0oagx" path="res://01 Hannah/Assets/stab - modified, not to our design yet (1).png" id="2_xemvi"]
-[ext_resource type="Texture2D" uid="uid://dx3d5xjr6c2h7" path="res://01 Hannah/Assets/Idle - changed.png" id="3_2spam"]
-[ext_resource type="Texture2D" uid="uid://dt1nvjj2e1dvs" path="res://01 Hannah/Assets/Death - modified.png" id="3_x0nvu"]
-[ext_resource type="Texture2D" uid="uid://ccxtwq8ra5cqx" path="res://01 Hannah/Assets/Idle - changedF.png" id="4_xctjo"]
-[ext_resource type="Texture2D" uid="uid://cb4shli2ms6oo" path="res://01 Hannah/Assets/Walk - modified.png" id="5_p34eq"]
-[ext_resource type="Texture2D" uid="uid://bhs4n2iebeli5" path="res://01 Hannah/Assets/WalkF.png" id="6_jn38m"]
+[ext_resource type="Texture2D" uid="uid://ke60a017bkx1" path="res://01 Hannah/Assets/stab - modified, not to our design yet (1).png" id="2_xemvi"]
+[ext_resource type="Texture2D" uid="uid://d0gktj84k2adn" path="res://01 Hannah/Assets/Idle - changed.png" id="3_2spam"]
+[ext_resource type="Texture2D" uid="uid://w4uemanity6q" path="res://01 Hannah/Assets/Death - modified.png" id="3_x0nvu"]
+[ext_resource type="Texture2D" uid="uid://cpqxcvndeciht" path="res://01 Hannah/Assets/Idle - changedF.png" id="4_xctjo"]
+[ext_resource type="Texture2D" uid="uid://bwlgtflogtm3c" path="res://01 Hannah/Assets/Walk - modified.png" id="5_p34eq"]
+[ext_resource type="Texture2D" uid="uid://dbi6rdcjl0ydt" path="res://01 Hannah/Assets/WalkF.png" id="6_jn38m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8txet"]
 atlas = ExtResource("2_xemvi")
@@ -485,13 +485,14 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eorvo"]
 radius = 5.0
-height = 12.0
+height = 10.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d64dd"]
 size = Vector2(17, 20)
 
 [node name="Player" type="CharacterBody2D"]
-collision_layer = 3
+collision_layer = 2
+collision_mask = 269
 script = ExtResource("1_vyinv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -500,7 +501,7 @@ sprite_frames = SubResource("SpriteFrames_8h4sx")
 animation = &"death_right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -6)
+position = Vector2(0, -4)
 shape = SubResource("CapsuleShape2D_eorvo")
 debug_color = Color(0.939734, 0.173491, 0.444357, 0.42)
 
@@ -519,7 +520,10 @@ wait_time = 0.3
 one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(1.75, 1.75)
+zoom = Vector2(2, 2)
+
+[node name="carry_point" type="Node2D" parent="."]
+position = Vector2(0, -8)
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="p_hitbox" to="." method="_on_p_hitbox_body_entered"]

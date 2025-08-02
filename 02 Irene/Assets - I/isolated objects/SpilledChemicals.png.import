@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cv8rh0a1viqsl"
-path="res://.godot/imported/Attack.png-f29c241533b22b016bfde88748ee60ed.ctex"
+uid="uid://bqwxqxo3se7di"
+path="res://.godot/imported/SpilledChemicals.png-5709926d0267d77281dbc3d9bac1e260.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://01 Hannah/Assets/Attack.png"
-dest_files=["res://.godot/imported/Attack.png-f29c241533b22b016bfde88748ee60ed.ctex"]
+source_file="res://02 Irene/Assets - I/isolated objects/SpilledChemicals.png"
+dest_files=["res://.godot/imported/SpilledChemicals.png-5709926d0267d77281dbc3d9bac1e260.ctex"]
 
 [params]
 

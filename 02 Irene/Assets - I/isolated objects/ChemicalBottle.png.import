@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cv8rh0a1viqsl"
-path="res://.godot/imported/Attack.png-f29c241533b22b016bfde88748ee60ed.ctex"
+uid="uid://k7sia0noqhno"
+path="res://.godot/imported/ChemicalBottle.png-85bedf8a0460e621896400386d27dae1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://01 Hannah/Assets/Attack.png"
-dest_files=["res://.godot/imported/Attack.png-f29c241533b22b016bfde88748ee60ed.ctex"]
+source_file="res://02 Irene/Assets - I/isolated objects/ChemicalBottle.png"
+dest_files=["res://.godot/imported/ChemicalBottle.png-85bedf8a0460e621896400386d27dae1.ctex"]
 
 [params]
 

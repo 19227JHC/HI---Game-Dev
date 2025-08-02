@@ -51,6 +51,7 @@ func enemy_attack():
 	if player_alive:
 		currentHealth -= 20
 		healthChanged.emit()
+		print(currentHealth)
 
 func play_walk_animation(direction):
 	if direction.x > 0:
@@ -119,7 +120,7 @@ func _on_deal_attack_timeout():
 func _on_animated_sprite_2d_animation_finished():
 	if death_anim_played and $AnimatedSprite2D.animation.begins_with("death"):
 		queue_free()
-		get_node("/root/Main/CanvasLayer/Death").show_death_screen()
+		get_node("/root/Main/CanvasLayer/DeadScreen").show_death_screen()
 
 func player():
 	pass

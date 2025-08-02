@@ -105,7 +105,7 @@ func show_dialogue():
 			get_tree().change_scene_to_file("res://02 Irene/Scenes - I/UI/MainMenu.tscn")
 
 		"start_game":
-			get_tree().change_scene_to_file("res://02 Irene/Scenes - I/levels and all that/main.tscn")
+			get_tree().change_scene_to_file("res://02 Irene/Scenes - I/levels and all that/level_1.tscn")
 
 #----------------------------------------dialogue logic---------------------------------------------
 func _on_button_pressed(index):

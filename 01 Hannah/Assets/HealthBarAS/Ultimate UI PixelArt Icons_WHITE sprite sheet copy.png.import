@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cv8rh0a1viqsl"
-path="res://.godot/imported/Attack.png-f29c241533b22b016bfde88748ee60ed.ctex"
+uid="uid://b60jt18uoo1gd"
+path="res://.godot/imported/Ultimate UI PixelArt Icons_WHITE sprite sheet copy.png-56b4250369dbce96433fd540f51ac03c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://01 Hannah/Assets/Attack.png"
-dest_files=["res://.godot/imported/Attack.png-f29c241533b22b016bfde88748ee60ed.ctex"]
+source_file="res://01 Hannah/Assets/HealthBarAS/Ultimate UI PixelArt Icons_WHITE sprite sheet copy.png"
+dest_files=["res://.godot/imported/Ultimate UI PixelArt Icons_WHITE sprite sheet copy.png-56b4250369dbce96433fd540f51ac03c.ctex"]
 
 [params]
 
