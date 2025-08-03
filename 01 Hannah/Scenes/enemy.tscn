@@ -1,10 +1,10 @@
 [gd_scene load_steps=130 format=3 uid="uid://ba8mn0j2r0kku"]
 
 [ext_resource type="Script" path="res://01 Hannah/Scripts/enemy.gd" id="1_ugsde"]
-[ext_resource type="Texture2D" uid="uid://cv8rh0a1viqsl" path="res://01 Hannah/Assets/Attack.png" id="1_yvp5a"]
-[ext_resource type="Texture2D" uid="uid://b7hjr334rp5m" path="res://01 Hannah/Assets/Death.png" id="2_m0lwv"]
-[ext_resource type="Texture2D" uid="uid://dnpkjgnbejy6s" path="res://01 Hannah/Assets/Idle (2).png" id="3_esl7w"]
-[ext_resource type="Texture2D" uid="uid://c1lpyd8vphm6n" path="res://01 Hannah/Assets/Walk (1).png" id="4_ffpxg"]
+[ext_resource type="Texture2D" uid="uid://d1i51y482s2wl" path="res://01 Hannah/Assets/Attack.png" id="1_yvp5a"]
+[ext_resource type="Texture2D" uid="uid://dyy7tcrxssujf" path="res://01 Hannah/Assets/Death.png" id="2_m0lwv"]
+[ext_resource type="Texture2D" uid="uid://ddb35q7s5m7g5" path="res://01 Hannah/Assets/Idle (2).png" id="3_esl7w"]
+[ext_resource type="Texture2D" uid="uid://cs8mdvm0xicb6" path="res://01 Hannah/Assets/Walk (1).png" id="4_ffpxg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wkhoo"]
 atlas = ExtResource("1_yvp5a")
