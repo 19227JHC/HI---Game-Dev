@@ -124,3 +124,13 @@ func _on_animated_sprite_2d_animation_finished():
 
 func player():
 	pass
+
+
+# ---------------------------------------- IRENE ---------------------------------------------------
+var held_item: Node2D = null
+
+func set_held_item(item: Node2D):
+	held_item = item
+
+func get_held_item() -> Node2D:
+	return held_item

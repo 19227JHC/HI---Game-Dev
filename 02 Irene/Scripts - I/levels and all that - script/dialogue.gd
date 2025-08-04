@@ -8,7 +8,6 @@ extends Node
 @onready var options_box = $CanvasLayer2/OptionsBox
 
 @onready var glitch_material := $CanvasLayer/Glitch.material as ShaderMaterial
-@onready var glitch_sound := $GlitchRect/GlitchSound
 
 var buttons = []
 
