@@ -217,3 +217,11 @@ func _on_attack_cooldown_timer_timeout():
 	attack_cooldown = true
 	if player_inattack_range and not dead:
 		change_state(ATTACK)  # Queue next attack immediately
+
+
+# --------------------------------------------IRENE-------------------------------------------------
+func is_alive():
+	if dead:
+		return false
+	else:
+		return true

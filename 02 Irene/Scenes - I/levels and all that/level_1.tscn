@@ -704,7 +704,7 @@ z_index = 5
 position = Vector2(876, 184)
 scale = Vector2(2, 2)
 
-[node name="Enemy" parent="." instance=ExtResource("2_atih0")]
+[node name="Enemy" parent="." groups=["enemies"] instance=ExtResource("2_atih0")]
 z_index = 5
 position = Vector2(1083, 503)
 scale = Vector2(2, 2)
@@ -712,6 +712,7 @@ scale = Vector2(2, 2)
 [node name="testDoor" parent="." instance=ExtResource("4_115j1")]
 position = Vector2(1214, 86)
 scale = Vector2(2, 2)
+tables = Array[NodePath]([NodePath("../table_and_chair"), NodePath("../table_and_chair2")])
 
 [node name="It\'sChemical" parent="." instance=ExtResource("5_kvrso")]
 z_index = 5

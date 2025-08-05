@@ -1,18 +1,55 @@
 extends Node2D
 
-
 @onready var interaction_area: InteractionArea = $InteractionArea
 @onready var sprite = $Sprite2D
 
+# Assign these in the editor or using onready vars
+@export var tables: Array[NodePath] = [
+	NodePath("../table_and_chair"),
+	NodePath("../table_and_chair")
+]
+@export var enemy_group_name := "enemies"
 
 const file_name = "res://02 Irene/Scenes - I/levels and all that/level_"
-
 
 func _ready():
 	interaction_area.interact = Callable(self, "_on_interact")
 
 
 func _on_interact():
+	if all_enemies_killed() or required_items_placed():
+		door_open()
+	else:
+		print("You Shall Not Pass")
+
+
+func all_enemies_killed() -> bool:
+	for enemy in get_tree().get_nodes_in_group(enemy_group_name):
+		if enemy.is_inside_tree() and enemy.is_alive():  # You must define `is_alive()` in your enemy scripts
+			return false
+	return true
+
+
+func required_items_placed() -> bool:
+	var count = 0
+	for table_path in tables:
+		var table = get_node_or_null(table_path)
+		if table:
+			var item = table.get_placed_item()
+			print("Item on table", table.name, ":", item)
+			if item and item.name in ["It'sChemical", "It'sChemical2"]:
+				count += 1
+				print("Count:", count)
+			else:
+				print("Item not matching or missing on table", table.name)
+		else:
+			print("Table not found at path:", table_path)
+	
+	return count >= 2
+	
+
+# -------------------------------YOU SHALL PASS: door opens whooosh---------------------------------
+func door_open():
 	# Get the current scene path
 	var current_scene_path: String = get_tree().current_scene.scene_file_path
 	print("Current scene path:", current_scene_path)
@@ -48,5 +85,13 @@ func _on_interact():
 		printerr("Could not find level number in filename.")
 
 
-func _process(delta):
-	pass
+func _process(_delta):
+	# Debug check: remove this later
+	if Input.is_action_just_pressed("ui_debug"):
+		print("Enemies dead:", all_enemies_killed())
+		print("Chemicals placed:", required_items_placed())
+		
+	if all_enemies_killed() or required_items_placed():
+		interaction_area.action_name = "enter"
+	else:
+		interaction_area.action_name = "do nothing"

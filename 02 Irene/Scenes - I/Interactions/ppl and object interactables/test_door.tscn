@@ -9,6 +9,7 @@ size = Vector2(46, 42)
 
 [node name="testDoor" type="Node2D"]
 script = ExtResource("1_3r7ba")
+tables = Array[NodePath]([NodePath(""), NodePath("")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_k40qp")

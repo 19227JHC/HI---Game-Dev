@@ -5,7 +5,7 @@ extends Node2D
 @onready var label = $Label
 
 
-const base_text = "[F] to "
+const base_text = "[F] to"
 
 
 var active_areas = []
@@ -26,6 +26,17 @@ func interact():
 
 
 func _process(delta):
+	if player == null:
+		player = get_tree().get_first_node_in_group("player")
+		if player == null:
+			return
+
+	# Clean up invalid areas before sorting
+	active_areas = active_areas.filter(func(area):
+		var valid = area != null and area.is_inside_tree()
+		return valid
+	)
+	
 	if active_areas.size() > 0 && can_interact:
 		active_areas.sort_custom(_sort_by_distance_to_player)
 		label.text = base_text + active_areas[0].action_name
@@ -38,9 +49,25 @@ func _process(delta):
 
 
 func _sort_by_distance_to_player(area1, area2):
-	var area1_to_player = player.global_position.distance_to(area1.global_position)
-	var area2_to_player = player.global_position.distance_to(area2.global_position)
-	return area1_to_player < area2_to_player
+	if player == null:
+		player = get_tree().get_first_node_in_group("player")
+		if player == null:
+			return false
+
+	if area1 == null:
+		return false
+	if area2 == null:
+		return true  # if area1 is valid but area2 isn't, area1 wins
+
+	if not area1.is_inside_tree():
+		return false
+	if not area2.is_inside_tree():
+		return true
+
+	var dist1 = player.global_position.distance_to(area1.global_position)
+	var dist2 = player.global_position.distance_to(area2.global_position)
+
+	return dist1 < dist2
 
 
 func _input(event):

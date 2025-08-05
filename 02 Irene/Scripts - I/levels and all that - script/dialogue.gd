@@ -1,27 +1,43 @@
 extends Node
 
+
 @onready var skip_button = $CanvasLayer2/VBoxContainer/SkipButton
 @onready var skip_all_button = $CanvasLayer2/VBoxContainer/SkipAllButton
 @onready var confirm_skip = $CanvasLayer2/ConfirmSkip
 
+
 @onready var dialogue_label = $CanvasLayer2/DialogueLabel
 @onready var options_box = $CanvasLayer2/OptionsBox
 
+
 @onready var glitch_material := $CanvasLayer/Glitch.material as ShaderMaterial
 
+
 var buttons = []
+
 
 var skipping = false
 var skip_all = false
 
+
 var state = "start"
 var moral_points = 0
 
+
+var dialogue_task = null
+
+
+var skip_confirmed = false
+
+
 func _ready():
+	$AnimationPlayer.play("RESET")
+	
 	buttons = $CanvasLayer2/OptionsBox.get_children()
 	for i in buttons.size():
 		buttons[i].pressed.connect(func(): _on_button_pressed(i))
 	show_dialogue()
+
 
 #--------------------------------------------dialogues----------------------------------------------
 func show_dialogue():
@@ -32,6 +48,10 @@ func show_dialogue():
 	for button in buttons:
 		button.hide()
 		
+	dialogue_task = call_deferred("_show_dialogue_state")
+
+
+func _show_dialogue_state():
 	match state:
 		"start":
 			await play_sequence([
@@ -104,7 +124,8 @@ func show_dialogue():
 			get_tree().change_scene_to_file("res://02 Irene/Scenes - I/UI/MainMenu.tscn")
 
 		"start_game":
-			get_tree().change_scene_to_file("res://02 Irene/Scenes - I/levels and all that/level_1.tscn")
+			await start_game()
+
 
 #----------------------------------------dialogue logic---------------------------------------------
 func _on_button_pressed(index):
@@ -150,13 +171,18 @@ func _on_button_pressed(index):
 				state = "start_game"
 			show_dialogue()
 
+
 func show_options(option_texts):
+	if skip_confirmed:
+		return  # Do not show options after skip all
+	
 	for i in range(buttons.size()):
 		if i < option_texts.size():
 			buttons[i].text = option_texts[i]
 			buttons[i].show()
 		else:
 			buttons[i].hide()
+
 
 #----------------------------------------play sequence----------------------------------------------
 var glitch_keywords = [
@@ -170,10 +196,17 @@ var glitch_keywords = [
 	"dying"
 ]
 
-func play_sequence(lines):
+
+func play_sequence(lines, force := false):
 	for line in lines:
-		if skip_all:
-			return
+		# For skip and Skip all
+		if skip_all and not force:
+			break
+			
+		if skipping and not force:
+			dialogue_label.text = line
+			await get_tree().create_timer(0.1).timeout
+			continue
 
 		# Check if line contains any glitch-trigger keyword
 		var triggered = false
@@ -186,11 +219,10 @@ func play_sequence(lines):
 			await trigger_glitch()
 
 		dialogue_label.text = line
-
-		if skipping:
-			continue
-
 		await get_tree().create_timer(2).timeout
+		
+	skipping = false  # reset skipping flag here
+
 
 #----------------------------------on [what] button pressed-----------------------------------------
 func _on_skip_button_pressed():
@@ -201,13 +233,30 @@ func _on_skip_all_button_pressed():
 
 func _on_confirm_skip_confirmed():
 	skip_all = true
-	await play_sequence(["[Thank you, Player. We’ll bring you in now…]"])
-	await get_tree().create_timer(2).timeout
+	skip_confirmed = true
+
+	# Hide all buttons
+	for button in buttons:
+		button.hide()
+
 	start_game()
+	
 
 #---------------------------so logic is logic-ing for confirm skip----------------------------------
 func start_game():
+	for button in buttons:
+		button.hide()
+	
+	skip_confirmed = false
+	
+	# Say thank you, guys
+	$CanvasLayer3/PanelContainer.show()
+	$AnimationPlayer.play("blur")
+	
+	await get_tree().create_timer(2.5).timeout
+	
 	get_tree().change_scene_to_file("res://02 Irene/Scenes - I/levels and all that/level_1.tscn")
+
 
 #-------------------------------------------glitches------------------------------------------------
 func trigger_glitch():

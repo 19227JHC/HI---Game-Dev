@@ -1,12 +1,17 @@
 extends Node2D
 
+
+@onready var interaction_area: InteractionArea = $InteractionArea
 @onready var slot_node = $PlacePoint  # Automatically gets the Marker2D named PlacePoint
 
+
 var placed_item: Node2D = null
+
 
 # Allow placing any time; can customize if needed
 func can_drop_item() -> bool:
 	return true
+
 
 func place_item(item: Node2D):
 	if not slot_node:
@@ -24,6 +29,7 @@ func place_item(item: Node2D):
 
 		if item.has_method("set_held"):
 			item.set_held(false)
+
 
 func swap_items(new_item: Node2D):
 	var player = get_tree().get_first_node_in_group("player")
@@ -55,5 +61,15 @@ func swap_items(new_item: Node2D):
 	if player.has_method("set_held_item"):
 		player.set_held_item(null)
 
+
 func clear_placed_item():
 	placed_item = null
+
+
+# ----------------------------------for the door's requirements to open-----------------------------
+func get_placed_item():
+	return placed_item
+
+
+func _ready():
+	interaction_area.action_name = ""
