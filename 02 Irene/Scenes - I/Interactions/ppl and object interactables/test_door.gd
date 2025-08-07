@@ -92,6 +92,6 @@ func _process(_delta):
 		print("Chemicals placed:", required_items_placed())
 		
 	if all_enemies_killed() or required_items_placed():
-		interaction_area.action_name = "enter"
+		interaction_area.action_name = "[F] to enter"
 	else:
-		interaction_area.action_name = "do nothing"
+		interaction_area.action_name = "🧙‍♂️ YOU SHALL NOT PASS."

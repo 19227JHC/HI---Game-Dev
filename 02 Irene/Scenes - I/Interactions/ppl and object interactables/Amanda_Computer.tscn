@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://c3pwgfw52q8jc"]
+
+[ext_resource type="Texture2D" uid="uid://bglflfg6ki7ti" path="res://02 Irene/Assets - I/isolated objects/BlackScreenComputer.png" id="1_t3y8t"]
+[ext_resource type="Texture2D" uid="uid://c7kfdbwjx01gb" path="res://02 Irene/Assets - I/amanda #1.png" id="2_w3nyf"]
+[ext_resource type="PackedScene" uid="uid://dnkxxwhgim1qy" path="res://02 Irene/Scenes - I/Interactions/InteractionArea.tscn" id="3_dp6bk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gial7"]
+radius = 35.0571
+
+[node name="the_amanda_computer" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_t3y8t")
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(2.5, -2.5)
+scale = Vector2(0.0357143, 0.0180505)
+texture = ExtResource("2_w3nyf")
+
+[node name="InteractionArea" parent="." instance=ExtResource("3_dp6bk")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_gial7")

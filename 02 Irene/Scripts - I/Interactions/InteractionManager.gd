@@ -5,7 +5,7 @@ extends Node2D
 @onready var label = $Label
 
 
-const base_text = "[F] to"
+const base_text = "" # so that it won't be [F] You Shall Not Pass
 
 
 var active_areas = []
@@ -41,7 +41,7 @@ func _process(delta):
 		active_areas.sort_custom(_sort_by_distance_to_player)
 		label.text = base_text + active_areas[0].action_name
 		label.global_position = active_areas[0].global_position
-		label.global_position.y -= 36
+		label.global_position.y -= 45
 		label.global_position.x -= label.size.x/2
 		label.show()
 	else:

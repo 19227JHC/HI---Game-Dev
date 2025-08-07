@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bk2f1pkuxc7yo"]
+[gd_scene load_steps=19 format=3 uid="uid://bk2f1pkuxc7yo"]
 
 [ext_resource type="Script" path="res://02 Irene/Scripts - I/levels and all that - script/main.gd" id="1_4kf3l"]
 [ext_resource type="PackedScene" uid="uid://ba8mn0j2r0kku" path="res://01 Hannah/Scenes/enemy.tscn" id="2_atih0"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://d0k1jpgaul8hb" path="res://02 Irene/Assets - I/ocean_nostalgia/removed_bg_ocean_nostalgia_classroom.png" id="10_xhf2o"]
 [ext_resource type="AudioStream" uid="uid://brthprpjwdlgq" path="res://02 Irene/Empty Streets.ogg" id="11_ikvif"]
 [ext_resource type="PackedScene" uid="uid://d12r8d5c8hufq" path="res://02 Irene/Scenes - I/UI/pause.tscn" id="12_cioy4"]
+[ext_resource type="PackedScene" uid="uid://c3pwgfw52q8jc" path="res://02 Irene/Scenes - I/Interactions/ppl and object interactables/Amanda_Computer.tscn" id="16_5nnx3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_snou3"]
 texture = ExtResource("10_xhf2o")
@@ -692,8 +693,8 @@ texture = ExtResource("10_xhf2o")
 29:15/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_ouum7"]
-physics_layer_0/collision_layer = 4
-physics_layer_0/collision_mask = 0
+physics_layer_0/collision_layer = 256
+physics_layer_0/collision_mask = 10
 sources/0 = SubResource("TileSetAtlasSource_snou3")
 
 [node name="Main" type="Node2D"]
@@ -701,12 +702,20 @@ script = ExtResource("1_4kf3l")
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("3_2jqg1")]
 z_index = 5
-position = Vector2(876, 184)
+position = Vector2(1231, 190)
 scale = Vector2(2, 2)
 
 [node name="Enemy" parent="." groups=["enemies"] instance=ExtResource("2_atih0")]
 z_index = 5
 position = Vector2(1083, 503)
+scale = Vector2(2, 2)
+
+[node name="Enemy2" parent="." groups=["enemies"] instance=ExtResource("2_atih0")]
+position = Vector2(55, 674)
+scale = Vector2(2, 2)
+
+[node name="Enemy3" parent="." groups=["enemies"] instance=ExtResource("2_atih0")]
+position = Vector2(778, 689)
 scale = Vector2(2, 2)
 
 [node name="testDoor" parent="." instance=ExtResource("4_115j1")]
@@ -791,3 +800,8 @@ metadata/_edit_use_anchors_ = true
 size_flags_horizontal = 4
 
 [node name="Death" parent="CanvasLayer" instance=ExtResource("9_l3eqt")]
+
+[node name="the_amada_computer" parent="." instance=ExtResource("16_5nnx3")]
+z_index = 2
+position = Vector2(704, 386)
+scale = Vector2(2, 2)

@@ -73,8 +73,8 @@ func _process(_delta):
 	if held:
 		var table = find_nearby_table()
 		if table and table.can_drop_item():
-			interaction_area.action_name = "Place object on table"
+			interaction_area.action_name = "[F] to place object on table"
 		else:
-			interaction_area.action_name = "Drop object"
+			interaction_area.action_name = "[F] to drop object"
 	else:
 		interaction_area.action_name = item_name  # Default e.g. "Pick up"
