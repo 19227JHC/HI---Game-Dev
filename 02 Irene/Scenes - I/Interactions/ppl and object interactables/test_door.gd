@@ -1,7 +1,9 @@
 extends Node2D
 
+
 @onready var interaction_area: InteractionArea = $InteractionArea
 @onready var sprite = $Sprite2D
+
 
 # Assign these in the editor or using onready vars
 @export var tables: Array[NodePath] = [
@@ -94,4 +96,4 @@ func _process(_delta):
 	if all_enemies_killed() or required_items_placed():
 		interaction_area.action_name = "[F] to enter"
 	else:
-		interaction_area.action_name = "🧙‍♂️ YOU SHALL NOT PASS."
+		interaction_area.action_name = "🧙‍♂️\nYOU SHALL NOT PASS."

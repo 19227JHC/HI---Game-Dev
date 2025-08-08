@@ -12,7 +12,7 @@ var input_actions = {
 	"left" : "Move Left",
 	"down" : "Move Down",
 	"right" : "Move Right",
-	"atk" : "Attack",
+	"attack" : "Attack",
 	"esc" : "Pause",
 	"interact" : "Interact"
 }

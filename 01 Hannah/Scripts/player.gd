@@ -1,25 +1,36 @@
 extends CharacterBody2D
+class_name Player # 4 connections
 
-class_name Player
+signal healthChanged # 4 health bar
 
-signal healthChanged
-
-@export var maxHealth = 160
+@export var maxHealth = 120
 @export var currentHealth: int = maxHealth
 
-# Movement
+@export var knockbackPower: int = 100
+var knockback_timer := 0.0
+
+# movement
 var max_speed = 100
 var last_direction := Vector2(1, 0)
 
-# Combat
+# combat
 var enemy_inattack_range = false
 var enemy_attack_cooldown = true
 var player_alive = true
-var attack_ip = false
+var attack_ip = false # in progress
 var death_anim_played = false
+
+# effects
+var shaking := false
+
+# ----------------------
 
 func _physics_process(_delta):
 	if not player_alive:
+		return
+	if knockback_timer > 0:
+		knockback_timer -= _delta
+		move_and_slide() # keeps moving with current velocity
 		return
 
 	attack()
@@ -28,7 +39,7 @@ func _physics_process(_delta):
 		player_alive = false
 		currentHealth = 0
 		death_anim_played = true
-		print("player has been killed")
+		print("player has been killed") # debugging
 		play_death_animation(last_direction)
 		return
 
@@ -47,12 +58,18 @@ func _physics_process(_delta):
 		else:
 			play_idle_animation(last_direction)
 
-func enemy_attack(): 
+
+# ----------------------
+
+func enemy_attack(enemy_position: Vector2):
 	if player_alive:
 		currentHealth -= 20
 		healthChanged.emit()
-		print(currentHealth)
+		knockback((global_position - enemy_position).normalized())
+		flash()
+		print(currentHealth) # debugging
 
+#----animations-----
 func play_walk_animation(direction):
 	if direction.x > 0:
 		$AnimatedSprite2D.play("walk_right")
@@ -83,6 +100,7 @@ func play_death_animation(direction):
 	elif direction.y < 0:
 		$AnimatedSprite2D.play("death_back")
 
+# callbacks
 func _on_attack_cooldown_timeout():
 	enemy_attack_cooldown = true
 
@@ -94,10 +112,12 @@ func _on_p_hitbox_body_exited(body):
 	if body.has_method("enemy"):
 		enemy_inattack_range = false
 
+# ----------------------
+
 func attack():
 	if Input.is_action_just_pressed("attack") and player_alive:
 		gobal.player_current_attack = true
-		attack_ip = true
+		attack_ip = true # in progress
 
 		if abs(last_direction.x) > abs(last_direction.y):
 			if last_direction.x > 0:
@@ -112,10 +132,12 @@ func attack():
 
 		$deal_attack.start()
 
+# ----------------------
+
 func _on_deal_attack_timeout():
 	$deal_attack.stop()
 	gobal.player_current_attack = false
-	attack_ip = false
+	attack_ip = false # in progress
 
 func _on_animated_sprite_2d_animation_finished():
 	if death_anim_played and $AnimatedSprite2D.animation.begins_with("death"):
@@ -124,6 +146,20 @@ func _on_animated_sprite_2d_animation_finished():
 
 func player():
 	pass
+	
+	
+# ---damage effets----
+func flash():
+	var original_color = modulate
+	modulate = Color(1, 0.3, 0.3, 1)
+
+	await get_tree().create_timer(0.1).timeout
+	modulate = original_color
+	
+func knockback(direction: Vector2):
+	velocity = direction * knockbackPower
+	knockback_timer = 0.25  # Give player time to recover
+	move_and_slide()
 
 
 # ---------------------------------------- IRENE ---------------------------------------------------

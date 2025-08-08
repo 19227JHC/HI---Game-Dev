@@ -26,10 +26,11 @@ offset_top = 5.0
 offset_right = 128.0
 offset_bottom = 21.0
 scale = Vector2(3, 3)
-texture_under = ExtResource("3_io0or")
+texture_over = ExtResource("3_io0or")
 texture_progress = ExtResource("4_mmqpa")
 texture_progress_offset = Vector2(1, 3)
 tint_under = Color(0, 0, 0, 1)
+tint_over = Color(0.360784, 0, 0, 1)
 tint_progress = Color(0.737255, 0.137255, 0, 1)
 script = ExtResource("3_6vqoh")
 player = NodePath("../../Player")
@@ -37,4 +38,4 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Pause" parent="CanvasLayer" instance=ExtResource("13_7655x")]
 
-[node name="Death" parent="CanvasLayer" instance=ExtResource("6_eio5h")]
+[node name="DeadScreen" parent="CanvasLayer" instance=ExtResource("6_eio5h")]

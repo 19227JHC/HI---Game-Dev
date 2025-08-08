@@ -1,10 +1,17 @@
-[gd_scene load_steps=13 format=3 uid="uid://c5ea5yed0s5yf"]
+[gd_scene load_steps=16 format=3 uid="uid://c5ea5yed0s5yf"]
 
 [ext_resource type="Script" path="res://02 Irene/Scripts - I/UI - script/settings.gd" id="1_4tdos"]
 [ext_resource type="FontFile" uid="uid://cg03ls2khnai" path="res://02 Irene/fonts - I/dogica.otf" id="1_50as0"]
 [ext_resource type="FontFile" uid="uid://dytmi3e7gkhj0" path="res://02 Irene/fonts - I/pixely[1].ttf" id="2_g03gn"]
 [ext_resource type="PackedScene" uid="uid://jv4nmtu2f44i" path="res://02 Irene/Scenes - I/levels and all that/input_button.tscn" id="4_mg7nv"]
 [ext_resource type="AudioStream" uid="uid://mhqes1q4k26a" path="res://02 Irene/Wayfarin_ Stranger (Alto) Audio Only.mp3" id="4_q1a28"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aflva"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3q4r8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vi3il"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2bkwp"]
 bg_color = Color(0, 0, 0, 1)
@@ -75,17 +82,27 @@ layout_mode = 2
 size_flags_vertical = 10
 size_flags_stretch_ratio = 0.0
 
-[node name="mute_label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="mute_label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 10
 size_flags_stretch_ratio = 0.0
 theme_override_fonts/font = ExtResource("1_50as0")
 text = "MUTE"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="mute" type="CheckBox" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="mute" type="CheckBox" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_direction = 1
 layout_mode = 2
-size_flags_vertical = 10
+size_flags_vertical = 0
 size_flags_stretch_ratio = 0.0
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_aflva")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3q4r8")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vi3il")
 
 [node name="resolution" type="OptionButton" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -139,7 +156,7 @@ stream = ExtResource("4_q1a28")
 autoplay = true
 
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/volume" to="." method="_on_volume_value_changed"]
-[connection signal="toggled" from="PanelContainer/MarginContainer/VBoxContainer/mute" to="." method="_on_mute_toggled"]
+[connection signal="toggled" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/mute" to="." method="_on_mute_toggled"]
 [connection signal="item_selected" from="PanelContainer/MarginContainer/VBoxContainer/resolution" to="." method="_on_resolution_item_selected"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/reset_button" to="." method="_on_reset_button_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/return_button" to="." method="_on_return_button_pressed"]

@@ -16,6 +16,5 @@ offset_right = 120.0
 offset_bottom = 23.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("1_4peis")
-text = "[F] TO INTERACT"
 horizontal_alignment = 1
 vertical_alignment = 1

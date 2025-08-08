@@ -515,7 +515,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"e_attack_b",
-"speed": 10.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -544,7 +544,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"e_attack_f",
-"speed": 10.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -573,7 +573,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"e_attack_l",
-"speed": 10.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -602,7 +602,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"e_attack_r",
-"speed": 10.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -946,8 +946,7 @@ script = ExtResource("1_ugsde")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ugsby")
-animation = &"e_idle_f"
-frame_progress = 0.122552
+animation = &"e_attack_b"
 offset = Vector2(2.08165e-12, -6)
 
 [node name="Enemy_collision" type="CollisionShape2D" parent="."]
@@ -975,7 +974,6 @@ shape = SubResource("RectangleShape2D_dq1d3")
 debug_color = Color(0.806921, 0.414808, 0, 0.42)
 
 [node name="take_damage" type="Timer" parent="."]
-wait_time = 0.5
 one_shot = true
 
 [node name="attack_timer" type="Timer" parent="."]
@@ -983,9 +981,11 @@ wait_time = 1.5
 one_shot = true
 
 [node name="attack_cooldown_timer" type="Timer" parent="."]
+wait_time = 0.5
 one_shot = true
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]
 [connection signal="body_entered" from="e_hitbox" to="." method="_on_e_hitbox_body_entered"]

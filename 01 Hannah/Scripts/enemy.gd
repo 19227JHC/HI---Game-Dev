@@ -1,16 +1,21 @@
 extends CharacterBody2D
 
-# ----- Variables -----
-var speed = 40
-var dead = false
-var player_chase = false
+# ----- variables -----
+var speed = 40 # movment speed
+var dead = false 
+var player_chase = false 
 var player = null
 var last_direction := Vector2.DOWN
-var health = 100
-var player_inattack_range = false
+var health = 100 # health amount
+var player_inattack_range = false # for attacking
 var can_take_damage = true
 var is_attacking = false
 var attack_cooldown = true
+
+# knockback
+var knockback_power := 300
+var knockback_timer := 0.0
+
 
 # FSM States
 enum {
@@ -39,10 +44,15 @@ func _physics_process(_delta):
 			state_attack()
 		DEAD:
 			state_dead()
+	if knockback_timer > 0:
+		knockback_timer -= _delta
+		move_and_slide()
+		return
+
 
 	deal_with_damage()
 
-# FSM TRANSITION 
+# ---- FSM transition ----
 
 func change_state(new_state):
 	if state == new_state:
@@ -57,7 +67,7 @@ func change_state(new_state):
 
 	state = new_state
 
-	# Enter logic
+	# enter logic
 	match state:
 		IDLE:
 			play_idle_animation()
@@ -68,7 +78,7 @@ func change_state(new_state):
 		DEAD:
 			start_death()
 
-# FSM STATE LOGIC 
+# FSM state logic 
 
 func state_idle():
 	velocity = Vector2.ZERO
@@ -97,7 +107,7 @@ func state_dead():
 	velocity = Vector2.ZERO
 	move_and_slide()
 
-# FSM ACTION HANDLERS 
+# FSM action handlers 
 
 func start_attack():
 	is_attacking = true
@@ -105,9 +115,6 @@ func start_attack():
 	velocity = Vector2.ZERO
 
 	play_attack_animation()
-
-	if player and player.has_method("enemy_attack"):
-		player.enemy_attack()
 
 	$attack_cooldown_timer.start()
 
@@ -117,7 +124,7 @@ func start_death():
 	velocity = Vector2.ZERO
 	play_death_animation()
 
-# ANIMATION HELPERS 
+# -----animations------ 
 
 func get_direction_name(dir: Vector2) -> String:
 	if abs(dir.x) > abs(dir.y):
@@ -153,8 +160,7 @@ func play_death_animation():
 		"l": $AnimatedSprite2D.play("e_death_l")
 		"r": $AnimatedSprite2D.play("e_death_r")
 
-# DETECTION 
-
+# -----detections-----
 func _on_detection_area_body_entered(body):
 	if body.name == "Player":
 		player = body
@@ -181,34 +187,41 @@ func _on_e_hitbox_body_exited(body):
 		if not dead:
 			change_state(CHASE if player_chase else IDLE)
 
-# DAMAGE 
+# damage (taking and dealing)
 
 func deal_with_damage():
 	if player_inattack_range and gobal.player_current_attack:
 		if can_take_damage:
-			
 			health -= 20
+			flash()
+			knockback((position - player.position))
 			$take_damage.start()
 			can_take_damage = false
-			print("Enemy Health = ", health)
+			print("Enemy Health = ", health) # Debugging
 			if health <= 0 and not dead:
 				change_state(DEAD)
 
 func _on_take_damage_timeout():
 	can_take_damage = true
 
-# CALLBACKS 
+# callbacks
 
 func _on_animated_sprite_2d_animation_finished():
 	if is_attacking:
 		is_attacking = false
 		if not dead:
 			if player_inattack_range:
-				change_state(ATTACK)  # Continue attacking while player in range
+				change_state(ATTACK)  # continue attacking while player in range
 			else:
 				change_state(CHASE if player_chase else IDLE)
 
-		
+func _on_animated_sprite_2d_frame_changed():
+	# 4 sycning the enemy attack animation with when the player takes damage (fine tuning)
+	if is_attacking:
+		var mid_frame = int($AnimatedSprite2D.sprite_frames.get_frame_count($AnimatedSprite2D.animation) / 3)
+		if $AnimatedSprite2D.frame == mid_frame:
+			if player and player.has_method("enemy_attack") and player_inattack_range:
+				player.enemy_attack(global_position)
 
 func _on_attack_timer_timeout():
 	is_attacking = false
@@ -216,7 +229,19 @@ func _on_attack_timer_timeout():
 func _on_attack_cooldown_timer_timeout():
 	attack_cooldown = true
 	if player_inattack_range and not dead:
-		change_state(ATTACK)  # Queue next attack immediately
+		change_state(ATTACK)  # queue next attack immediately
+
+# ----damage indicatication----
+func flash(): # flashes a differnt colour when player is hit by enemy
+	var original_color = modulate # change colpur
+	modulate = Color(1, 0.3, 0.3, 1) # colour code
+	await get_tree().create_timer(0.1).timeout # timer 4 how long change last
+	modulate = original_color # return to original colour
+
+
+func knockback(direction: Vector2): 
+	velocity = direction.normalized() * knockback_power 
+	knockback_timer = 0.2  # timer 4 recovery time
 
 
 # --------------------------------------------IRENE-------------------------------------------------
@@ -225,3 +250,4 @@ func is_alive():
 		return false
 	else:
 		return true
+		

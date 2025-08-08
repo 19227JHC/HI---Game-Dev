@@ -1,14 +1,21 @@
 extends Node2D
 
+
 @onready var interaction_area: InteractionArea = $InteractionArea
 @onready var sprite = $Sprite2D
+
 
 @export var item_name: String = "Pick up"
 @export var carry_point_path: NodePath  # Drag your player's carry_point here
 
+
+@export var current_health = 100
+
+
 var held = false
 var player = null
 var carry_point = null
+
 
 func _ready():
 	# Set up the interaction behavior dynamically
@@ -68,6 +75,12 @@ func find_nearby_table() -> Node2D:
 func set_held(value: bool):
 	held = value
 
+
+# -------------------------------------healing properties-------------------------------------------
+func heal():
+	current_health += 30
+
+
 # --------------------------------------change action name------------------------------------------
 func _process(_delta):
 	if held:
@@ -76,5 +89,6 @@ func _process(_delta):
 			interaction_area.action_name = "[F] to place object on table"
 		else:
 			interaction_area.action_name = "[F] to drop object"
+		interaction_area.action_name = "[F] to drink"
 	else:
 		interaction_area.action_name = item_name  # Default e.g. "Pick up"
