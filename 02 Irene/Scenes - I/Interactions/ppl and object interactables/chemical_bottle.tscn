@@ -9,6 +9,9 @@ radius = 17.0
 
 [node name="chemical_bottle" type="Node2D"]
 script = ExtResource("1_b5x43")
+item_name = null
+carry_point_path = null
+current_health = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_02e76")
