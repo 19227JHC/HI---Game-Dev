@@ -102,7 +102,9 @@ func state_attack():
 
 func state_dead():
 	$detection_area/Detection_collsion.disabled = true
-	$Enemy_collision.disabled = true
+	# IRENE HERE
+	# so you can still collide with the carcass
+	# $Enemy_collision.disabled = true
 	$e_hitbox/e_hitbox_collision.disabled = true
 	velocity = Vector2.ZERO
 	move_and_slide()

@@ -18,20 +18,26 @@ signal option_selected(index: int)
 @onready var confirm_skip = $CanvasLayer/ConfirmSkip
 
 
+var skipping = false
+var skip_all = false
+var skip_confirmed = false
+
+
 func _ready() -> void:
 	$CanvasLayer.hide() # Hide until triggered
 	for i in range(buttons.size()):
 		buttons[i].connect("pressed", Callable(self, "_on_button_pressed").bind(i))
 
 
-# Call this to start showing dialogue
+# --------------------------------the start of the dialogue-----------------------------------------
 func start_dialogue(lines: Array, callback: Callable = Callable()) -> void:
-	show()
+	$CanvasLayer.show()
+	get_tree().paused = true 	# how do i pause help
 	options_box.hide()
 	_play_sequence(lines, callback)
 
 
-# Show lines in sequence
+# ----------------------------------show lines in sequence------------------------------------------
 func _play_sequence(lines: Array, callback: Callable) -> void:
 	
 	await get_tree().process_frame # Small delay so UI updates
@@ -40,13 +46,14 @@ func _play_sequence(lines: Array, callback: Callable) -> void:
 		dialogue_label.text = str(line)
 		await _wait_for_continue()
 		
-	hide()
+	$CanvasLayer.hide()
+	# get_tree().paused = false
 	
 	if callback.is_valid():
 		callback.call()
 
 
-# Wait for player to press a key or click to continue
+# -------------------Wait for player to press a key or click to continue----------------------------
 func _wait_for_continue() -> void:
 	var proceed := false
 	while not proceed:
@@ -55,7 +62,7 @@ func _wait_for_continue() -> void:
 			proceed = true
 
 
-# Show choice buttons and wait for selection
+# -----------------------show the 'choice buttons' and wait for selection---------------------------
 func show_options(options: Array) -> int:
 	options_box.show()
 	for i in range(buttons.size()):
@@ -71,6 +78,26 @@ func show_options(options: Array) -> int:
 	return choice_index
 
 
-# Handle button clicks
+# --------------------------------handles button clicks---------------------------------------------
 func _on_button_pressed(index: int) -> void:
 	emit_signal("option_selected", index)
+
+
+# -------------------------BUTTONS (i mean for skipping purposes)-----------------------------------
+func _on_end_dialogue_button_pressed():
+	skipping = true
+
+
+func _on_skip_button_pressed():
+	confirm_skip.popup_centered()
+
+
+func _on_confirm_skip_confirmed():
+	skip_all = true
+	skip_confirmed = true
+
+	# Hide all buttons
+	for button in buttons:
+		button.hide()
+	
+	$CanvasLayer.hide()

@@ -18,6 +18,7 @@ var buttons = []
 
 var skipping = false
 var skip_all = false
+var skip_confirmed = false
 
 
 var state = "start"
@@ -25,9 +26,6 @@ var moral_points = 0
 
 
 var dialogue_task = null
-
-
-var skip_confirmed = false
 
 
 func _ready():
@@ -199,11 +197,12 @@ var glitch_keywords = [
 
 func play_sequence(lines, force := false):
 	for line in lines:
-		# For skip and Skip all
+		# For Skip and Skip All
 		if skip_all and not force:
 			break
 			
 		if skipping and not force:
+			# Instantly set the line without waiting for input
 			dialogue_label.text = line
 			await get_tree().create_timer(0.1).timeout
 			continue
@@ -219,9 +218,25 @@ func play_sequence(lines, force := false):
 			await trigger_glitch()
 
 		dialogue_label.text = line
-		await get_tree().create_timer(2).timeout
+		
+		# Only wait if NOT skipping
+		if not skipping or force:
+			await _wait_for_continue()
+		# await get_tree().create_timer(2).timeout
 		
 	skipping = false  # reset skipping flag here
+
+
+#---------------------------press a key or click to go to next line---------------------------------
+func _wait_for_continue() -> void:
+	if skipping: # immediately return if skipping
+		return
+	
+	var proceed := false
+	while not proceed and is_inside_tree():
+		await get_tree().process_frame
+		if Input.is_action_just_pressed("ui_accept"):
+			proceed = true
 
 
 #----------------------------------on [what] button pressed-----------------------------------------

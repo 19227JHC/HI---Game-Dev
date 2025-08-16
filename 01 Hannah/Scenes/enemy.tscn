@@ -930,8 +930,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2yp7g"]
-radius = 7.0
-height = 16.0
+radius = 6.0
+height = 14.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6si41"]
 radius = 58.0086
@@ -950,7 +950,7 @@ animation = &"e_attack_b"
 offset = Vector2(2.08165e-12, -6)
 
 [node name="Enemy_collision" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 2)
+position = Vector2(0, 3)
 shape = SubResource("CapsuleShape2D_2yp7g")
 debug_color = Color(0.901771, 2.2141e-06, 8.37509e-07, 0.419608)
 
