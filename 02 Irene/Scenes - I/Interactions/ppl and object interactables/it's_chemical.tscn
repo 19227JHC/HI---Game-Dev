@@ -1,16 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://dd3yesvrihq4d"]
+[gd_scene load_steps=6 format=3 uid="uid://dd3yesvrihq4d"]
 
-[ext_resource type="Script" path="res://02 Irene/Scenes - I/Interactions/ppl and object interactables/it's_chemical.gd" id="1_d5lu3"]
+[ext_resource type="Script" path="res://02 Irene/Scenes - I/Interactions/ppl and object interactables/it_s_chemical.gd" id="1_d5lu3"]
 [ext_resource type="Texture2D" uid="uid://bqwxqxo3se7di" path="res://02 Irene/Assets - I/isolated objects/SpilledChemicals.png" id="1_u7nh2"]
 [ext_resource type="PackedScene" uid="uid://dnkxxwhgim1qy" path="res://02 Irene/Scenes - I/Interactions/InteractionArea.tscn" id="2_lr1gh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i3pvk"]
+size = Vector2(13, 8)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t6fvs"]
 radius = 16.0
 
-[node name="It\'sChemical" type="Node2D"]
+[node name="It_s_Chemical" type="Node2D"]
 script = ExtResource("1_d5lu3")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 260
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_i3pvk")
+debug_color = Color(0.936955, 1.38617e-05, 0.630022, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
 position = Vector2(2, 0)
 texture = ExtResource("1_u7nh2")
 

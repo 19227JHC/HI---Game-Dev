@@ -19,7 +19,7 @@ signal option_selected(index: int)
 
 
 func _ready() -> void:
-	hide() # Hide until triggered
+	$CanvasLayer.hide() # Hide until triggered
 	for i in range(buttons.size()):
 		buttons[i].connect("pressed", Callable(self, "_on_button_pressed").bind(i))
 

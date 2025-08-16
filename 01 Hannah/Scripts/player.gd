@@ -142,6 +142,8 @@ func _on_deal_attack_timeout():
 func _on_animated_sprite_2d_animation_finished():
 	if death_anim_played and $AnimatedSprite2D.animation.begins_with("death"):
 		queue_free()
+		
+		# Show the death screen - IRENE
 		get_node("/root/Main/CanvasLayer/DeadScreen").show_death_screen()
 
 func player():
@@ -163,10 +165,77 @@ func knockback(direction: Vector2):
 
 
 # ---------------------------------------- IRENE ---------------------------------------------------
+# --- VARIABLES ---
 var held_item: Node2D = null
+var can_move = true
+var force_camera_current_frames = 0
+
+# --- CAMERA ---
+@onready var camera: Camera2D = $Camera2D
+
+# --- FADE ---
+@onready var fade_rect: CanvasLayer = get_node_or_null("../Fade") # adjust path!
+@onready var animation_player: AnimationPlayer = null
+
+
+func _ready():
+	if fade_rect != null:
+		animation_player = fade_rect.get_node_or_null("AnimationPlayer")
+		if animation_player == null:
+			push_error("AnimationPlayer not found under Fade node!")
+	else:
+		push_error("Fade node not found! Check path from Player.")
+
 
 func set_held_item(item: Node2D):
 	held_item = item
 
 func get_held_item() -> Node2D:
 	return held_item
+
+
+func start_room_transition(new_position: Vector2, door: Node) -> void:
+	if not can_move:
+		return
+	can_move = false
+
+	# --- Fade Out ---
+	if animation_player:
+		animation_player.play("fade_out")
+		await animation_player.animation_finished
+
+	# --- Teleport Player ---
+	global_position = new_position
+
+	# --- Camera Setup ---
+	if camera:
+		camera.make_current()
+		force_camera_current_frames = 3  # ensure it stays current briefly
+
+		# Only set the bottom limit from the door's target room area
+		if door.has_node("TargetRoomArea"):
+			var target_area = door.get_node("TargetRoomArea") as Area2D
+			set_camera_bottom_limit(camera, target_area)
+
+	# --- Fade In ---
+	if animation_player:
+		animation_player.play("fade_in")
+		await animation_player.animation_finished
+
+	can_move = true
+
+
+# Only set the bottom limit
+func set_camera_bottom_limit(camera: Camera2D, area: Area2D, padding: float = 32):
+	var shape = area.get_node("CollisionShape2D").shape
+	var pos = area.global_position
+	var extents = shape.extents  # RectangleShape2D
+
+	var viewport_height = camera.get_viewport_rect().size.y
+	camera.limit_bottom = int(pos.y + extents.y - viewport_height / 100 + padding)
+
+
+func _process(delta):
+	if force_camera_current_frames > 0:
+		camera.make_current()
+		force_camera_current_frames -= 1

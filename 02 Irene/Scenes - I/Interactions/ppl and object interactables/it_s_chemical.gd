@@ -2,7 +2,8 @@ extends Node2D
 
 
 @onready var interaction_area: InteractionArea = $InteractionArea
-@onready var sprite = $Sprite2D
+@onready var sprite = $StaticBody2D/Sprite2D
+@onready var collision_shape = $StaticBody2D/CollisionShape2D
 
 
 @export var item_name: String = "Pick up"
@@ -35,6 +36,9 @@ func pickup_or_drop():
 		if maybe_table and maybe_table.has_method("clear_placed_item"):
 			maybe_table.clear_placed_item()
 
+		# Disable collision while held
+		collision_shape.disabled = true
+
 		# Pick up
 		get_parent().remove_child(self)
 		carry_point.add_child(self)
@@ -53,11 +57,18 @@ func pickup_or_drop():
 				get_parent().remove_child(self)
 				player.get_parent().add_child(self)
 				self.scale = Vector2(2, 2)
-				global_position = carry_point.global_position
+				
+				# Drop slightly in front of the player so it doesn't overlap their collision
+				var drop_offset = Vector2(32, 0) # 16 pixels forward
+				drop_offset = drop_offset.rotated(player.rotation) # rotate to match player facing
+				global_position = carry_point.global_position + drop_offset
+		
+		# Re-enable collision when dropped or placed
+		collision_shape.disabled = false
+		
 		held = false
 		if player and player.has_method("set_held_item"):
 			player.set_held_item(null)
-
 
 
 # ---------------------------------------to find the table------------------------------------------

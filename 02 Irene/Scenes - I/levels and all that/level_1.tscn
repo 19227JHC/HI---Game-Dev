@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://batlsr4q5ikn0" path="res://01 Hannah/Scenes/player.tscn" id="3_2jqg1"]
 [ext_resource type="TileSet" uid="uid://c4yjh1sv168t1" path="res://02 Irene/level_1.tres" id="4_37beu"]
 [ext_resource type="PackedScene" uid="uid://4d87yfgj7pvn" path="res://02 Irene/Scenes - I/Interactions/ppl and object interactables/test_door.tscn" id="4_115j1"]
-[ext_resource type="PackedScene" uid="uid://dd3yesvrihq4d" path="res://02 Irene/Scenes - I/Interactions/ppl and object interactables/it's_chemical.tscn" id="5_kvrso"]
+[ext_resource type="PackedScene" uid="uid://dd3yesvrihq4d" path="res://02 Irene/Scenes - I/Interactions/ppl and object interactables/it's_chemical.tscn" id="6_3uy3f"]
 [ext_resource type="PackedScene" uid="uid://d2i5snjlkwgbx" path="res://02 Irene/Scenes - I/Interactions/ppl and object interactables/table_and_chair.tscn" id="6_kx1m8"]
 [ext_resource type="PackedScene" uid="uid://dg7gjybjn1bjo" path="res://02 Irene/Scenes - I/Interactions/ppl and object interactables/chemical_bottle.tscn" id="6_u3xcs"]
 [ext_resource type="Texture2D" uid="uid://djprlqqf1nhch" path="res://01 Hannah/Assets/HealthBarAS/HealthBar2.png" id="8_klccn"]
@@ -701,12 +701,12 @@ sources/0 = SubResource("TileSetAtlasSource_snou3")
 script = ExtResource("1_4kf3l")
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("3_2jqg1")]
-z_index = 2
+z_index = 3
 position = Vector2(1096, 279)
 scale = Vector2(2, 2)
 
 [node name="Enemy" parent="." groups=["enemies"] instance=ExtResource("2_atih0")]
-z_index = 2
+z_index = 3
 position = Vector2(1146, 495)
 scale = Vector2(2, 2)
 
@@ -715,22 +715,22 @@ position = Vector2(1214, 86)
 scale = Vector2(2, 2)
 tables = Array[NodePath]([NodePath("../table_and_chair"), NodePath("../table_and_chair2")])
 
-[node name="It\'sChemical" parent="." instance=ExtResource("5_kvrso")]
-z_index = 5
-position = Vector2(601, 127)
-scale = Vector2(2, 2)
-carry_point_path = NodePath("../Player")
-
-[node name="It\'sChemical2" parent="." instance=ExtResource("5_kvrso")]
-z_index = 5
-position = Vector2(892, 203)
-scale = Vector2(2, 2)
-carry_point_path = NodePath("../Player")
-
 [node name="chemical_bottle" parent="." instance=ExtResource("6_u3xcs")]
 z_index = 5
 position = Vector2(544, 191)
 scale = Vector2(2, 2)
+
+[node name="It_s_Chemical" parent="." instance=ExtResource("6_3uy3f")]
+z_index = 2
+position = Vector2(559, 129)
+scale = Vector2(2, 2)
+carry_point_path = NodePath("../Player")
+
+[node name="It_s_Chemical2" parent="." instance=ExtResource("6_3uy3f")]
+z_index = 2
+position = Vector2(894, 204)
+scale = Vector2(2, 2)
+carry_point_path = NodePath("../Player")
 
 [node name="table_and_chair" parent="." groups=["tables"] instance=ExtResource("6_kx1m8")]
 position = Vector2(686, 124)
