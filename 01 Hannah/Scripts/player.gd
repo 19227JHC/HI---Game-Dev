@@ -170,6 +170,7 @@ var held_item: Node2D = null
 var can_move = true
 var force_camera_current_frames = 0
 
+
 # --- CAMERA ---
 @onready var camera: Camera2D = $Camera2D
 

@@ -38,14 +38,8 @@ func required_items_placed() -> bool:
 		var table = get_node_or_null(table_path)
 		if table:
 			var item = table.get_placed_item()
-			print("Item on table", table.name, ":", item)
 			if item and item.name in ["It'sChemical", "It'sChemical2"]:
 				count += 1
-				print("Count:", count)
-			else:
-				print("Item not matching or missing on table", table.name)
-		else:
-			print("Table not found at path:", table_path)
 	
 	return count >= 2
 	

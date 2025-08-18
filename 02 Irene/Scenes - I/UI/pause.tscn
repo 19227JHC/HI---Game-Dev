@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://d12r8d5c8hufq"]
+[gd_scene load_steps=12 format=3 uid="uid://d12r8d5c8hufq"]
 
 [ext_resource type="Script" path="res://02 Irene/Scripts - I/UI - script/pause.gd" id="1_lakyi"]
 [ext_resource type="Shader" path="res://02 Irene/Scripts - I/UI - script/pause.gdshader" id="2_2y15g"]
+[ext_resource type="PackedScene" uid="uid://c5ea5yed0s5yf" path="res://02 Irene/Scenes - I/UI/settings.tscn" id="3_q2obi"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_465cl"]
 shader = ExtResource("2_2y15g")
@@ -124,6 +125,7 @@ flat = true
 icon_alignment = 1
 
 [node name="Restart" type="Button" parent="PanelContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 focus_mode = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -153,7 +155,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(0.282353, 0.282353, 0.282353, 1)
 theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tych7")
-text = "Exit To Menu"
+text = "Exit Game"
 flat = true
 icon_alignment = 1
 
@@ -161,6 +163,10 @@ icon_alignment = 1
 libraries = {
 "": SubResource("AnimationLibrary_4n86p")
 }
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Settings" parent="CanvasLayer" instance=ExtResource("3_q2obi")]
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]

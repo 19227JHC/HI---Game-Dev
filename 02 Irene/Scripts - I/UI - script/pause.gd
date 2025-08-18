@@ -4,6 +4,7 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$AnimationPlayer.play("RESET")
+	visible = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -28,12 +29,21 @@ func testEsc():
 			resume()
 		else:
 			pause()
+	
+
+# -----------------------------FOR SETTINGS (to access it CLEANLY)----------------------------------
+func open_settings():
+	var settings_scene = preload("res://02 Irene/Scenes - I/UI/settings.tscn").instantiate()
+	settings_scene.came_from_node = self   # track origin
+	get_tree().current_scene.add_child(settings_scene)
+	settings_scene.show()
+	$CanvasLayer/Settings.show()
+	#visible = false
 
 
 # BUTTONS
 func _on_settings_pressed():
-	get_tree().paused = false
-	SceneManager.go_to_scene("res://02 Irene/Scenes - I/UI/settings.tscn")
+	open_settings()
 
 func _on_exit_to_menu_pressed():
 	get_tree().paused = false

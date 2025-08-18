@@ -1,12 +1,18 @@
 extends Control
 
+
 @onready var input_button_scene = preload("res://02 Irene/Scenes - I/levels and all that/input_button.tscn")
 @onready var action_list = $PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/ActionList
 
+
+var came_from_node: Node = null   # Will store PauseScreen or MainMenu reference
+
+# FOR INPUT KEYS
 var is_remapping = false
 var action_to_remap = null
 var remapping_button = null
 
+# (which one will show up)
 var input_actions = {
 	"up" : "Move Up",
 	"left" : "Move Left",
@@ -17,8 +23,13 @@ var input_actions = {
 	"interact" : "Interact"
 }
 
+# for clean returns from MainMenu/Pause
+var opened_from: String = ""  # "pause" or "main_menu"
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	visible = false
 	_create_action_list()
 
 
@@ -27,7 +38,7 @@ func _process(delta):
 	pass
 
 
-#------------------------------------------------------------------------------=
+#-------------------------------------KEY INPUTS CHANGE---------------------------------------------
 func _create_action_list():
 	InputMap.load_from_project_settings()
 	for item in action_list.get_children():
@@ -48,13 +59,15 @@ func _create_action_list():
 		
 		action_list.add_child(button)
 		button.pressed.connect(_on_input_button_pressed.bind(button, action))
-		
+
+
 func _on_input_button_pressed(button, action):
 	if !is_remapping:
 		is_remapping = true
 		action_to_remap = action
 		remapping_button = button
 		button.find_child("LabelInput").text = "Press key to bind..."
+
 
 func _input(event):
 	if is_remapping:
@@ -76,13 +89,15 @@ func _input(event):
 			
 			accept_event()
 
+
 func _update_action_list(button, event):
 	button.find_child("LabelInput").text = event.as_text().trim_suffix(" (Physical)")
 
-#-------------------------------------------------------------------------------
+#-------------------------------------------BUTTONS-------------------------------------------------
 func _on_return_button_pressed():
-	get_tree().paused = false
-	SceneManager.return_to_previous_scene()
+	queue_free()
+	if came_from_node:
+		came_from_node.show()
 
 
 func _on_volume_value_changed(value):
@@ -93,6 +108,7 @@ func _on_mute_toggled(toggled_on):
 	AudioServer.set_bus_mute(0,toggled_on)
 
 
+# RESOLUTION
 func _on_resolution_item_selected(index):
 	match index:
 		0:
@@ -109,5 +125,6 @@ func _on_resolution_item_selected(index):
 		)
 
 
+# reset THE KEY INPUTS
 func _on_reset_button_pressed():
 	_create_action_list()

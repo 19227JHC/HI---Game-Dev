@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bk2f1pkuxc7yo"]
+[gd_scene load_steps=20 format=3 uid="uid://bk2f1pkuxc7yo"]
 
 [ext_resource type="Script" path="res://02 Irene/Scripts - I/levels and all that - script/main.gd" id="1_4kf3l"]
 [ext_resource type="PackedScene" uid="uid://ba8mn0j2r0kku" path="res://01 Hannah/Scenes/enemy.tscn" id="2_atih0"]
@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://brthprpjwdlgq" path="res://02 Irene/Empty Streets.ogg" id="11_ikvif"]
 [ext_resource type="PackedScene" uid="uid://d12r8d5c8hufq" path="res://02 Irene/Scenes - I/UI/pause.tscn" id="12_cioy4"]
 [ext_resource type="PackedScene" uid="uid://c3pwgfw52q8jc" path="res://02 Irene/Scenes - I/Interactions/ppl and object interactables/Amanda_Computer.tscn" id="16_5nnx3"]
+[ext_resource type="PackedScene" uid="uid://c5ea5yed0s5yf" path="res://02 Irene/Scenes - I/UI/settings.tscn" id="16_mxeoh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_snou3"]
 texture = ExtResource("10_xhf2o")
@@ -701,12 +702,12 @@ sources/0 = SubResource("TileSetAtlasSource_snou3")
 script = ExtResource("1_4kf3l")
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("3_2jqg1")]
-z_index = 1
-position = Vector2(1096, 279)
+z_index = 3
+position = Vector2(1036, 230)
 scale = Vector2(2, 2)
 
 [node name="Enemy" parent="." groups=["enemies"] instance=ExtResource("2_atih0")]
-z_index = 1
+z_index = 3
 position = Vector2(1146, 495)
 scale = Vector2(2, 2)
 
@@ -792,6 +793,8 @@ metadata/_edit_use_anchors_ = true
 size_flags_horizontal = 4
 
 [node name="DeadScreen" parent="CanvasLayer" instance=ExtResource("9_l3eqt")]
+
+[node name="Settings" parent="CanvasLayer" instance=ExtResource("16_mxeoh")]
 
 [node name="the_amanda_computer" parent="." instance=ExtResource("16_5nnx3")]
 z_index = 2

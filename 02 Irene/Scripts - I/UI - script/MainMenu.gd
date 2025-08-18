@@ -11,19 +11,25 @@ func _process(delta):
 	pass
 
 
+# -----------------------------FOR SETTINGS (to access it CLEANLY)----------------------------------
+func open_settings():
+	var settings_scene = preload("res://02 Irene/Scenes - I/UI/settings.tscn").instantiate()
+	settings_scene.came_from_node = self   # track origin
+	get_tree().current_scene.add_child(settings_scene)
+	settings_scene.show()
+	$CanvasLayer/Settings.show()
+	# visible = false
+
+
+# ----------------------------------------BUTTONS---------------------------------------------------
 func _on_start_button_pressed():
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://02 Irene/Scenes - I/levels and all that/dialogue.tscn")
 
 
 func _on_settings_button_pressed():
-	get_tree().paused = false
-	SceneManager.go_to_scene("res://02 Irene/Scenes - I/UI/settings.tscn")
+	open_settings()
 
 
 func _on_exit_button_pressed():
 	get_tree().quit()
-	
-func testEsc():
-	if Input.is_action_just_pressed("esc"):
-		get_tree().change_scene_to_file("res://02 Irene/Scenes - I/UI/MainMenu.tscn")

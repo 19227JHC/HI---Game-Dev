@@ -1,39 +1,38 @@
 extends Node
 
 
+# SKIPS
 @onready var skip_button = $CanvasLayer2/VBoxContainer/SkipButton
 @onready var skip_all_button = $CanvasLayer2/VBoxContainer/SkipAllButton
 @onready var confirm_skip = $CanvasLayer2/ConfirmSkip
 
-
+# LABELS AND BUTTONS
 @onready var dialogue_label = $CanvasLayer2/DialogueLabel
 @onready var options_box = $CanvasLayer2/OptionsBox
 
-
+# GLITCHES (and its toggle)
 @onready var glitch_material := $CanvasLayer/Glitch.material as ShaderMaterial
+@onready var glitch_toggle = $CanvasLayer2/GlitchToggle
 
-
+# (☞ ͡° ͜ʖ ͡°)☞ NEXT ▶ indicator
 @onready var next_indicator = $CanvasLayer2/NextIndicator
 
 
-@onready var glitch_toggle = $CanvasLayer2/GlitchToggle
-
-
+# buttons !!
 var buttons = []
 
-
+# skips
 var skipping = false
 var skip_all = false
 var skip_confirmed = false
 
-
+# starting state
 var state = "start"
-var moral_points = 0
 
-
+# the dialogue's job, I suppose
 var dialogue_task = null
 
-
+# glitches
 var glitches_enabled: bool = true
 
 
@@ -149,8 +148,8 @@ func _on_button_pressed(index):
 	match state:
 		"choice_1":
 			if index == 0:
-				moral_points += 2
-				print("Moral Points:", moral_points)
+				gobal.good_moral_points += 2
+				print("Current good_moral_points: ", gobal.good_moral_points)
 				state = "start_game"
 			else:
 				state = "first_refusal"
@@ -176,8 +175,8 @@ func _on_button_pressed(index):
 			if index in [0, 1]:
 				state = "start_game"
 				if index == 1:
-					moral_points -= 1
-					print("Moral Points:", moral_points)
+					gobal.bad_moral_points -= 1
+					print("Current bad_moral_points: ", gobal.bad_moral_points)
 					state = "start_game"
 			else:
 				state = "final_refusal"
@@ -187,8 +186,8 @@ func _on_button_pressed(index):
 			if index == 0:
 				state = "cruel"
 			else:
-				moral_points -= 2
-				print("Moral Points:", moral_points)
+				gobal.bad_moral_points -= 2
+				print("Current bad_moral_points: ", gobal.bad_moral_points)
 				state = "start_game"
 			show_dialogue()
 
@@ -251,10 +250,14 @@ func play_sequence(lines, force := false):
 
 #---------------------------press a key or click to go to next line---------------------------------
 func _wait_for_continue():
+	if not is_inside_tree():
+		return
+		
 	next_indicator.show()
 
-	while true:
-		await get_tree().process_frame
+	var proceed = false
+	while not proceed:
+		await get_tree().create_timer(0.01).timeout
 
 		# If skip_all is triggered elsewhere, break immediately
 		if skip_all:
@@ -266,7 +269,7 @@ func _wait_for_continue():
 
 		# Normal advance: Space/Enter/Click
 		if Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("mouse_left"):
-			break
+			proceed = true
 
 	next_indicator.hide()
 
