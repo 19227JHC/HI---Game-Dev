@@ -13,6 +13,12 @@ extends Node
 @onready var glitch_material := $CanvasLayer/Glitch.material as ShaderMaterial
 
 
+@onready var next_indicator = $CanvasLayer2/NextIndicator
+
+
+@onready var glitch_toggle = $CanvasLayer2/GlitchToggle
+
+
 var buttons = []
 
 
@@ -28,6 +34,9 @@ var moral_points = 0
 var dialogue_task = null
 
 
+var glitches_enabled: bool = true
+
+
 func _ready():
 	$AnimationPlayer.play("RESET")
 	
@@ -35,6 +44,16 @@ func _ready():
 	for i in buttons.size():
 		buttons[i].pressed.connect(func(): _on_button_pressed(i))
 	show_dialogue()
+	
+	next_indicator.hide()
+	glitch_toggle.toggled.connect(_on_glitch_toggle_toggled)
+	# make sure it reflects current state
+	glitch_toggle.button_pressed = glitches_enabled
+
+
+#--------------------------------------do you want glitches?----------------------------------------
+func _on_glitch_toggle_toggled(pressed: bool):
+	glitches_enabled = pressed
 
 
 #--------------------------------------------dialogues----------------------------------------------
@@ -130,6 +149,8 @@ func _on_button_pressed(index):
 	match state:
 		"choice_1":
 			if index == 0:
+				moral_points += 2
+				print("Moral Points:", moral_points)
 				state = "start_game"
 			else:
 				state = "first_refusal"
@@ -156,6 +177,7 @@ func _on_button_pressed(index):
 				state = "start_game"
 				if index == 1:
 					moral_points -= 1
+					print("Moral Points:", moral_points)
 					state = "start_game"
 			else:
 				state = "final_refusal"
@@ -166,6 +188,7 @@ func _on_button_pressed(index):
 				state = "cruel"
 			else:
 				moral_points -= 2
+				print("Moral Points:", moral_points)
 				state = "start_game"
 			show_dialogue()
 
@@ -183,17 +206,15 @@ func show_options(option_texts):
 
 
 #----------------------------------------play sequence----------------------------------------------
+# Words that'll trigger the glitch
 var glitch_keywords = [
 	"screams",
-	"player",
 	"limbs strewn",
 	"cruel",
 	"karma",
 	"unknown disease",
-	"save our world",
 	"dying"
 ]
-
 
 func play_sequence(lines, force := false):
 	for line in lines:
@@ -214,7 +235,8 @@ func play_sequence(lines, force := false):
 				triggered = true
 				break
 
-		if triggered:
+		# Check if the player wants glitches
+		if triggered and glitches_enabled:
 			await trigger_glitch()
 
 		dialogue_label.text = line
@@ -228,15 +250,25 @@ func play_sequence(lines, force := false):
 
 
 #---------------------------press a key or click to go to next line---------------------------------
-func _wait_for_continue() -> void:
-	if skipping: # immediately return if skipping
-		return
-	
-	var proceed := false
-	while not proceed and is_inside_tree():
+func _wait_for_continue():
+	next_indicator.show()
+
+	while true:
 		await get_tree().process_frame
-		if Input.is_action_just_pressed("ui_accept"):
-			proceed = true
+
+		# If skip_all is triggered elsewhere, break immediately
+		if skip_all:
+			break
+
+		# If skipping is active, break immediately
+		if skipping:
+			break
+
+		# Normal advance: Space/Enter/Click
+		if Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("mouse_left"):
+			break
+
+	next_indicator.hide()
 
 
 #----------------------------------on [what] button pressed-----------------------------------------

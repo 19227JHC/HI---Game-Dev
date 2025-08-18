@@ -86,6 +86,7 @@ Button/styles/focus = SubResource("StyleBoxEmpty_nnkl1")
 Button/styles/hover = SubResource("StyleBoxFlat_t52et")
 Button/styles/normal = SubResource("StyleBoxFlat_emple")
 Button/styles/pressed = SubResource("StyleBoxFlat_h2jr7")
+Window/constants/title_height = 17
 
 [node name="dialogue" type="Control"]
 layout_mode = 3
@@ -114,14 +115,6 @@ focus_mode = 0
 theme_override_fonts/font = ExtResource("2_8u5bm")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_2vjqy")
 text = "End dialogue"
-
-[node name="SkipButton" type="Button" parent="CanvasLayer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-focus_mode = 0
-theme_override_fonts/font = ExtResource("2_8u5bm")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_2vjqy")
-text = "Skip"
 
 [node name="DialogueLabel" type="Label" parent="CanvasLayer"]
 anchors_preset = -1
@@ -169,12 +162,21 @@ theme_override_fonts/font = ExtResource("2_8u5bm")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_2vjqy")
 
 [node name="ConfirmSkip" type="ConfirmationDialog" parent="CanvasLayer"]
+position = Vector2i(0, 36)
 size = Vector2i(912, 100)
 theme = SubResource("Theme_l7uag")
-ok_button_text = "I accidentally pressed [F]..."
-dialog_text = "Are you sure? This will negatively impact your experience. We will automatically treat this as \"Yes, I want to help.\""
-cancel_button_text = "Fine, I'll finish my conversation."
+ok_button_text = "Yeah"
+dialog_text = "Are you sure you want to end this dialogue, Player?"
+cancel_button_text = "No"
+
+[node name="NextIndicator" type="Label" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.936719
+anchor_top = 0.954167
+anchor_right = 0.995313
+anchor_bottom = 0.986111
+text = "(☞ ͡° ͜ʖ ͡°)☞ "
+metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/EndDialogueButton" to="." method="_on_end_dialogue_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/SkipButton" to="." method="_on_skip_button_pressed"]
 [connection signal="confirmed" from="CanvasLayer/ConfirmSkip" to="." method="_on_confirm_skip_confirmed"]

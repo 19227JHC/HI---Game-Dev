@@ -1,9 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://bxaysx2wbu4b2"]
+[gd_scene load_steps=23 format=3 uid="uid://bxaysx2wbu4b2"]
 
 [ext_resource type="Script" path="res://02 Irene/Scripts - I/levels and all that - script/dialogue.gd" id="1_ey6jv"]
 [ext_resource type="Shader" path="res://02 Irene/Scripts - I/levels and all that - script/dialogue.gdshader" id="2_bwabt"]
 [ext_resource type="FontFile" uid="uid://cg03ls2khnai" path="res://02 Irene/fonts - I/dogica.otf" id="2_r1h6a"]
 [ext_resource type="Shader" path="res://02 Irene/Scripts - I/levels and all that - script/dialogue_thank_you.gdshader" id="3_yl3u7"]
+[ext_resource type="FontFile" uid="uid://dytmi3e7gkhj0" path="res://02 Irene/fonts - I/pixely[1].ttf" id="4_orlvg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2vjqy"]
 
@@ -92,6 +93,13 @@ Button/styles/pressed = SubResource("StyleBoxFlat_h2jr7")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g306h"]
 shader = ExtResource("3_yl3u7")
 shader_parameter/lod = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ytn33"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pxnuj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tyvqu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ualyd"]
 shader = ExtResource("2_bwabt")
@@ -261,6 +269,39 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="NextIndicator" type="Label" parent="CanvasLayer2"]
+visible = false
+anchors_preset = -1
+anchor_left = 0.936719
+anchor_top = 0.552778
+anchor_right = 0.99375
+anchor_bottom = 0.588889
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(452, 209)
+theme_override_fonts/font = ExtResource("4_orlvg")
+text = "(☞ ͡° ͜ʖ ͡°)☞"
+metadata/_edit_use_anchors_ = true
+
+[node name="GlitchLabel" type="Label" parent="CanvasLayer2"]
+offset_left = 6.0
+offset_top = 8.0
+offset_right = 102.0
+offset_bottom = 31.0
+theme_override_fonts/font = ExtResource("2_r1h6a")
+text = "Glitch"
+
+[node name="GlitchToggle" type="CheckBox" parent="CanvasLayer2"]
+offset_left = 108.0
+offset_top = 7.0
+offset_right = 124.0
+offset_bottom = 23.0
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_ytn33")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pxnuj")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tyvqu")
+button_pressed = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
