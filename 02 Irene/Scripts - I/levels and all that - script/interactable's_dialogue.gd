@@ -13,8 +13,7 @@ signal option_selected(index: int)
 	$CanvasLayer/OptionsBox/Button3
 ]
 
-@onready var skip_button = $CanvasLayer/VBoxContainer/SkipButton
-@onready var skip_all_button = $CanvasLayer/VBoxContainer/SkipAllButton
+
 @onready var confirm_skip = $CanvasLayer/ConfirmSkip
 
 @onready var next_indicator = $CanvasLayer/NextIndicator
@@ -196,6 +195,59 @@ var all_dialogue_sets = {
 				]
 			# AAAND the player loses 1/2 health, not the literal kind, unfortunately. Also -5 moral points.
 		}
+	},
+	
+	
+	"naked_statue": {
+		"evil_enough": {
+			"lines": [
+				"Well well well.",
+				"Look who we have here...\nA villain wannabe.",
+				"Did you not heed any warnings, child?\nLives should not be wasted so easily."
+			]
+		},
+		"too_good": {
+			"lines": [
+				"Oh goodness me!",
+				"What are you, God's favourite human?",
+				"Good God, you're too pure for this world..."
+			],
+			"options": [
+				"Do I look like I know what I'm doing?",
+				"And you're just a little statue! What do you know about the world?"
+			],
+			"next_states": ["know_nothing", "little_statue"]
+		},
+		"meh": {
+			"lines": [
+				"What.",
+				"Come back when you're useful."
+			],
+			"options": [
+				"What? Have I not done enough?"
+			],
+			"next_states": ["not_done_enough"]
+		},
+		
+		"not_done_enough": {
+			"lines": [
+				"Clearly not.",
+				"Now shoo!"
+			]
+		},
+		"know_nothing": {
+			"lines": [
+				"Tch. Too pure indeed.",
+				"Only a true human knows how to navigate a cruel world.",
+				"You clearly are too good for this world..."
+			]
+		},
+		"little_statue": {
+			"lines": [
+				"Excuse me?! WELL NOW YOU'VE DONE IT!",
+				"GET LOST, PLAYER!"
+			]
+		}
 	}
 	
 	# other item interactions can be stored here :D
@@ -264,8 +316,6 @@ func _show_dialogue_state() -> void:
 		last_state = current_state
 		$CanvasLayer.hide()
 		get_tree().paused = false
-		
-
 
 
 # ----------------------------------What's the Next State-------------------------------------------
@@ -335,5 +385,7 @@ func _on_confirm_skip_confirmed():
 	end_dialogue = true
 	skip_confirmed = true
 	$CanvasLayer.hide()
+	
+	dialogue_active = true # added this
 	
 	get_tree().paused = false

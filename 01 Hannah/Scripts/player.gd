@@ -3,8 +3,12 @@ class_name Player # 4 connections
 
 signal healthChanged # 4 health bar
 
-@export var maxHealth = 120
-@export var currentHealth: int = maxHealth
+# I moved it to gobal, don't panic!!
+#@export var maxHealth = 120
+#@export var currentHealth: int = maxHealth
+var maxHealth := 0
+var currentHealth: int = maxHealth
+
 
 @export var knockbackPower: int = 100
 var knockback_timer := 0.0
@@ -23,6 +27,22 @@ var death_anim_played = false
 # effects
 var shaking := false
 
+
+# IRENE WAS HERE
+func _ready():
+	# health stuff
+	currentHealth = gobal.currentHealth
+	maxHealth = gobal.maxHealth
+	
+	# for the 'teleporting' thing in level 2 - sorry, the second level
+	if fade_rect != null:
+		animation_player = fade_rect.get_node_or_null("AnimationPlayer")
+		if animation_player == null:
+			push_error("AnimationPlayer not found under Fade node!")
+	else:
+		push_error("Fade node not found! Check path from Player.")
+
+
 # ----------------------
 
 func _physics_process(_delta):
@@ -38,6 +58,7 @@ func _physics_process(_delta):
 	if currentHealth <= 0 and not death_anim_played:
 		player_alive = false
 		currentHealth = 0
+		gobal.currentHealth = currentHealth   # <-- update global
 		death_anim_played = true
 		print("player has been killed") # debugging
 		play_death_animation(last_direction)
@@ -64,6 +85,7 @@ func _physics_process(_delta):
 func enemy_attack(enemy_position: Vector2):
 	if player_alive:
 		currentHealth -= 20
+		gobal.currentHealth = currentHealth   # <-- update gobal
 		healthChanged.emit()
 		knockback((global_position - enemy_position).normalized())
 		flash()
@@ -177,15 +199,6 @@ var force_camera_current_frames = 0
 # --- FADE ---
 @onready var fade_rect: CanvasLayer = get_node_or_null("../Fade") # adjust path!
 @onready var animation_player: AnimationPlayer = null
-
-
-func _ready():
-	if fade_rect != null:
-		animation_player = fade_rect.get_node_or_null("AnimationPlayer")
-		if animation_player == null:
-			push_error("AnimationPlayer not found under Fade node!")
-	else:
-		push_error("Fade node not found! Check path from Player.")
 
 
 func set_held_item(item: Node2D):

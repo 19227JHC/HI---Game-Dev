@@ -105,9 +105,11 @@ func state_dead():
 	# IRENE HERE
 	# so you can still collide with the carcass
 	# $Enemy_collision.disabled = true
+	# nvm it brought up a new set of problems...
 	$e_hitbox/e_hitbox_collision.disabled = true
 	velocity = Vector2.ZERO
 	move_and_slide()
+	gobal.bad_moral_points += 2
 
 # FSM action handlers 
 

@@ -95,8 +95,8 @@ func set_held(value: bool):
 func drink():
 	if player:
 		# Heal player
-		player.currentHealth = min(player.currentHealth + 30, player.maxHealth)
-		player.healthChanged.emit()
+		player.currentHealth = min(player.currentHealth + 30, gobal.maxHealth)
+		gobal.currentHealth = player.currentHealth
 		print("Player drank chemical, +30 health")
 
 	# Remove the bottle from scene
