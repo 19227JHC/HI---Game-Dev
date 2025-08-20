@@ -22,6 +22,8 @@ func _ready():
 
 # ------------------------------------ITEM INTERACTION----------------------------------------------
 func _on_item_interacted():
+	get_tree().paused = true
+	
 	$dialogue/CanvasLayer.show() # just in case?
 	
 	dialogue_manager.set_active_dialogue("computer_amanda")

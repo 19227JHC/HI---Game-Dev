@@ -4,6 +4,7 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$VBoxContainer/start_button.grab_focus()
+	$CanvasLayer/Settings.visible = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -12,12 +13,12 @@ func _process(delta):
 
 
 # -----------------------------FOR SETTINGS (to access it CLEANLY)----------------------------------
-func open_settings():
-	var settings_scene = preload("res://02 Irene/Scenes - I/UI/settings.tscn").instantiate()
-	settings_scene.came_from_node = self   # track origin
-	get_tree().current_scene.add_child(settings_scene)
-	settings_scene.show()
-	$CanvasLayer/Settings.show()
+#func open_settings():
+	#var settings_scene = preload("res://02 Irene/Scenes - I/UI/settings.tscn").instantiate()
+	#settings_scene.came_from_node = self   # track origin
+	#get_tree().current_scene.add_child(settings_scene)
+	#settings_scene.show()
+	#$CanvasLayer/Settings.show()
 	# visible = false
 
 
@@ -28,7 +29,8 @@ func _on_start_button_pressed():
 
 
 func _on_settings_button_pressed():
-	open_settings()
+	#open_settings()
+	$CanvasLayer/Settings.visible = true
 
 
 func _on_exit_button_pressed():

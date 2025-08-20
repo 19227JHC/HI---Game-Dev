@@ -263,6 +263,8 @@ func _show_dialogue_state() -> void:
 		 # no next states → end dialogue
 		last_state = current_state
 		$CanvasLayer.hide()
+		get_tree().paused = false
+		
 
 
 
@@ -333,3 +335,5 @@ func _on_confirm_skip_confirmed():
 	end_dialogue = true
 	skip_confirmed = true
 	$CanvasLayer.hide()
+	
+	get_tree().paused = false

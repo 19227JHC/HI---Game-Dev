@@ -90,6 +90,8 @@ Button/styles/pressed = SubResource("StyleBoxFlat_h2jr7")
 Window/constants/title_height = 17
 
 [node name="dialogue" type="Control"]
+process_mode = 3
+process_priority = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

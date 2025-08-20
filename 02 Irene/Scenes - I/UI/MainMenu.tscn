@@ -25,6 +25,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5dvoe")
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(403.5, 245.5)
+stream = ExtResource("4_nqses")
+autoplay = true
+
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -78,12 +83,8 @@ theme_override_colors/font_pressed_color = Color(0.281187, 0.281187, 0.281187, 1
 theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_jm0x6")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_earip")
-text = "EXIT"
+text = "EXIT GAME"
 flat = true
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(403.5, 245.5)
-stream = ExtResource("4_nqses")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

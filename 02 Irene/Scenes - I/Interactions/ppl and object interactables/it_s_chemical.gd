@@ -6,7 +6,7 @@ extends Node2D
 @onready var collision_shape = $StaticBody2D/CollisionShape2D
 
 
-@export var item_name: String = "Pick up"
+@export var item_name: String = "[F] to pick up"
 @export var carry_point_path: NodePath  # Drag your player's carry_point here
 
 

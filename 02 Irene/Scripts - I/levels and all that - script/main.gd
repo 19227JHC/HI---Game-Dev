@@ -5,7 +5,8 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$CanvasLayer/Settings.visible = false
+	pass
+	#$CanvasLayer/Settings.visible = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -14,21 +15,21 @@ func _process(delta):
 
 
 # Pause
-func pause():
-	$CanvasLayer/Pause.visible = true
-	get_tree().paused = true
+#func pause():
+	#$CanvasLayer/Pause.visible = true
+	#get_tree().paused = true
 
-func resume():
-	$CanvasLayer/Pause.visible = false
-	get_tree().paused = false
+#func resume():
+	#$CanvasLayer/Pause.visible = false
+	#get_tree().paused = false
 
 # Settings (overlay on top of pause) 	
-func open_settings():
-	var settings_scene = preload("res://02 Irene/Scenes - I/UI/settings.tscn").instantiate()
-	get_tree().current_scene.add_child(settings_scene) # add to level
-	settings_scene.show()
-	visible = false
+#func open_settings():
+	#var settings_scene = preload("res://02 Irene/Scenes - I/UI/settings.tscn").instantiate()
+	#get_tree().current_scene.add_child(settings_scene) # add to level
+	#settings_scene.show()
+	#visible = false
 
-func close_settings():
-	$CanvasLayer/Settings.visible = false
-	$CanvasLayer/Pause.visible = true
+#func close_settings():
+	#$CanvasLayer/Settings.visible = false
+	#CanvasLayer/Pause.visible = true

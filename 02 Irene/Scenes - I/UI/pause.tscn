@@ -79,6 +79,7 @@ _data = {
 
 [node name="Pause" type="Control"]
 process_mode = 3
+process_priority = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -125,7 +126,6 @@ flat = true
 icon_alignment = 1
 
 [node name="Restart" type="Button" parent="PanelContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
 focus_mode = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -155,7 +155,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(0.282353, 0.282353, 0.282353, 1)
 theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tych7")
-text = "Exit Game"
+text = "Exit Game (End Game)"
 flat = true
 icon_alignment = 1
 
@@ -167,6 +167,7 @@ libraries = {
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Settings" parent="CanvasLayer" instance=ExtResource("3_q2obi")]
+visible = false
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]

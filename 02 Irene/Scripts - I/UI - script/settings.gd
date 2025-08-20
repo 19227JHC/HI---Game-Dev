@@ -5,7 +5,7 @@ extends Control
 @onready var action_list = $PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/ActionList
 
 
-var came_from_node: Node = null   # Will store PauseScreen or MainMenu reference
+#var came_from_node: Node = null   # Will store PauseScreen or MainMenu reference
 
 # FOR INPUT KEYS
 var is_remapping = false
@@ -29,7 +29,7 @@ var opened_from: String = ""  # "pause" or "main_menu"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	visible = false
+	#visible = false
 	_create_action_list()
 
 
@@ -53,7 +53,7 @@ func _create_action_list():
 		
 		var events = InputMap.action_get_events(action)
 		if events.size() > 0:
-			input_label.text = events[0].as_text().trim_suffix("  (Physical)")
+			input_label.text = events[0].as_text().replace(" (Physical)", "")
 		else:
 			input_label.text = ""
 		
@@ -91,13 +91,14 @@ func _input(event):
 
 
 func _update_action_list(button, event):
-	button.find_child("LabelInput").text = event.as_text().trim_suffix(" (Physical)")
+	button.find_child("LabelInput").text = event.as_text().replace(" (Physical)", "")
 
 #-------------------------------------------BUTTONS-------------------------------------------------
 func _on_return_button_pressed():
-	queue_free()
-	if came_from_node:
-		came_from_node.show()
+	visible = false
+	#queue_free()
+	#if came_from_node:
+		#came_from_node.show()
 
 
 func _on_volume_value_changed(value):

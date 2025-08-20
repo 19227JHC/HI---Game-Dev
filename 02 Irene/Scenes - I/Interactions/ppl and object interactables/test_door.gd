@@ -38,7 +38,7 @@ func required_items_placed() -> bool:
 		var table = get_node_or_null(table_path)
 		if table:
 			var item = table.get_placed_item()
-			if item and item.name in ["It'sChemical", "It'sChemical2"]:
+			if item and item.name in ["It_s_Chemical", "It_s_Chemical2"]:
 				count += 1
 	
 	return count >= 2

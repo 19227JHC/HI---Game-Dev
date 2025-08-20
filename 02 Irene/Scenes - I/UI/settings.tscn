@@ -1,10 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://c5ea5yed0s5yf"]
+[gd_scene load_steps=15 format=3 uid="uid://c5ea5yed0s5yf"]
 
 [ext_resource type="Script" path="res://02 Irene/Scripts - I/UI - script/settings.gd" id="1_4tdos"]
 [ext_resource type="FontFile" uid="uid://cg03ls2khnai" path="res://02 Irene/fonts - I/dogica.otf" id="1_50as0"]
 [ext_resource type="FontFile" uid="uid://dytmi3e7gkhj0" path="res://02 Irene/fonts - I/pixely[1].ttf" id="2_g03gn"]
 [ext_resource type="PackedScene" uid="uid://jv4nmtu2f44i" path="res://02 Irene/Scenes - I/levels and all that/input_button.tscn" id="4_mg7nv"]
-[ext_resource type="AudioStream" uid="uid://mhqes1q4k26a" path="res://02 Irene/Wayfarin_ Stranger (Alto) Audio Only.mp3" id="4_q1a28"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aflva"]
 bg_color = Color(1, 1, 1, 1)
@@ -34,7 +33,7 @@ bg_color = Color(0, 0, 0, 1)
 
 [node name="Settings" type="Control"]
 process_mode = 3
-visible = false
+process_priority = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -151,10 +150,6 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_4dfl1")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_32ugk")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_q47qn")
 text = "RETURN"
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_q1a28")
-autoplay = true
 
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/volume" to="." method="_on_volume_value_changed"]
 [connection signal="toggled" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/mute" to="." method="_on_mute_toggled"]

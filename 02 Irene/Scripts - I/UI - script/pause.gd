@@ -5,6 +5,7 @@ extends Control
 func _ready():
 	$AnimationPlayer.play("RESET")
 	visible = false
+	$CanvasLayer/Settings.visible = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -32,18 +33,19 @@ func testEsc():
 	
 
 # -----------------------------FOR SETTINGS (to access it CLEANLY)----------------------------------
-func open_settings():
-	var settings_scene = preload("res://02 Irene/Scenes - I/UI/settings.tscn").instantiate()
-	settings_scene.came_from_node = self   # track origin
-	get_tree().current_scene.add_child(settings_scene)
-	settings_scene.show()
-	$CanvasLayer/Settings.show()
+#func open_settings():
+	#var settings_scene = preload("res://02 Irene/Scenes - I/UI/settings.tscn").instantiate()
+	#settings_scene.came_from_node = self   # track origin
+	#get_tree().current_scene.add_child(settings_scene)
+	#settings_scene.show()
+	#$CanvasLayer/Settings.show()
 	#visible = false
 
 
 # BUTTONS
 func _on_settings_pressed():
-	open_settings()
+	#open_settings()
+	$CanvasLayer/Settings.visible = true
 
 func _on_exit_to_menu_pressed():
 	get_tree().paused = false
