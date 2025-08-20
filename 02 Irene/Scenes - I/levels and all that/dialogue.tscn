@@ -1,0 +1,310 @@
+[gd_scene load_steps=19 format=3 uid="uid://bxaysx2wbu4b2"]
+
+[ext_resource type="Script" path="res://02 Irene/Scripts - I/levels and all that - script/dialogue.gd" id="1_ey6jv"]
+[ext_resource type="Shader" path="res://02 Irene/Scripts - I/levels and all that - script/dialogue.gdshader" id="2_bwabt"]
+[ext_resource type="FontFile" uid="uid://cg03ls2khnai" path="res://02 Irene/fonts - I/dogica.otf" id="2_r1h6a"]
+[ext_resource type="Shader" path="res://02 Irene/Scripts - I/levels and all that - script/dialogue_thank_you.gdshader" id="3_yl3u7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2vjqy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d3t7m"]
+bg_color = Color(0, 0, 0, 0.313726)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lys4h"]
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nnkl1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t52et"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.225, 0.225, 0.225, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_emple"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 5.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h2jr7"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="Theme" id="Theme_l7uag"]
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/h_separation = 10
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 16
+Button/fonts/font = ExtResource("2_r1h6a")
+Button/styles/disabled = SubResource("StyleBoxFlat_lys4h")
+Button/styles/focus = SubResource("StyleBoxEmpty_nnkl1")
+Button/styles/hover = SubResource("StyleBoxFlat_t52et")
+Button/styles/normal = SubResource("StyleBoxFlat_emple")
+Button/styles/pressed = SubResource("StyleBoxFlat_h2jr7")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g306h"]
+shader = ExtResource("3_yl3u7")
+shader_parameter/lod = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ualyd"]
+shader = ExtResource("2_bwabt")
+shader_parameter/shake_power = 0.03
+shader_parameter/shake_rate = 0.2
+shader_parameter/shake_speed = 5.0
+shader_parameter/shake_block_size = 30.5
+shader_parameter/shake_color_rate = 0.01
+shader_parameter/glitch_active = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ima7p"]
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="Animation" id="Animation_0g0ht"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer3/PanelContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer2/ThankYou:material:shader_parameter/lod")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_745j6"]
+resource_name = "new_animation"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer3/PanelContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer2/ThankYou:material:shader_parameter/lod")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.8]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rqu1c"]
+_data = {
+"RESET": SubResource("Animation_0g0ht"),
+"blur": SubResource("Animation_745j6")
+}
+
+[node name="dialogue" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ey6jv")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2"]
+offset_left = 1068.0
+offset_top = 18.0
+offset_right = 1263.0
+offset_bottom = 102.0
+
+[node name="SkipAllButton" type="Button" parent="CanvasLayer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+theme_override_fonts/font = ExtResource("2_r1h6a")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2vjqy")
+text = "Skip All"
+
+[node name="SkipButton" type="Button" parent="CanvasLayer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+theme_override_fonts/font = ExtResource("2_r1h6a")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2vjqy")
+text = "Skip"
+
+[node name="DialogueLabel" type="Label" parent="CanvasLayer2"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -191.0
+offset_bottom = 74.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_r1h6a")
+theme_override_styles/normal = SubResource("StyleBoxFlat_d3t7m")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OptionsBox" type="VBoxContainer" parent="CanvasLayer2"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -566.0
+offset_top = -230.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/separation = 10
+
+[node name="Button" type="Button" parent="CanvasLayer2/OptionsBox"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+theme_override_fonts/font = ExtResource("2_r1h6a")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2vjqy")
+
+[node name="Button2" type="Button" parent="CanvasLayer2/OptionsBox"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+theme_override_fonts/font = ExtResource("2_r1h6a")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2vjqy")
+
+[node name="Button3" type="Button" parent="CanvasLayer2/OptionsBox"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+theme_override_fonts/font = ExtResource("2_r1h6a")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2vjqy")
+
+[node name="ConfirmSkip" type="ConfirmationDialog" parent="CanvasLayer2"]
+size = Vector2i(912, 100)
+theme = SubResource("Theme_l7uag")
+ok_button_text = "Yeah, totally. Skip it all!"
+dialog_text = "Are you sure? This will negatively impact your experience. We will automatically treat this as \"Yes, I want to help.\""
+cancel_button_text = "Okay, I'll do the dialogues."
+
+[node name="ThankYou" type="ColorRect" parent="CanvasLayer2"]
+material = SubResource("ShaderMaterial_g306h")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Glitch" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_ualyd")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[node name="CanvasLayer3" type="CanvasLayer" parent="."]
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer3"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -120.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer3/PanelContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_r1h6a")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_ima7p")
+text = "[Thank you, Player. We’ll bring you in now…]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rqu1c")
+}
+
+[connection signal="pressed" from="CanvasLayer2/VBoxContainer/SkipAllButton" to="." method="_on_skip_all_button_pressed"]
+[connection signal="pressed" from="CanvasLayer2/VBoxContainer/SkipButton" to="." method="_on_skip_button_pressed"]
+[connection signal="confirmed" from="CanvasLayer2/ConfirmSkip" to="." method="_on_confirm_skip_confirmed"]

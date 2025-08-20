@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://dg7gjybjn1bjo"]
+
+[ext_resource type="Texture2D" uid="uid://k7sia0noqhno" path="res://02 Irene/Assets - I/isolated objects/ChemicalBottle.png" id="1_02e76"]
+[ext_resource type="Script" path="res://02 Irene/Scenes - I/Interactions/ppl and object interactables/chemical_bottle.gd" id="1_b5x43"]
+[ext_resource type="PackedScene" uid="uid://dnkxxwhgim1qy" path="res://02 Irene/Scenes - I/Interactions/InteractionArea.tscn" id="3_4m57i"]
+[ext_resource type="Texture2D" uid="uid://c6o5nhhhqao7g" path="res://01 Hannah/Assets/star_01.png" id="3_5s16y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l7cw8"]
+radius = 17.0
+
+[node name="chemical_bottle" type="Node2D"]
+script = ExtResource("1_b5x43")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_02e76")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 1
+lifetime = 0.6
+texture = ExtResource("3_5s16y")
+emission_shape = 2
+emission_sphere_radius = 6.0
+spread = 180.0
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+scale_amount_min = 0.0
+scale_amount_max = 0.1
+
+[node name="InteractionArea" parent="." instance=ExtResource("3_4m57i")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_l7cw8")

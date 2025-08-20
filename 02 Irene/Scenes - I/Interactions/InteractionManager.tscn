@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dv0brsxmk5lh4"]
+
+[ext_resource type="FontFile" uid="uid://cg03ls2khnai" path="res://02 Irene/fonts - I/dogica.otf" id="1_4peis"]
+[ext_resource type="Script" path="res://02 Irene/Scripts - I/Interactions/InteractionManager.gd" id="1_f6kte"]
+
+[node name="InteractionManager" type="Node2D"]
+script = ExtResource("1_f6kte")
+
+[node name="Label" type="Label" parent="."]
+z_index = 100
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -120.0
+offset_right = 120.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_4peis")
+horizontal_alignment = 1
+vertical_alignment = 1
