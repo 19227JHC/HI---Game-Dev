@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://dd3yesvrihq4d"]
+
+[ext_resource type="Script" path="res://02 Irene/Scenes - I/Interactions/ppl and object interactables/it_s_chemical.gd" id="1_d5lu3"]
+[ext_resource type="Texture2D" uid="uid://bqwxqxo3se7di" path="res://02 Irene/Assets - I/isolated objects/SpilledChemicals.png" id="1_u7nh2"]
+[ext_resource type="PackedScene" uid="uid://dnkxxwhgim1qy" path="res://02 Irene/Scenes - I/Interactions/InteractionArea.tscn" id="2_lr1gh"]
+[ext_resource type="Texture2D" uid="uid://8c0igpx2b0lw" path="res://01 Hannah/Assets/star_07.png" id="3_mb6js"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i3pvk"]
+size = Vector2(13, 8)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t6fvs"]
+radius = 16.0
+
+[node name="It_s_Chemical" type="Node2D"]
+script = ExtResource("1_d5lu3")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 260
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+visible = false
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_i3pvk")
+debug_color = Color(0.936955, 1.38617e-05, 0.630022, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(2, 0)
+texture = ExtResource("1_u7nh2")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="StaticBody2D"]
+amount = 2
+lifetime = 0.5
+texture = ExtResource("3_mb6js")
+emission_shape = 2
+emission_sphere_radius = 5.0
+spread = 180.0
+gravity = Vector2(0, 0)
+scale_amount_min = 0.03
+scale_amount_max = 0.03
+color = Color(0.999999, 0.518375, 0.626922, 1)
+
+[node name="InteractionArea" parent="." instance=ExtResource("2_lr1gh")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+visible = false
+shape = SubResource("CircleShape2D_t6fvs")

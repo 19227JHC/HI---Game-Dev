@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://dfkdjxkbvvbd2"]
+
+[ext_resource type="Texture2D" uid="uid://bi0lbljecj4o6" path="res://02 Irene/Assets - I/isolated objects/SkeletonStatue.png" id="1_7dhh7"]
+[ext_resource type="Script" path="res://02 Irene/Scenes - I/Interactions/ppl and object interactables/skeleton_statue.gd" id="1_d8kjj"]
+[ext_resource type="PackedScene" uid="uid://dnkxxwhgim1qy" path="res://02 Irene/Scenes - I/Interactions/InteractionArea.tscn" id="2_08d5v"]
+[ext_resource type="PackedScene" uid="uid://ckdmd1fbc1nxb" path="res://02 Irene/Scenes - I/levels and all that/interactable_dialogue.tscn" id="4_4i5sb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_stako"]
+size = Vector2(12, 24)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y2i1c"]
+radius = 32.0156
+
+[node name="skeleton_statue" type="Node2D"]
+script = ExtResource("1_d8kjj")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+texture = ExtResource("1_7dhh7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_stako")
+debug_color = Color(0.920061, 5.8527e-05, 0.696255, 0.42)
+
+[node name="InteractionArea" parent="." instance=ExtResource("2_08d5v")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_y2i1c")
+
+[node name="dialogue" parent="." instance=ExtResource("4_4i5sb")]

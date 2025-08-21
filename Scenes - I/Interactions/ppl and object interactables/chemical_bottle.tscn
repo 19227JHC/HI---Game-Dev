@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://dg7gjybjn1bjo"]
+
+[ext_resource type="Texture2D" uid="uid://k7sia0noqhno" path="res://02 Irene/Assets - I/isolated objects/ChemicalBottle.png" id="1_02e76"]
+[ext_resource type="Script" path="res://02 Irene/Scenes - I/Interactions/ppl and object interactables/chemical_bottle.gd" id="1_b5x43"]
+[ext_resource type="Texture2D" uid="uid://8c0igpx2b0lw" path="res://01 Hannah/Assets/star_07.png" id="3_2sumj"]
+[ext_resource type="PackedScene" uid="uid://dnkxxwhgim1qy" path="res://02 Irene/Scenes - I/Interactions/InteractionArea.tscn" id="3_4m57i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_me2rt"]
+size = Vector2(6, 10)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l7cw8"]
+radius = 17.0
+
+[node name="chemical_bottle" type="Node2D"]
+script = ExtResource("1_b5x43")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 260
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+texture = ExtResource("1_02e76")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+visible = false
+shape = SubResource("RectangleShape2D_me2rt")
+debug_color = Color(0.911165, 0.135307, 0.647238, 0.42)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="StaticBody2D"]
+amount = 2
+lifetime = 0.5
+texture = ExtResource("3_2sumj")
+emission_shape = 2
+emission_sphere_radius = 5.0
+spread = 180.0
+gravity = Vector2(0, 0)
+scale_amount_min = 0.02
+scale_amount_max = 0.03
+color = Color(0.705882, 0.0862745, 0.2, 1)
+
+[node name="InteractionArea" parent="." instance=ExtResource("3_4m57i")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+visible = false
+shape = SubResource("CircleShape2D_l7cw8")

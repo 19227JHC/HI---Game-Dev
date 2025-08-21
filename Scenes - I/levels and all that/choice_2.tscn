@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dj3d4km0ym20f"]
+
+[ext_resource type="TileSet" uid="uid://c4yjh1sv168t1" path="res://02 Irene/level_1.tres" id="1_rod3i"]
+
+[node name="choice_2" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("1_rod3i")
+format = 2

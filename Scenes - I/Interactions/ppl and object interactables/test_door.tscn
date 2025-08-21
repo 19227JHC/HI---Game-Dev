@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://4d87yfgj7pvn"]
+
+[ext_resource type="Script" path="res://02 Irene/Scenes - I/Interactions/ppl and object interactables/test_door.gd" id="1_3r7ba"]
+[ext_resource type="Texture2D" uid="uid://bu13d5eu6ctvn" path="res://02 Irene/Assets - I/doors/door-1.png" id="1_k40qp"]
+[ext_resource type="PackedScene" uid="uid://dnkxxwhgim1qy" path="res://02 Irene/Scenes - I/Interactions/InteractionArea.tscn" id="2_ch8mu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7i46x"]
+size = Vector2(46, 42)
+
+[node name="testDoor" type="Node2D"]
+script = ExtResource("1_3r7ba")
+tables = Array[NodePath]([NodePath(""), NodePath("")])
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_k40qp")
+
+[node name="InteractionArea" parent="." instance=ExtResource("2_ch8mu")]
+action_name = "ENTER"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_7i46x")
