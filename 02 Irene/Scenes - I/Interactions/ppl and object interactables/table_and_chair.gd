@@ -3,12 +3,36 @@ extends Node2D
 
 @onready var interaction_area: InteractionArea = $InteractionArea
 @onready var slot_node = $PlacePoint  # Automatically gets the Marker2D named PlacePoint
+@export var item_name: String = "Where's your key?"
 
 
 var placed_item: Node2D = null
+var player = null
 
 
-# Allow placing any time; can customize if needed
+func _ready():
+	interaction_area.action_name = item_name
+	
+	player = get_tree().get_first_node_in_group("player")
+	if player:
+		print("Player found!")
+	else:
+		print("Player not found!")
+
+
+# ----------to actively change the input keys in accordance to what it is in the InputMap-----------
+func get_key_for_action(action_name: String) -> String:
+	var events = InputMap.action_get_events(action_name)
+	if events.size() > 0:
+		var ev = events[0]
+		if ev is InputEventKey:
+			return OS.get_keycode_string(ev.physical_keycode)  # shows actual key, e.g. "F"
+		elif ev is InputEventMouseButton:
+			return "Mouse" + str(ev.button_index)
+	return action_name  # fallback if no key found
+
+
+# -------------------------Allow placing any time; can customize if needed--------------------------
 func can_drop_item() -> bool:
 	return true
 
@@ -31,6 +55,7 @@ func place_item(item: Node2D):
 			item.set_held(false)
 
 
+# --------------------------------------how the swapping happens------------------------------------
 func swap_items(new_item: Node2D):
 	var player = get_tree().get_first_node_in_group("player")
 	if not player:
@@ -66,10 +91,16 @@ func clear_placed_item():
 	placed_item = null
 
 
-# ----------------------------------for the door's requirements to open-----------------------------
+# -------------------------------for the door's requirements to open--------------------------------
 func get_placed_item():
 	return placed_item
 
 
-func _ready():
-	interaction_area.action_name = ""
+# ----------------------------------interaction area's action name----------------------------------
+func _process(delta):
+	var interact_key = get_key_for_action("interact")
+
+	if player.holding_item == false:
+		interaction_area.action_name = item_name
+	elif player.holding_item == true:
+		interaction_area.action_name = "[" + interact_key + "] to place object"

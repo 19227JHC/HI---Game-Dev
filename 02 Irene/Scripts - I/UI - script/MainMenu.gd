@@ -5,6 +5,7 @@ extends Control
 func _ready():
 	$VBoxContainer/start_button.grab_focus()
 	$CanvasLayer/Settings.visible = false
+	gobal.reset()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -31,6 +32,7 @@ func _on_start_button_pressed():
 func _on_settings_button_pressed():
 	#open_settings()
 	$CanvasLayer/Settings.visible = true
+	$CanvasLayer/Settings/AnimationPlayer.play("fade")
 
 
 func _on_exit_button_pressed():

@@ -1,7 +1,7 @@
 extends Node
 
 
-@export var level_number = 2 # for the door logic
+signal option_selected(index: int)
 
 
 # SKIPS
@@ -10,49 +10,90 @@ extends Node
 @onready var confirm_skip = $CanvasLayer2/ConfirmSkip
 
 # LABELS AND BUTTONS
-@onready var dialogue_label = $CanvasLayer2/HSplitContainer/DialogueLabel
-@onready var dialogue_label2 = $CanvasLayer2/HSplitContainer/DialogueLabel2
-@onready var options_box = $CanvasLayer2/OptionsBox
+@onready var dialogue_label1: Label = $CanvasLayer2/HSplitContainer/DialogueLabel
+@onready var dialogue_label2: Label = $CanvasLayer2/HSplitContainer/DialogueLabel2
+@onready var options_box: VBoxContainer = $CanvasLayer2/OptionsBox
+@onready var buttons: Array[Button] = [
+	$CanvasLayer2/OptionsBox/Button,
+	$CanvasLayer2/OptionsBox/Button2,
+	$CanvasLayer2/OptionsBox/Button3
+]
 
 # GLITCHES (and its toggle)
 @onready var glitch_material := $CanvasLayer/Glitch.material as ShaderMaterial
 @onready var glitch_toggle = $CanvasLayer2/GlitchToggle
 
 # (☞ ͡° ͜ʖ ͡°)☞ NEXT ▶ indicator
-@onready var next_indicator = $CanvasLayer2/NextIndicator
+@onready var next_indicator1 = $CanvasLayer2/NextIndicator
 @onready var next_indicator2 = $CanvasLayer2/NextIndicator2
 
 
-# buttons !!
-var buttons = []
-
+# the state of the dialogue; is it continuing or is it skipped, etc.
 # skips
 var skipping = false
 var skip_all = false
 var skip_confirmed = false
 
-# starting state
-var state = "start"
-
-# the dialogue's job, I suppose
+# NOT the match state in the dialogue set.
+var dialogue_active := false
+var end_dialogue = false
 var dialogue_task = null
+
+# dialogue data
+var current_dialogue_set = {}
+
+# to track current dialogue state
+var state = ""
+
+# to find last state
+var active_dialogue: String = ""
+var current_state: String = ""
+var last_state: String = "" # --> to keep track of the FINAL state
 
 # glitches
 var glitches_enabled: bool = true
 
 
+# because we'll have three, HA!
+enum Speakers {
+	Hannah,
+	Irene,
+	PLAYER
+}
+
+
+# now to store all the dialogues...
+var all_dialogues_set = {
+	"intro":{
+		"start:": {
+			"lines": [
+				{ "speaker": Speakers.Hannah, "line": "So... the Player succeeded." },
+				{ "speaker": Speakers.Irene, "line": "Quite an unexpected result, indeed.\nWhatever did we do wrong?" },
+				{ "speaker": Speakers.Hannah, "line": "Maybe we should've added more enemies!\nThe more the merrier!" },
+				{ "speaker": Speakers.Irene, "line": "Certainly wouldn't have hurt." }
+			],
+			"options": ["something"],
+			"next_states": ["something#2"]
+		},
+		
+		"something#2": {
+			"lines": ["Whadda-"]
+		}
+	}
+}
+
+
+# ------------------------------------------level on ready------------------------------------------
 func _ready():
-	$AnimationPlayer.play("RESET")
-	
-	buttons = $CanvasLayer2/OptionsBox.get_children()
-	for i in buttons.size():
-		buttons[i].pressed.connect(func(): _on_button_pressed(i))
-	show_dialogue()
-	
-	next_indicator.hide()
-	glitch_toggle.toggled.connect(_on_glitch_toggle_toggled)
-	# make sure it reflects current state
-	glitch_toggle.button_pressed = glitches_enabled
+	next_indicator1.hide()
+	next_indicator2.hide()
+	options_box.hide()
+
+	for i in range(buttons.size()):
+		buttons[i].connect("pressed", Callable(self, "_on_button_pressed").bind(i))
+
+	set_active_dialogue("intro")
+	start_dialogue()
 
 
 #--------------------------------------do you want glitches?----------------------------------------
@@ -60,111 +101,132 @@ func _on_glitch_toggle_toggled(pressed: bool):
 	glitches_enabled = pressed
 
 
+# set active dialogue
+func set_active_dialogue(key: String):
+	if all_dialogues_set.has(key):
+		active_dialogue = key
+		current_dialogue_set = all_dialogues_set[key]
+		current_state = current_dialogue_set.keys()[0]
+
+
 #--------------------------------------------dialogues----------------------------------------------
-func show_dialogue():
-	if skip_all:
-		start_game()
+func start_dialogue() -> void:
+	if not is_inside_tree():
 		return
-	
-	for button in buttons:
-		button.hide()
-		
-	dialogue_task = call_deferred("_show_dialogue_state")
+	await _show_dialogue_state()
+
+func _show_dialogue_state() -> void:
+	if current_state == "":
+		return
+
+	var state_data = current_dialogue_set[current_state]
+
+	# show lines
+	for entry in state_data.get("lines", []):
+		_set_dialogue(entry)
+		await _wait_for_continue()
+
+	# handle options
+	if state_data.has("options") and state_data.options.size() > 0:
+		var choice_index = await show_options(state_data.options)
+		current_state = state_data.next_states[choice_index]
+		await _show_dialogue_state()
+	elif state_data.has("next_states") and state_data.next_states.size() > 0:
+		current_state = state_data.next_states[0]
+		await _show_dialogue_state()
+	else:
+		last_state = current_state
+		$CanvasLayer2.hide()
+		get_tree().paused = false
 
 
-func _show_dialogue_state():
-	pass
-	#match state:
-
-
-func _on_button_pressed(index):
-	pass
-	#match state:
-
-
-func show_options(option_texts):
-	if skip_confirmed:
-		return  # Do not show options after skip all
-	
+#----------------------------------------dialogue logic---------------------------------------------
+func show_options(options: Array) -> int:
+	options_box.show()
 	for i in range(buttons.size()):
-		if i < option_texts.size():
-			buttons[i].text = option_texts[i]
+		if i < options.size():
+			buttons[i].text = str(options[i])
 			buttons[i].show()
+			buttons[i].disabled = false
 		else:
 			buttons[i].hide()
+
+	var choice_index = await option_selected
+	options_box.hide()
+	return choice_index
 
 
 #----------------------------------------play sequence----------------------------------------------
 # Words that'll trigger the glitch
 var glitch_keywords = [
 	"player",
-	"thank you",
-	"cruel",
-	"karma",
-	"unknown disease",
-	"dying"
+	"#others"
 ]
 
 func play_sequence(lines, force := false):
-	for line in lines:
-		# For Skip and Skip All
+	for entry in lines:
 		if skip_all and not force:
 			break
 			
 		if skipping and not force:
-			# Instantly set the line without waiting for input
-			dialogue_label.text = line
+			_set_dialogue(entry)
 			await get_tree().create_timer(0.1).timeout
 			continue
 
-		# Check if line contains any glitch-trigger keyword
+		# Handle glitches if needed
 		var triggered = false
 		for keyword in glitch_keywords:
-			if line.to_lower().contains(keyword):
+			if entry.line.to_lower().contains(keyword):
 				triggered = true
 				break
+		if triggered and glitches_enabled:
+			await trigger_glitch()
 
-		# Check if the player wants glitches
-		#if triggered and glitches_enabled:
-			#await trigger_glitch()
+		# Actually show the line in the correct label
+		_set_dialogue(entry)
 
-		dialogue_label.text = line
-		
-		# Only wait if NOT skipping
+		# Wait for input
 		if not skipping or force:
 			await _wait_for_continue()
-		# await get_tree().create_timer(2).timeout
-		
-	skipping = false  # reset skipping flag here
+	
+	skipping = false
+
+# ----------------------SET DIALOGUE TEXT BASED ON SPEAKER-------------------------
+func _set_dialogue(entry: Dictionary) -> void:
+	# clear and hide them first
+	dialogue_label1.text = ""
+	dialogue_label2.text = ""
+	next_indicator1.hide()
+	next_indicator2.hide()
+
+	match entry.speaker:
+		Speakers.Hannah:
+			dialogue_label1.text = entry.line
+			next_indicator1.show()
+		Speakers.Irene:
+			dialogue_label2.text = entry.line
+			next_indicator2.show()
 
 
 #---------------------------press a key or click to go to next line---------------------------------
-func _wait_for_continue():
-	if not is_inside_tree():
-		return
-		
-	next_indicator.show()
-
+func _wait_for_continue() -> void:
 	var proceed = false
 	while not proceed:
 		await get_tree().create_timer(0.01).timeout
-
-		# If skip_all is triggered elsewhere, break immediately
-		if skip_all:
+		if end_dialogue:
 			break
-
-		# If skipping is active, break immediately
-		if skipping:
-			break
-
-		# Normal advance: Space/Enter/Click
 		if Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("mouse_left"):
 			proceed = true
 
-	next_indicator.hide()
+	# Hide indicators after player continues
+	next_indicator1.hide()
+	next_indicator2.hide()
 
 
 #----------------------------------on [what] button pressed-----------------------------------------
+func _on_button_pressed(index: int):
+	emit_signal("option_selected", index)
+
 func _on_skip_button_pressed():
 	skipping = true
 
@@ -179,25 +241,33 @@ func _on_confirm_skip_confirmed():
 	for button in buttons:
 		button.hide()
 
-	start_game()
+	endgame()
 	
 
 #---------------------------so logic is logic-ing for confirm skip----------------------------------
-func start_game():
+func endgame():
 	for button in buttons:
 		button.hide()
 	
 	skip_confirmed = false
 	
-	# Say thank you, guys
-	$CanvasLayer3/PanelContainer.show()
-	$AnimationPlayer.play("blur")
-	
 	await get_tree().create_timer(2.5).timeout
 	
-	get_tree().change_scene_to_file("res://02 Irene/Scenes - I/levels and all that/level_1.tscn")
+	# reset things cuz you're done!
+	gobal.reset()
+	
+	get_tree().change_scene_to_file("res://02 Irene/Scenes - I/UI/MainMenu.tscn")
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+#-------------------------------------------glitches------------------------------------------------
+func trigger_glitch():
+	glitch_material.set_shader_parameter("glitch_active", true)
+	glitch_material.set_shader_parameter("shake_rate", 1.0)
+	glitch_material.set_shader_parameter("shake_power", 0.05)
+	#glitch_sound.play()
+
+	await get_tree().create_timer(0.5).timeout
+
+	glitch_material.set_shader_parameter("glitch_active", false)
+	glitch_material.set_shader_parameter("shake_rate", 0.0)
+	glitch_material.set_shader_parameter("shake_power", 0.0)

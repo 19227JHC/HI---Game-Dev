@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dsda4m63onxxl"]
+[gd_scene load_steps=18 format=3 uid="uid://dsda4m63onxxl"]
 
 [ext_resource type="Texture2D" uid="uid://chg3gr2loi7mg" path="res://02 Irene/Assets - I/doors/doors second half.png" id="1_a6o4l"]
 [ext_resource type="Script" path="res://02 Irene/Scenes - I/Interactions/ppl and object interactables/door_level_2.gd" id="1_kospt"]
@@ -88,16 +88,26 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_72xlh"]
+size = Vector2(34.875, 29)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r1hs3"]
 size = Vector2(48, 38)
 
 [node name="door_level_2" type="Node2D"]
 script = ExtResource("1_kospt")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D"]
 sprite_frames = SubResource("SpriteFrames_g8vn4")
 animation = &"open"
 frame_progress = 0.397282
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_72xlh")
+debug_color = Color(0.936597, 1.54981e-05, 0.631537, 0.42)
 
 [node name="InteractionArea" parent="." instance=ExtResource("4_kbb03")]
 

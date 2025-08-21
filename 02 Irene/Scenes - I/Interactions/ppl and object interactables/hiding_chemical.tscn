@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://gpqkkmaouafk"]
+
+[ext_resource type="Script" path="res://02 Irene/Scenes - I/Interactions/ppl and object interactables/hiding_something_bookshelf.gd" id="1_nnbem"]
+[ext_resource type="Texture2D" uid="uid://ffyjqt1ygvek" path="res://02 Irene/Assets - I/isolated objects/BrokenBookshelves.png" id="2_5erpk"]
+[ext_resource type="Texture2D" uid="uid://de8g4xav8ldle" path="res://02 Irene/Assets - I/isolated objects/SpilledOnPaper.png" id="3_y7v5o"]
+[ext_resource type="PackedScene" uid="uid://dnkxxwhgim1qy" path="res://02 Irene/Scenes - I/Interactions/InteractionArea.tscn" id="4_wqqax"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bd5uy"]
+size = Vector2(16, 27.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vr7vt"]
+size = Vector2(16, 12)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b5gb0"]
+height = 42.0
+
+[node name="hiding_door" type="Node2D"]
+script = ExtResource("1_nnbem")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+texture = ExtResource("2_5erpk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 0.125)
+shape = SubResource("RectangleShape2D_bd5uy")
+debug_color = Color(0.896576, 0.000198299, 0.774672, 0.42)
+
+[node name="accessory" type="StaticBody2D" parent="."]
+position = Vector2(0, -10)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="accessory"]
+texture = ExtResource("3_y7v5o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="accessory"]
+shape = SubResource("RectangleShape2D_vr7vt")
+debug_color = Color(0.862246, 0.359759, 0, 0.42)
+
+[node name="InteractionArea" parent="." instance=ExtResource("4_wqqax")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CapsuleShape2D_b5gb0")

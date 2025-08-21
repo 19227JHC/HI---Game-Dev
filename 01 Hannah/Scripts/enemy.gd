@@ -109,7 +109,6 @@ func state_dead():
 	$e_hitbox/e_hitbox_collision.disabled = true
 	velocity = Vector2.ZERO
 	move_and_slide()
-	gobal.bad_moral_points += 2
 
 # FSM action handlers 
 
@@ -127,6 +126,8 @@ func start_death():
 	can_take_damage = false
 	velocity = Vector2.ZERO
 	play_death_animation()
+	gobal.bad_moral_points += 2
+	print("Bad moral points because of killing hooman: ", gobal.bad_moral_points)
 
 # -----animations------ 
 

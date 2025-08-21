@@ -132,7 +132,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(0.282353, 0.282353, 0.282353, 1)
 theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
 theme_override_styles/focus = SubResource("StyleBoxEmpty_61a0e")
-text = "Restart"
+text = "Restart Level"
 flat = true
 icon_alignment = 1
 
@@ -165,6 +165,7 @@ libraries = {
 }
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 10
 
 [node name="Settings" parent="CanvasLayer" instance=ExtResource("3_q2obi")]
 visible = false

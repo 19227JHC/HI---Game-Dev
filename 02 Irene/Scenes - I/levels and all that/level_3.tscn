@@ -57,13 +57,19 @@ metadata/_edit_use_anchors_ = true
 custom_minimum_size = Vector2(620, 0)
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_wtnuc")
 theme_override_styles/normal = SubResource("StyleBoxFlat_6s4tb")
+horizontal_alignment = 1
+vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="DialogueLabel2" type="Label" parent="CanvasLayer2/HSplitContainer"]
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_wtnuc")
 theme_override_styles/normal = SubResource("StyleBoxFlat_vjfai")
+horizontal_alignment = 1
+vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="OptionsBox" type="VBoxContainer" parent="CanvasLayer2"]

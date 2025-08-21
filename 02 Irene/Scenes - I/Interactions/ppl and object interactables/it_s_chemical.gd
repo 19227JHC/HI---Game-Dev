@@ -6,7 +6,7 @@ extends Node2D
 @onready var collision_shape = $StaticBody2D/CollisionShape2D
 
 
-@export var item_name: String = "[F] to pick up"
+@export var item_name: String = "to pick up"
 @export var carry_point_path: NodePath  # Drag your player's carry_point here
 
 
@@ -28,15 +28,28 @@ func _ready():
 	else:
 		print("Player NOT found!")
 
+
+# ----------to actively change the input keys in accordance to what it is in the InputMap-----------
+func get_key_for_action(action_name: String) -> String:
+	var events = InputMap.action_get_events(action_name)
+	if events.size() > 0:
+		var ev = events[0]
+		if ev is InputEventKey:
+			return OS.get_keycode_string(ev.physical_keycode)  # shows actual key, e.g. "F"
+		elif ev is InputEventMouseButton:
+			return "Mouse" + str(ev.button_index)
+	return action_name  # fallback if no key found
+
+
 # --------------------------------to pick up and drop object----------------------------------------
 func pickup_or_drop():
 	if not held and carry_point:
-		# Clear from table if it was placed there
+		# Clear from table if was placed there
 		var maybe_table = get_parent()
 		if maybe_table and maybe_table.has_method("clear_placed_item"):
 			maybe_table.clear_placed_item()
 
-		# Disable collision while held
+		# Disable collision when held
 		collision_shape.disabled = true
 
 		# Pick up
@@ -47,6 +60,7 @@ func pickup_or_drop():
 		held = true
 		if player and player.has_method("set_held_item"):
 			player.set_held_item(self)
+
 	else:
 		var table = find_nearby_table()
 		if table and table.can_drop_item():
@@ -85,11 +99,13 @@ func set_held(value: bool):
 
 # --------------------------------------change action name------------------------------------------
 func _process(_delta):
+	var interact_key = get_key_for_action("interact")
+
 	if held:
 		var table = find_nearby_table()
 		if table and table.can_drop_item():
-			interaction_area.action_name = "[F] to place object on table"
+			interaction_area.action_name = "[" + interact_key+ "] to place object on table"
 		else:
-			interaction_area.action_name = "[F] to drop object"
+			interaction_area.action_name = "[" + interact_key+ "] to drop object"
 	else:
-		interaction_area.action_name = item_name  # Default e.g. "Pick up"
+		interaction_area.action_name = "[" + interact_key + "] " + item_name  # Default e.g. "Pick up"

@@ -6,7 +6,7 @@ extends Node2D
 @onready var collision_shape = $StaticBody2D/CollisionShape2D
 
 
-@export var item_name: String = "Pick up"
+@export var item_name: String = "to pick up"
 @export var carry_point_path: NodePath  # Drag your player's carry_point here
 
 
@@ -27,6 +27,18 @@ func _ready():
 		print("Carry point: ", carry_point)
 	else:
 		print("Player NOT found!")
+
+
+# ----------to actively change the input keys in accordance to what it is in the InputMap-----------
+func get_key_for_action(action_name: String) -> String:
+	var events = InputMap.action_get_events(action_name)
+	if events.size() > 0:
+		var ev = events[0]
+		if ev is InputEventKey:
+			return OS.get_keycode_string(ev.physical_keycode)  # shows actual key, e.g. "F"
+		elif ev is InputEventMouseButton:
+			return "Mouse" + str(ev.button_index)
+	return action_name  # fallback if no key found
 
 
 # --------------------------the pick up, drop (table/not), and drink logic--------------------------
@@ -73,6 +85,7 @@ func drop_or_place():
 	collision_shape.disabled = false
 	
 	held = false
+	
 	if player and player.has_method("set_held_item"):
 		player.set_held_item(null)
 
@@ -89,6 +102,7 @@ func find_nearby_table() -> Node2D:
 
 func set_held(value: bool):
 	held = value
+	player.holding_item = held
 
 
 # -------------------------------------healing properties-------------------------------------------
@@ -105,9 +119,12 @@ func drink():
 
 # --------------------------------------change action name------------------------------------------
 func _process(_delta):
+	var interact_key = get_key_for_action("interact")
+	var drink_key = get_key_for_action("drink")
+
 	if held:
-		interaction_area.action_name = "[F] drop / [Q] drink"
+		interaction_area.action_name = "[" + interact_key + "] drop / [" + drink_key + "] drink"
 		if Input.is_action_just_pressed("drink") and not Input.is_action_just_pressed("interact"):
 			drink()
 	else:
-		interaction_area.action_name = item_name
+		interaction_area.action_name = "[" + interact_key + "] " + item_name

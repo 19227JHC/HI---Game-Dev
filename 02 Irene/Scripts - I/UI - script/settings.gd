@@ -12,6 +12,10 @@ var is_remapping = false
 var action_to_remap = null
 var remapping_button = null
 
+# FOR CHANGING THE INTERACTION ACTION NAME IN ACCORDANCE TO WHAT WAS CHANGED
+var changed_input_interact: String = ""
+var changed_input_drink: String = ""
+
 # (which one will show up)
 var input_actions = {
 	"up" : "Move Up",
@@ -20,7 +24,8 @@ var input_actions = {
 	"right" : "Move Right",
 	"attack" : "Attack",
 	"esc" : "Pause",
-	"interact" : "Interact"
+	"interact" : "Interact",
+	"drink" : "Drink"
 }
 
 # for clean returns from MainMenu/Pause
@@ -30,6 +35,7 @@ var opened_from: String = ""  # "pause" or "main_menu"
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#visible = false
+	$AnimationPlayer.play("RESET")
 	_create_action_list()
 
 
@@ -75,7 +81,7 @@ func _input(event):
 			event is InputEventKey ||
 			(event is InputEventMouseButton && event.pressed)
 		):
-			#turn double click to single click
+			# turn double click to single click
 			if event is InputEventMouseButton && event.double_click:
 				event.double_click = false
 				
@@ -93,9 +99,11 @@ func _input(event):
 func _update_action_list(button, event):
 	button.find_child("LabelInput").text = event.as_text().replace(" (Physical)", "")
 
+
 #-------------------------------------------BUTTONS-------------------------------------------------
 func _on_return_button_pressed():
 	visible = false
+	$AnimationPlayer.play("RESET")
 	#queue_free()
 	#if came_from_node:
 		#came_from_node.show()

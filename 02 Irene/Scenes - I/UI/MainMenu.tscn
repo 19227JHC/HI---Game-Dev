@@ -89,11 +89,6 @@ flat = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Settings" parent="CanvasLayer" instance=ExtResource("2_4lhw6")]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
 
 [connection signal="pressed" from="VBoxContainer/start_button" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/settings_button" to="." method="_on_settings_button_pressed"]

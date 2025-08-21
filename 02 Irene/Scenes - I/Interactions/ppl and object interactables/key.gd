@@ -6,7 +6,7 @@ extends Node2D
 @onready var collision_shape = $StaticBody2D/CollisionShape2D
 
 
-@export var item_name: String = "[F] to pick up"
+@export var item_name: String = "to pick up"
 @export var carry_point_path: NodePath  # Drag your player's carry_point here
 
 
@@ -16,6 +16,9 @@ var carry_point = null
 
 
 func _ready():
+	# fly, keys, FLYYYY
+	$StaticBody2D/AnimatedSprite2D.play("default")
+	
 	# Set up the interaction behavior dynamically
 	interaction_area.action_name = item_name
 	interaction_area.interact = Callable(self, "pickup_or_drop")
@@ -28,15 +31,28 @@ func _ready():
 	else:
 		print("Player NOT found!")
 
+
+# ----------to actively change the input keys in accordance to what it is in the InputMap-----------
+func get_key_for_action(action_name: String) -> String:
+	var events = InputMap.action_get_events(action_name)
+	if events.size() > 0:
+		var ev = events[0]
+		if ev is InputEventKey:
+			return OS.get_keycode_string(ev.physical_keycode)  # shows actual key, e.g. "F"
+		elif ev is InputEventMouseButton:
+			return "Mouse" + str(ev.button_index)
+	return action_name  # fallback if no key found
+
+
 # --------------------------------to pick up and drop object----------------------------------------
 func pickup_or_drop():
 	if not held and carry_point:
-		# Clear from table if it was placed there
+		# Clear from table if was placed there
 		var maybe_table = get_parent()
 		if maybe_table and maybe_table.has_method("clear_placed_item"):
 			maybe_table.clear_placed_item()
 
-		# Disable collision while held
+		# Disable collision
 		collision_shape.disabled = true
 
 		# Pick up
@@ -47,49 +63,61 @@ func pickup_or_drop():
 		held = true
 		if player and player.has_method("set_held_item"):
 			player.set_held_item(self)
+
 	else:
-		var table = find_nearby_table()
-		if table and table.can_drop_item():
-			table.place_item(self)
+		var door = find_door()
+		if door and door.can_accept_item(self):
+			door.place_item(self)  # door CONSUMES the key and the door (should) open
+			return  # stop other drop logic cause the key is gone
+
 		else:
-			# Drop to ground
+			# drop to ground
 			if player:
 				get_parent().remove_child(self)
 				player.get_parent().add_child(self)
 				self.scale = Vector2(2, 2)
 				
-				# Drop slightly in front of the player so it doesn't overlap their collision
-				var drop_offset = Vector2(32, 0) # 16 pixels forward
-				drop_offset = drop_offset.rotated(player.rotation) # rotate to match player facing
+				var drop_offset = Vector2(32, 0)
+				drop_offset = drop_offset.rotated(player.rotation)
 				global_position = carry_point.global_position + drop_offset
-		
-		# Re-enable collision when dropped or placed
+
+		# Re-enable collision
 		collision_shape.disabled = false
-		
 		held = false
 		if player and player.has_method("set_held_item"):
 			player.set_held_item(null)
 
 
 # ---------------------------------------to find the table------------------------------------------
-func find_nearby_table() -> Node2D:
-	var tables = get_tree().get_nodes_in_group("tables")
-	for table in tables:
-		if player.global_position.distance_to(table.global_position) < 64:  # Adjust as needed
-			return table
+func find_door() -> Node2D:
+	var doors = get_tree().get_nodes_in_group("good_door")
+	if doors.size() == 0:
+		return null
+
+	var door = doors[0] as Node2D
+	if player and player.global_position.distance_to(door.global_position) <= 64:
+		return door
 	return null
 
 
+# ------------------------------------are you holding anything?-------------------------------------
 func set_held(value: bool):
 	held = value
 
+# yes, the key is being held by the player.
+func is_held() -> bool:
+	return held
+
+
 # --------------------------------------change action name------------------------------------------
 func _process(_delta):
+	var interact_key = get_key_for_action("interact")
+
 	if held:
-		var table = find_nearby_table()
-		if table and table.can_drop_item():
-			interaction_area.action_name = "[F] to place object on table"
+		var door = find_door()
+		if door:
+			interaction_area.action_name = "[" + interact_key + "] to open door"
 		else:
-			interaction_area.action_name = "[F] to drop object"
+			interaction_area.action_name = "[" + interact_key + "] to drop object"
 	else:
-		interaction_area.action_name = item_name  # Default e.g. "Pick up"
+		interaction_area.action_name = "[" + interact_key + "] " + item_name

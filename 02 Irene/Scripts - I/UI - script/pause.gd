@@ -19,10 +19,12 @@ func pause():
 	$AnimationPlayer.play("blur")
 	visible = true
 
+
 func resume():
 	$AnimationPlayer.play_backwards("blur")
 	visible = false
 	get_tree().paused = false
+
 
 func testEsc():
 	if Input.is_action_just_pressed("esc"):
@@ -46,14 +48,18 @@ func testEsc():
 func _on_settings_pressed():
 	#open_settings()
 	$CanvasLayer/Settings.visible = true
+	$CanvasLayer/Settings/AnimationPlayer.play("fade")
 
 func _on_exit_to_menu_pressed():
-	get_tree().paused = false
+	resume()
+	gobal.reset()
 	get_tree().change_scene_to_file("res://02 Irene/Scenes - I/UI/MainMenu.tscn")
 
 func _on_resume_pressed():
 	resume()
 
+# this won't be used outside of testing purposes
 func _on_restart_pressed():
 	resume()
+	gobal.reset()
 	get_tree().reload_current_scene()

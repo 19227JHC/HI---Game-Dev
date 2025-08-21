@@ -129,6 +129,7 @@ theme_override_constants/separation = 100
 alignment = 1
 
 [node name="Restart" type="Button" parent="ColorRect/PanelContainer2/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 size_flags_vertical = 0

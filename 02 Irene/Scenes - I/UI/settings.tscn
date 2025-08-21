@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c5ea5yed0s5yf"]
+[gd_scene load_steps=18 format=3 uid="uid://c5ea5yed0s5yf"]
 
 [ext_resource type="Script" path="res://02 Irene/Scripts - I/UI - script/settings.gd" id="1_4tdos"]
 [ext_resource type="FontFile" uid="uid://cg03ls2khnai" path="res://02 Irene/fonts - I/dogica.otf" id="1_50as0"]
@@ -31,9 +31,45 @@ bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q47qn"]
 
+[sub_resource type="Animation" id="Animation_mvd0y"]
+resource_name = "fade"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.301961, 0.301961, 0.301961, 0), Color(0.301961, 0.301961, 0.301961, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hvdx0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.301961, 0.301961, 0.301961, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3lwgr"]
+_data = {
+"RESET": SubResource("Animation_hvdx0"),
+"fade": SubResource("Animation_mvd0y")
+}
+
 [node name="Settings" type="Control"]
 process_mode = 3
-process_priority = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -41,6 +77,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_4tdos")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.301961, 0.301961, 0.301961, 0)
+metadata/_edit_use_anchors_ = true
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -150,6 +196,11 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_4dfl1")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_32ugk")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_q47qn")
 text = "RETURN"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3lwgr")
+}
 
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/volume" to="." method="_on_volume_value_changed"]
 [connection signal="toggled" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/mute" to="." method="_on_mute_toggled"]
