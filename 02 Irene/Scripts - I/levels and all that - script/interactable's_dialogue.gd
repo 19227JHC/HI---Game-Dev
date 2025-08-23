@@ -340,8 +340,6 @@ var all_dialogue_sets = {
 
 # -----------------------------the start of something so bright-------------------------------------
 func _ready():
-	print(get_tree().current_scene.get_tree_string())
-
 	$AnimationPlayer.play("RESET")
 	$CanvasLayer.hide()
 	next_indicator.hide()

@@ -64,8 +64,6 @@ func restart():
 	trigger_amanda_fade_out()
 	
 	# thank you note appears
-	$dialogue/CanvasLayer2.show()
-	$dialogue/CanvasLayer/ending_message.show()
 	$dialogue/AnimationPlayer.play("blur")
 	
 	await get_tree().create_timer(2.5).timeout
@@ -77,7 +75,7 @@ func restart():
 	get_tree().change_scene_to_file("res://02 Irene/Scenes - I/levels and all that/dialogue.tscn")
 
 
-# just to see if the function work
+# just to see if the function work - update it doesn't
 func trigger_amanda_fade_out():
 	var tween = get_tree().create_tween()
 	tween.tween_property(sprite, "modulate:a", 0.0, 1.0) # 1 second fade
