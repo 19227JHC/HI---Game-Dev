@@ -2,7 +2,7 @@ extends Node2D
 
 
 @onready var interaction_area: InteractionArea = $InteractionArea
-@onready var sprite = $StaticBody2D/Sprite2D
+@onready var sprite = $StaticBody2D/AnimatedSprite2D
 @onready var collision_shape = $StaticBody2D/CollisionShape2D
 
 
@@ -19,10 +19,6 @@ func _ready():
 	# fly, keys, FLYYYY
 	$StaticBody2D/AnimatedSprite2D.play("default")
 	
-	# Set up the interaction behavior dynamically
-	interaction_area.action_name = item_name
-	interaction_area.interact = Callable(self, "pickup_or_drop")
-
 	player = get_tree().get_first_node_in_group("player")
 	if player:
 		print("Player found!")
@@ -30,6 +26,14 @@ func _ready():
 		print("Carry point: ", carry_point)
 	else:
 		print("Player NOT found!")
+	
+	if player.can_interact:
+		# Set up the interaction behavior dynamically
+		interaction_area.action_name = item_name
+		interaction_area.interact = Callable(self, "pickup_or_drop")
+	else:
+		eject()
+
 
 
 # ----------to actively change the input keys in accordance to what it is in the InputMap-----------
@@ -87,6 +91,21 @@ func pickup_or_drop():
 		if player and player.has_method("set_held_item"):
 			player.set_held_item(null)
 
+# forcibly eject
+func eject():
+	if player:
+		if player.has_method("set_held_item"):
+			player.set_held_item(null)
+		held = false
+
+		get_parent().remove_child(self)
+		player.get_parent().add_child(self)
+		self.scale = Vector2(2, 2)
+
+		var drop_offset = Vector2(32, 0)
+		drop_offset = drop_offset.rotated(player.rotation)
+		global_position = carry_point.global_position + drop_offset
+
 
 # ---------------------------------------to find the table------------------------------------------
 func find_door() -> Node2D:
@@ -111,8 +130,27 @@ func is_held() -> bool:
 
 # --------------------------------------change action name------------------------------------------
 func _process(_delta):
+	if not player:
+		return
+
 	var interact_key = get_key_for_action("interact")
 
+	# If player CANNOT interact
+	if not player.can_interact:
+		# If is held, eject right away
+		if held:
+			eject()
+			if player.has_method("set_held_item"):
+				player.set_held_item(null)
+			held = false
+
+		# no interaction
+		interaction_area.interact = Callable(self, "_do_nothing")
+		interaction_area.action_name = ""
+		return
+
+	# If player CAN interact
+	interaction_area.interact = Callable(self, "pickup_or_drop")
 	if held:
 		var door = find_door()
 		if door:
@@ -121,3 +159,6 @@ func _process(_delta):
 			interaction_area.action_name = "[" + interact_key + "] to drop object"
 	else:
 		interaction_area.action_name = "[" + interact_key + "] " + item_name
+
+func _do_nothing():
+	pass

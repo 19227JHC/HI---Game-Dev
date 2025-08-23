@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://cfqp6jfat6fk3"]
+[gd_scene load_steps=12 format=3 uid="uid://cfqp6jfat6fk3"]
 
 [ext_resource type="Texture2D" uid="uid://bn3c2iny4taq4" path="res://02 Irene/Assets - I/isolated objects/TheKey.png" id="1_4huiu"]
 [ext_resource type="Script" path="res://02 Irene/Scenes - I/Interactions/ppl and object interactables/key.gd" id="1_hw8wd"]
 [ext_resource type="PackedScene" uid="uid://dnkxxwhgim1qy" path="res://02 Irene/Scenes - I/Interactions/InteractionArea.tscn" id="3_6b8gh"]
+[ext_resource type="Texture2D" uid="uid://cte7svkpa8w45" path="res://01 Hannah/Assets/star_07.png" id="3_17t1w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l41np"]
 atlas = ExtResource("1_4huiu")
@@ -53,13 +54,27 @@ script = ExtResource("1_hw8wd")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D"]
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_t6itx")
-frame_progress = 0.712419
+frame_progress = 0.842344
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+visible = false
 shape = SubResource("CircleShape2D_543bx")
 debug_color = Color(0.902866, 0.000150553, 0.754933, 0.42)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="StaticBody2D"]
+amount = 2
+lifetime = 0.5
+texture = ExtResource("3_17t1w")
+emission_shape = 2
+emission_sphere_radius = 5.0
+spread = 180.0
+gravity = Vector2(0, 0)
+scale_amount_min = 0.01
+scale_amount_max = 0.01
+color = Color(1, 0.917647, 0.611765, 1)
 
 [node name="InteractionArea" parent="." instance=ExtResource("3_6b8gh")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+visible = false
 shape = SubResource("CircleShape2D_0arvn")

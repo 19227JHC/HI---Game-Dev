@@ -37,7 +37,7 @@ func get_key_for_action(action_name: String) -> String:
 
 # ----------------------------------------ON INTERACT-----------------------------------------------
 func _on_interact():
-	if all_enemies_killed() or required_items_placed():
+	if all_enemies_killed() or keys_placed():
 		door_open()
 	else:
 		print("You Shall Not Pass")
@@ -51,7 +51,7 @@ func all_enemies_killed() -> bool:
 	return true
 
 
-func required_items_placed() -> bool:
+func keys_placed() -> bool:
 	var count = 0
 	for table_path in tables:
 		var table = get_node_or_null(table_path)
@@ -101,7 +101,7 @@ func door_open():
 
 
 func _process(_delta):
-	if all_enemies_killed() or required_items_placed():
+	if all_enemies_killed() or keys_placed():
 		var interact_key = get_key_for_action("interact")
 		interaction_area.action_name = "[" + interact_key + "] to enter"
 	else:

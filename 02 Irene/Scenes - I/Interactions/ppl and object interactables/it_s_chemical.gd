@@ -16,10 +16,6 @@ var carry_point = null
 
 
 func _ready():
-	# Set up the interaction behavior dynamically
-	interaction_area.action_name = item_name
-	interaction_area.interact = Callable(self, "pickup_or_drop")
-
 	player = get_tree().get_first_node_in_group("player")
 	if player:
 		print("Player found!")
@@ -27,6 +23,14 @@ func _ready():
 		print("Carry point: ", carry_point)
 	else:
 		print("Player NOT found!")
+
+# Set up the interaction behavior dynamically
+	if player.can_interact:
+		# Set up the interaction behavior dynamically
+		interaction_area.action_name = item_name
+		interaction_area.interact = Callable(self, "pickup_or_drop")
+	else:
+		eject()
 
 
 # ----------to actively change the input keys in accordance to what it is in the InputMap-----------
@@ -84,6 +88,21 @@ func pickup_or_drop():
 		if player and player.has_method("set_held_item"):
 			player.set_held_item(null)
 
+# forcibly eject
+func eject():
+	if player:
+		if player.has_method("set_held_item"):
+			player.set_held_item(null)
+		held = false
+
+		get_parent().remove_child(self)
+		player.get_parent().add_child(self)
+		self.scale = Vector2(2, 2)
+
+		var drop_offset = Vector2(32, 0)
+		drop_offset = drop_offset.rotated(player.rotation)
+		global_position = carry_point.global_position + drop_offset
+
 
 # ---------------------------------------to find the table------------------------------------------
 func find_nearby_table() -> Node2D:
@@ -99,13 +118,35 @@ func set_held(value: bool):
 
 # --------------------------------------change action name------------------------------------------
 func _process(_delta):
+	if not player:
+		return
+
 	var interact_key = get_key_for_action("interact")
 
+	# If player CANNOT interact
+	if not player.can_interact:
+		# If is held, eject right away
+		if held:
+			eject()
+			if player.has_method("set_held_item"):
+				player.set_held_item(null)
+			held = false
+
+		# no interaction
+		interaction_area.interact = Callable(self, "_do_nothing")
+		interaction_area.action_name = ""
+		return
+
+	# If player CAN interact
+	interaction_area.interact = Callable(self, "pickup_or_drop")
 	if held:
 		var table = find_nearby_table()
-		if table and table.can_drop_item():
-			interaction_area.action_name = "[" + interact_key+ "] to place object on table"
+		if table:
+			interaction_area.action_name = "[" + interact_key + "] to open door"
 		else:
-			interaction_area.action_name = "[" + interact_key+ "] to drop object"
+			interaction_area.action_name = "[" + interact_key + "] to drop object"
 	else:
-		interaction_area.action_name = "[" + interact_key + "] " + item_name  # Default e.g. "Pick up"
+		interaction_area.action_name = "[" + interact_key + "] " + item_name
+
+func _do_nothing():
+	pass

@@ -1,0 +1,199 @@
+[gd_scene load_steps=12 format=3 uid="uid://g4m0sx1ygkwd"]
+
+[ext_resource type="Script" path="res://02 Irene/Scripts - I/levels and all that - script/the_end.gd" id="1_ffdkl"]
+[ext_resource type="FontFile" uid="uid://cg03ls2khnai" path="res://02 Irene/fonts - I/dogica.otf" id="2_wtnuc"]
+[ext_resource type="FontFile" uid="uid://dytmi3e7gkhj0" path="res://02 Irene/fonts - I/pixely[1].ttf" id="3_85hcf"]
+[ext_resource type="Shader" path="res://02 Irene/Scripts - I/levels and all that - script/dialogue.gdshader" id="4_qwe88"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t0hod"]
+bg_color = Color(0, 0, 0, 0.313726)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j8hec"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kjxfd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_40bg1"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dpg5i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_203a5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5dow4"]
+shader = ExtResource("4_qwe88")
+shader_parameter/shake_power = 0.03
+shader_parameter/shake_rate = 0.2
+shader_parameter/shake_speed = 5.0
+shader_parameter/shake_block_size = 30.5
+shader_parameter/shake_color_rate = 0.01
+shader_parameter/glitch_active = false
+
+[node name="endings_dialogue" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ffdkl")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="HSplitContainer" type="HSplitContainer" parent="CanvasLayer2"]
+anchors_preset = -1
+anchor_top = 0.181944
+anchor_right = 1.0
+anchor_bottom = 0.6375
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 14
+split_offset = 100
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer2/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DialogueLabel" type="RichTextLabel" parent="CanvasLayer2/HSplitContainer/CenterContainer"]
+custom_minimum_size = Vector2(628, 0)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_wtnuc")
+theme_override_styles/normal = SubResource("StyleBoxFlat_t0hod")
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+
+[node name="CenterContainer2" type="CenterContainer" parent="CanvasLayer2/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DialogueLabel2" type="RichTextLabel" parent="CanvasLayer2/HSplitContainer/CenterContainer2"]
+custom_minimum_size = Vector2(628, 0)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_wtnuc")
+theme_override_styles/normal = SubResource("StyleBoxFlat_t0hod")
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+
+[node name="NextIndicator" type="Label" parent="CanvasLayer2"]
+anchors_preset = -1
+anchor_left = -0.89274
+anchor_top = 0.594715
+anchor_right = -0.781803
+anchor_bottom = 0.630826
+offset_left = 1626.71
+offset_top = -1.19498
+offset_right = 1754.61
+offset_bottom = 12.9606
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(452, 209)
+theme_override_fonts/font = ExtResource("3_85hcf")
+text = "NEXT (☞ ͡° ͜ʖ ͡°)☞"
+metadata/_edit_use_anchors_ = true
+
+[node name="NextIndicator2" type="Label" parent="CanvasLayer2"]
+anchors_preset = -1
+anchor_left = 1.81861
+anchor_top = 0.585569
+anchor_right = 2.02135
+anchor_bottom = 0.62168
+offset_left = -1195.82
+offset_top = 2.39001
+offset_right = -1186.17
+offset_bottom = 16.5456
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(452, 209)
+theme_override_fonts/font = ExtResource("3_85hcf")
+text = "NEXT (☞ ͡° ͜ʖ ͡°)☞"
+metadata/_edit_use_anchors_ = true
+
+[node name="OptionsBox" type="VBoxContainer" parent="CanvasLayer2"]
+anchors_preset = -1
+anchor_left = 0.557813
+anchor_top = 0.680556
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -3.05176e-05
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/separation = 10
+metadata/_edit_use_anchors_ = true
+
+[node name="Button" type="Button" parent="CanvasLayer2/OptionsBox"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+theme_override_fonts/font = ExtResource("2_wtnuc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_j8hec")
+
+[node name="Button2" type="Button" parent="CanvasLayer2/OptionsBox"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+theme_override_fonts/font = ExtResource("2_wtnuc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_j8hec")
+
+[node name="Button3" type="Button" parent="CanvasLayer2/OptionsBox"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+theme_override_fonts/font = ExtResource("2_wtnuc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_j8hec")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2"]
+anchors_preset = -1
+anchor_left = 0.834375
+anchor_top = 0.025
+anchor_right = 0.986719
+anchor_bottom = 0.141667
+metadata/_edit_use_anchors_ = true
+
+[node name="SkipAllButton" type="Button" parent="CanvasLayer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+theme_override_fonts/font = ExtResource("2_wtnuc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kjxfd")
+text = "Skip All"
+
+[node name="SkipButton" type="Button" parent="CanvasLayer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+theme_override_fonts/font = ExtResource("2_wtnuc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kjxfd")
+text = "Skip"
+
+[node name="GlitchLabel" type="Label" parent="CanvasLayer2"]
+offset_left = 6.0
+offset_top = 8.0
+offset_right = 102.0
+offset_bottom = 31.0
+theme_override_fonts/font = ExtResource("2_wtnuc")
+text = "Glitch"
+
+[node name="GlitchToggle" type="CheckBox" parent="CanvasLayer2"]
+offset_left = 108.0
+offset_top = 7.0
+offset_right = 124.0
+offset_bottom = 23.0
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_40bg1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dpg5i")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_203a5")
+button_pressed = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Glitch" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_5dow4")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true

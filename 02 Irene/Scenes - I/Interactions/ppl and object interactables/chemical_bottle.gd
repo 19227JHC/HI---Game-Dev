@@ -16,10 +16,6 @@ var carry_point = null
 
 
 func _ready():
-	# Set up the interaction behavior dynamically
-	interaction_area.action_name = item_name
-	interaction_area.interact = Callable(self, "pickup_or_drink")
-
 	player = get_tree().get_first_node_in_group("player")
 	if player:
 		print("Player found!")
@@ -27,6 +23,14 @@ func _ready():
 		print("Carry point: ", carry_point)
 	else:
 		print("Player NOT found!")
+
+# Set up the interaction behavior dynamically
+	if player.can_interact:
+		# Set up the interaction behavior dynamically
+		interaction_area.action_name = item_name
+		interaction_area.interact = Callable(self, "pickup_or_drink")
+	else:
+		eject()
 
 
 # ----------to actively change the input keys in accordance to what it is in the InputMap-----------
@@ -89,6 +93,21 @@ func drop_or_place():
 	if player and player.has_method("set_held_item"):
 		player.set_held_item(null)
 
+# forcibly eject
+func eject():
+	if player:
+		if player.has_method("set_held_item"):
+			player.set_held_item(null)
+		held = false
+
+		get_parent().remove_child(self)
+		player.get_parent().add_child(self)
+		self.scale = Vector2(2, 2)
+
+		var drop_offset = Vector2(32, 0)
+		drop_offset = drop_offset.rotated(player.rotation)
+		global_position = carry_point.global_position + drop_offset
+
 
 # --------------------------to find the table for picking up or dropping off------------------------
 func find_nearby_table() -> Node2D:
@@ -111,6 +130,7 @@ func drink():
 		# Heal player
 		player.currentHealth = min(player.currentHealth + 30, gobal.maxHealth)
 		gobal.currentHealth = player.currentHealth
+		player.healthChanged.emit()
 		print("Player drank chemical, +30 health")
 
 	# Remove the bottle from scene
@@ -119,12 +139,34 @@ func drink():
 
 # --------------------------------------change action name------------------------------------------
 func _process(_delta):
+	if not player:
+		return
+
 	var interact_key = get_key_for_action("interact")
 	var drink_key = get_key_for_action("drink")
 
+	# If player CANNOT interact
+	if not player.can_interact:
+		# If is held, eject right away
+		if held:
+			eject()
+			if player.has_method("set_held_item"):
+				player.set_held_item(null)
+			held = false
+
+		# no interaction
+		interaction_area.interact = Callable(self, "_do_nothing")
+		interaction_area.action_name = ""
+		return
+
+	# If player CAN interact
+	interaction_area.interact = Callable(self, "pickup_or_drink")
 	if held:
 		interaction_area.action_name = "[" + interact_key + "] drop / [" + drink_key + "] drink"
 		if Input.is_action_just_pressed("drink") and not Input.is_action_just_pressed("interact"):
 			drink()
 	else:
 		interaction_area.action_name = "[" + interact_key + "] " + item_name
+
+func _do_nothing():
+	pass

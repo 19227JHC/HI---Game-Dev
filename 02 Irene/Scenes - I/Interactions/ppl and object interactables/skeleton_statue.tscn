@@ -8,8 +8,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_stako"]
 size = Vector2(12, 24)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_y2i1c"]
-radius = 32.0156
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xttpv"]
+size = Vector2(54, 49)
 
 [node name="skeleton_statue" type="Node2D"]
 script = ExtResource("1_d8kjj")
@@ -26,6 +26,7 @@ debug_color = Color(0.920061, 5.8527e-05, 0.696255, 0.42)
 [node name="InteractionArea" parent="." instance=ExtResource("2_08d5v")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
-shape = SubResource("CircleShape2D_y2i1c")
+position = Vector2(0, 12.5)
+shape = SubResource("RectangleShape2D_xttpv")
 
 [node name="dialogue" parent="." instance=ExtResource("4_4i5sb")]

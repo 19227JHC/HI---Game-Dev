@@ -2,8 +2,8 @@ extends Node2D
 
 
 @onready var interaction_area: InteractionArea = $InteractionArea
-@onready var sprite: Sprite2D = $Sprite2D
-@onready var dialogue_manager = $dialogue  # This should be your InteractableDialogue node
+@onready var sprite: Sprite2D = $StaticBody2D/Sprite2D
+@onready var dialogue_manager = $dialogue
 
 
 var dialogue_task = null
@@ -32,12 +32,21 @@ func get_key_for_action(action_name: String) -> String:
 
 # ------------------------------------ITEM INTERACTION----------------------------------------------
 func _on_item_interacted():
-	get_tree().paused = true
+	#get_tree().paused = true
 	
 	$dialogue/CanvasLayer.show() # just in case?
 	
-	dialogue_manager.set_active_dialogue("naked_statue")
-	await dialogue_manager._show_dialogue_state()
+	# have to do place the keys first
+	if gobal.good_moral_points >= 2:
+		dialogue_manager.set_active_dialogue("naked_statue_too_good")
+		await dialogue_manager._show_dialogue_state()
+	elif gobal.bad_moral_points >= 5:
+		dialogue_manager.set_active_dialogue("naked_statue_evil_enough")
+		await dialogue_manager._show_dialogue_state()
+	else:
+		#if you've done what you needed to do to leave
+		dialogue_manager.set_active_dialogue("naked_statue_meh")
+		await dialogue_manager._show_dialogue_state()
 
 
 # -------------------------------------RUN DIALOGUE-------------------------------------------------

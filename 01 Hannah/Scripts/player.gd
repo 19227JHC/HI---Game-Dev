@@ -27,6 +27,9 @@ var death_anim_played = false
 # effects
 var shaking := false
 
+# bug found; Mrs. Greeff's testing - must eject item when attacking or die or logic is not logick-ing.
+var can_interact := true
+
 
 # IRENE WAS HERE
 func _ready():
@@ -48,7 +51,10 @@ func _ready():
 
 func _physics_process(_delta):
 	if not player_alive:
+		can_interact = false  # IRENE WAS HERE
+		
 		return
+		
 	if knockback_timer > 0:
 		knockback_timer -= _delta
 		move_and_slide() # keeps moving with current velocity
@@ -57,6 +63,8 @@ func _physics_process(_delta):
 	attack()
 
 	if currentHealth <= 0 and not death_anim_played:
+		can_interact = false  # IRENE WAS HERE
+		
 		player_alive = false
 		currentHealth = 0
 		gobal.currentHealth = currentHealth   # <-- update global
@@ -67,6 +75,8 @@ func _physics_process(_delta):
 
 	var direction = Input.get_vector("left", "right", "up", "down")
 	if attack_ip:
+		can_interact = false  # IRENE WAS HERE
+		
 		velocity = Vector2.ZERO
 	else:
 		velocity = direction * max_speed
@@ -74,6 +84,8 @@ func _physics_process(_delta):
 	move_and_slide()
 
 	if not attack_ip:
+		can_interact = true  # IRENE WAS HERE
+		
 		if direction.length() > 0:
 			last_direction = direction
 			play_walk_animation(direction)

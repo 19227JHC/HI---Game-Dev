@@ -197,42 +197,14 @@ var all_dialogue_sets = {
 		}
 	},
 	
-	
-	"naked_statue": {
+#---------------------------------------------------------------------------------------------------
+	# naked_statue
+	"naked_statue_evil_enough": {
 		"evil_enough": {
 			"lines": [
 				"Well well well.",
 				"Look who we have here...\nA villain wannabe.",
 				"Did you not heed any warnings, child?\nLives should not be wasted so easily."
-			]
-		},
-		"too_good": {
-			"lines": [
-				"Oh goodness me!",
-				"What are you, God's favourite human?",
-				"Good God, you're too pure for this world..."
-			],
-			"options": [
-				"Do I look like I know what I'm doing?",
-				"And you're just a little statue! What do you know about the world?"
-			],
-			"next_states": ["know_nothing", "little_statue"]
-		},
-		"meh": {
-			"lines": [
-				"What.",
-				"Come back when you're useful."
-			],
-			"options": [
-				"What? Have I not done enough?"
-			],
-			"next_states": ["not_done_enough"]
-		},
-		
-		"not_done_enough": {
-			"lines": [
-				"Clearly not.",
-				"Now shoo!"
 			]
 		},
 		"know_nothing": {
@@ -248,14 +220,129 @@ var all_dialogue_sets = {
 				"GET LOST, PLAYER!"
 			]
 		}
-	}
+	},
 	
+	"naked_statue_too_good": {
+		"too_good":{
+			"lines": [
+				"Oh goodness me!",
+				"What are you, God's favourite human?",
+				"Good God, you're too pure for this world..."
+			],
+			"options": [
+				"Do I look like I know what I'm doing?",
+				"And you're just a little statue! What do you know about the world?"
+			],
+			"next_states": ["know_nothing", "little_statue"]
+		},
+	},
+	
+	"naked_statue_meh": {
+		"meh": {
+			"lines": [
+				"What.",
+				"Come back when you're useful."
+			],
+			"options": [
+				"What? Have I not done enough?"
+			],
+			"next_states": ["not_done_enough"]
+		},
+		"not_done_enough": {
+			"lines": [
+				"Clearly not.",
+				"Now shoo!"
+			]
+		},
+	},
+	
+#---------------------------------------------------------------------------------------------------
+	"not_yet_door_statue": {
+		"start": {
+			"lines": [
+				"Have you placed all the required items?"
+			],
+			"options": [
+				"What items?",
+				"I've placed items on the tables!",
+				"What are you even talking about?"
+			],
+			"next_states": ["confusion_what_items", "already_placed_items", "what_are_you_on_about"]
+		},
+		
+		"confusion_what_items": {
+			"lines": [
+				"Look around you!",
+				"Go and explore\nWho knows, there might be some sneaky ones hiding beehind some things..."
+			]
+		},
+		
+		"already_place_items": {
+			"lines": [
+				"dead end",
+				"add a line that contains: IDIOT! (?)"
+			],
+			"options": [
+				"HEY!",
+				"Wow. I don't like you anymore now, I'm gonna leave this game..."
+			],
+			"next_states": ["y_insult", "just_exit_please_i_wanna_see_the_light"]
+		},
+		
+		"what_are_you_on_about": {
+			"lines": [
+				"This world ",
+				"dead end"
+			],
+			"options": [
+				"dummy ones (just placeholders; to check if they work).\nthis one's for the sacrificial option.",
+				"this one's for the restart button.",
+				"this one's for exit game."
+			],
+			"next_states": [
+				"sacrificial_option",
+				"restart_option",
+				"just_exit_please_i_wanna_see_the_light"
+			]
+		},
+		
+		"sacrificial_option": {
+			"lines": [
+				"placeholder here"
+			]
+		},
+		"restart_option": {
+			"lines": [
+				# should this lines will be 
+				"Thank you player. {insert some good quote}",
+				"question, should i make it 'May the Fourth be with you.' / 'May the odds be ever in your favor.'?",
+				"or just a simple,\n'See you on your next adventure, Player.' / 'We shall see you in your next adventure, Player.'?",
+				"oh wait... imma do this ^ in the endings dialogue!!!"
+			]
+		}
+	},
+	
+	"solved_puzzle_door_statue": {
+		"start": {
+			"lines": [
+				"placeholder"
+			],
+			"options": ["placieeeeholdieee"],
+			"next_states": ["yay!"]
+		},
+		"yay": {
+			"lines": ["YAYYYYY@!"]
+		}
+	}
 	# other item interactions can be stored here :D
 }
 
 
 # -----------------------------the start of something so bright-------------------------------------
 func _ready():
+	print(get_tree().current_scene.get_tree_string())
+
+	$AnimationPlayer.play("RESET")
 	$CanvasLayer.hide()
 	next_indicator.hide()
 
@@ -307,12 +394,17 @@ func _show_dialogue_state() -> void:
 		var choice_index = await show_options(state_data.options)
 		current_state = state_data.next_states[choice_index]
 		await _show_dialogue_state()
+		
+	#elif dialogue == "solved_puzzle_door_statue":
+		#if current_state == "sacrificial_option":
+			#restart()
+			
 	elif state_data.has("next_states"):
 	# no options, just auto-pick the first next state
 		current_state = state_data.next_states[0]
 		await _show_dialogue_state()
 	else:
-		 # no next states → end dialogue
+		# no next states → end dialogue
 		last_state = current_state
 		$CanvasLayer.hide()
 		get_tree().paused = false
@@ -358,7 +450,11 @@ func show_options(options: Array) -> int:
 func _wait_for_continue() -> void:
 	if not is_inside_tree():
 		return
-
+		
+	# If dialogue ended early, just bail out
+	if end_dialogue:
+		return
+		
 	# To signal the player that there are still lines...
 	next_indicator.show()
 	var proceed = false
@@ -379,13 +475,17 @@ func _on_button_pressed(index: int):
 # -------------------------BUTTONS (i mean for skipping purposes)-----------------------------------
 func _on_end_dialogue_button_pressed():
 	confirm_skip.popup_centered()
-	dialogue_active = true
+	dialogue_active = false
 
 func _on_confirm_skip_confirmed():
 	end_dialogue = true
 	skip_confirmed = true
 	$CanvasLayer.hide()
 	
-	dialogue_active = true # added this
+	dialogue_active = false # added this
 	
 	get_tree().paused = false
+	
+	# Cancel running dialogue coroutine if tracked
+	if dialogue_task:
+		dialogue_task = null

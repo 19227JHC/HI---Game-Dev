@@ -98,9 +98,16 @@ func get_placed_item():
 
 # ----------------------------------interaction area's action name----------------------------------
 func _process(delta):
+	# so it doesn't complain when player is holding something but is dead or something how to explain AUGH
+	if not is_instance_valid(player):
+		player = get_tree().get_first_node_in_group("player")
+		if not player:
+			return  # still no player, skip
+
 	var interact_key = get_key_for_action("interact")
 
-	if player.holding_item == false:
-		interaction_area.action_name = item_name
-	elif player.holding_item == true:
-		interaction_area.action_name = "[" + interact_key + "] to place object"
+	if player.can_interact:
+		if player.holding_item == false:
+			interaction_area.action_name = item_name
+		elif player.holding_item == true:
+			interaction_area.action_name = "[" + interact_key + "] to place object"

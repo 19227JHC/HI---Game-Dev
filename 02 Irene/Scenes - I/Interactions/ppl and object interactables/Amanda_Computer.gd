@@ -35,7 +35,7 @@ func get_key_for_action(action_name: String) -> String:
 
 # ------------------------------------ITEM INTERACTION----------------------------------------------
 func _on_item_interacted():
-	get_tree().paused = true
+	#get_tree().paused = true
 	
 	$dialogue/CanvasLayer.show() # just in case?
 	

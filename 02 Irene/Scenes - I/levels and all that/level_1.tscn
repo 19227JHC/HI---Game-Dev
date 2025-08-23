@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://batlsr4q5ikn0" path="res://01 Hannah/Scenes/player.tscn" id="3_2jqg1"]
 [ext_resource type="TileSet" uid="uid://c4yjh1sv168t1" path="res://02 Irene/level_1.tres" id="4_37beu"]
 [ext_resource type="PackedScene" uid="uid://4d87yfgj7pvn" path="res://02 Irene/Scenes - I/Interactions/ppl and object interactables/test_door.tscn" id="4_115j1"]
-[ext_resource type="PackedScene" uid="uid://dd3yesvrihq4d" path="res://02 Irene/Scenes - I/Interactions/ppl and object interactables/it's_chemical.tscn" id="6_3uy3f"]
+[ext_resource type="PackedScene" uid="uid://dd3yesvrihq4d" path="res://02 Irene/Scenes - I/Interactions/ppl and object interactables/it_s_chemical.tscn" id="6_3uy3f"]
 [ext_resource type="PackedScene" uid="uid://d2i5snjlkwgbx" path="res://02 Irene/Scenes - I/Interactions/ppl and object interactables/table_and_chair.tscn" id="6_kx1m8"]
 [ext_resource type="PackedScene" uid="uid://dg7gjybjn1bjo" path="res://02 Irene/Scenes - I/Interactions/ppl and object interactables/chemical_bottle.tscn" id="6_u3xcs"]
 [ext_resource type="Texture2D" uid="uid://djprlqqf1nhch" path="res://01 Hannah/Assets/HealthBarAS/HealthBar2.png" id="8_klccn"]
