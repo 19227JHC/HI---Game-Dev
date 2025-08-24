@@ -67,6 +67,7 @@ func show_dialogue():
 	dialogue_task = call_deferred("_show_dialogue_state")
 
 
+# changes in storyline fixed
 func _show_dialogue_state():
 	match state:
 		"start":
@@ -75,10 +76,11 @@ func _show_dialogue_state():
 				"[Welcome to our monster contaminated school.]",
 				"[Our world was infected by an unknown disease a while ago, and now…]",
 				"(Distant screams and howls of pain tore your ears apart.)",
-				"[They’re coming–they’re devouring us all!]",
-				"[We desperately need your help, so please–]",
+				"They’re coming–they’re devouring us all!",
+				"We desperately need your help, so please–",
 				"(The screams and prayers clouded your mind, until all you could feel was pain.)",
-				"[Please, Player, we beg of you–save our world!]",
+				"(Not long after, you hear a child, somewhere around 15, screaming and pleading)",
+				"Please, Player, we beg of you–help us, save me!",
 				"…",
 				"[Will you help this world?]"
 			])
@@ -87,7 +89,9 @@ func _show_dialogue_state():
 
 		"first_refusal":
 			await play_sequence([
-				"[Busy with what? We’re dying here!]",
+				"[Busy with what?]",
+				"(The voice was pushed away, you can hear the child more clearly.)",
+				"Please, Player, I'm dying here!"
 			])
 			show_options(["[Well, a Player’s gotta do what a Player’s gotta do. Sorry not sorry!]",
 				"[I suppose I can help.]",
@@ -96,9 +100,9 @@ func _show_dialogue_state():
 			
 		"how_badly":
 			await play_sequence([
-				"[Really? Are you serious right now?!]",
-				"[Blood are spewing everywhere, screams cannot be more horrying than this,
-				and there are human limbs strewn across the floor!]"
+				"Really? Are you serious right now?!",
+				"(Blood are spewing everywhere, screams cannot be more horrifying than this-)
+				\n\n[AH! There are human limbs strewn across the floor!]"
 			])
 			show_options(["[Will you compensate me then?]",
 				"[That's worse than I thought, I will help!]"])
@@ -106,7 +110,7 @@ func _show_dialogue_state():
 
 		"compensation":
 			await play_sequence([
-				"[And if I say yes...?]"
+				"[And if we say yes...?]"
 			])
 			show_options([
 				"[I was just kidding! I’ll help with or without compensation!]",
@@ -122,7 +126,11 @@ func _show_dialogue_state():
 				"[You may forget this world’s pleas…]",
 				"[But Karma never forgets.]",
 				"…",
-				"[Now… Are you sure you still refuse to help?]"
+				"[Now… Are you sure you still refuse to help?]",
+				"(The child's voice returned.)",
+				"How arrogant!\n\nThe Player of this round is much too-",
+				"(You hear someone having a bloody-sounding coughing fit.)",
+				"[You fool! Answer, quick!]"
 			])
 			show_options([
 				"[I don’t help those who beg.]",

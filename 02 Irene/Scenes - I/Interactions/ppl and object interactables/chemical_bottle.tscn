@@ -22,7 +22,6 @@ collision_mask = 2
 texture = ExtResource("1_02e76")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-visible = false
 shape = SubResource("RectangleShape2D_me2rt")
 debug_color = Color(0.911165, 0.135307, 0.647238, 0.42)
 
@@ -41,5 +40,4 @@ color = Color(0.705882, 0.0862745, 0.2, 1)
 [node name="InteractionArea" parent="." instance=ExtResource("3_4m57i")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
-visible = false
 shape = SubResource("CircleShape2D_l7cw8")

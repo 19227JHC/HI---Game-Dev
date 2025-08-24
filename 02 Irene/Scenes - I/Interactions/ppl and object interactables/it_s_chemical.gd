@@ -68,7 +68,14 @@ func pickup_or_drop():
 	else:
 		var table = find_nearby_table()
 		if table and table.can_drop_item():
+			# temp. disable collision shape becuz it kept on pushing the player and i kept on forgetting to change it
+			collision_shape.disabled = true
+
+			# Place or swap
 			table.place_item(self)
+
+			# re-enable it
+			collision_shape.disabled = false
 		else:
 			# Drop to ground
 			if player:
@@ -142,7 +149,9 @@ func _process(_delta):
 	if held:
 		var table = find_nearby_table()
 		if table:
-			interaction_area.action_name = "[" + interact_key + "] to open door"
+			interaction_area.action_name = "[" + interact_key + "] to drop on table"
+			if table.placed_item:
+				interaction_area.action_name = "[" + interact_key + "] swap objects"
 		else:
 			interaction_area.action_name = "[" + interact_key + "] to drop object"
 	else:

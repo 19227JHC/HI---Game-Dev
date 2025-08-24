@@ -3,7 +3,7 @@ extends Node2D
 
 @onready var interaction_area: InteractionArea = $InteractionArea
 @onready var slot_node = $PlacePoint  # Automatically gets the Marker2D named PlacePoint
-@export var item_name: String = "Where's your key?"
+@export var item_name: String = "Where's your 'key'?"
 
 
 var placed_item: Node2D = null
@@ -107,7 +107,11 @@ func _process(delta):
 	var interact_key = get_key_for_action("interact")
 
 	if player.can_interact:
-		if player.holding_item == false:
+		if player.holding_item == false and not placed_item:
 			interaction_area.action_name = item_name
-		elif player.holding_item == true:
+		elif player.holding_item == true and not placed_item:
 			interaction_area.action_name = "[" + interact_key + "] to place object"
+		elif player.holding_item == true and placed_item:
+			interaction_area.action_name = "[" + interact_key + "] to swap object"
+		elif player.holding_item == false and placed_item:
+			interaction_area.action_name = "There's already a 'key' in place."

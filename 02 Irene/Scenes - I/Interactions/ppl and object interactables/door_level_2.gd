@@ -8,13 +8,13 @@ extends Node2D
 
 var player = null
 var key = null
-var item_name: String = "🧙‍♂️\nYOU SHALL NOT PASS."
 var key_is_consumed := false
+var item_name: String = "Talk to the statue first."
+var my_statue = null
 
 
 func _ready():
-	var interact_key = get_key_for_action("interact")
-	interaction_area.action_name = "[" + interact_key + "] to enter door"
+	my_statue = get_tree().get_first_node_in_group("skeleton_statue")
 	interaction_area.interact = Callable(self, "_on_interact")
 
 	player = get_tree().get_first_node_in_group("player")
@@ -42,7 +42,7 @@ func can_accept_item(item) -> bool:
 
 
 # ---------------------------------------PLACE YOUR OFFERINGG---------------------------------------
-func place_item(item):
+func consume_key(item):
 	# Consume the key
 	item.set_held(false)
 	if player:
@@ -87,10 +87,20 @@ func _on_interact() -> void:
 		print("You Shall Not Pass.")
 
 
+# ----------------------------------------change item name------------------------------------------
+# player talk to statue, statue emit signal, door get signal, and this is the function where
+# the door changes its action_name so the player knows they know can enter now!
+func change_action_name():
+	var interact_key = get_key_for_action("interact")
+	interaction_area.action_name = "[" + interact_key + "] to enter"
+
+
+# don't think i'll need it anymore because of the signal thing
 func _process(delta):
 	# or gobal.bad_moral_points == 0 -> put out just for testing!!
-	if gobal.good_moral_points >= 7 or key_is_consumed == true:
-		var interact_key = get_key_for_action("interact")
-		interaction_area.action_name = "[" + interact_key + "] to enter"
-	else:
-		interaction_area.action_name = item_name
+	#if gobal.good_moral_points >= 7 or key_is_consumed == true:
+		#var interact_key = get_key_for_action("interact")
+		#interaction_area.action_name = "[" + interact_key + "] to enter"
+	#else:
+		#interaction_area.action_name = item_name
+	pass

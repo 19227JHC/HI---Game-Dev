@@ -20,6 +20,7 @@ config/icon="res://02 Irene/Assets - I/icon.png"
 SceneManager="*res://02 Irene/SceneManager.gd"
 gobal="*res://01 Hannah/Scripts/gobal.gd"
 InteractionManager="*res://02 Irene/Scenes - I/Interactions/InteractionManager.tscn"
+DialogueSetsManager="*res://02 Irene/Scripts - I/all_dialogues_here.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
 [display]

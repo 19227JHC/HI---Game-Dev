@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cl6qfc2sk5ue2"]
+[gd_scene load_steps=7 format=3 uid="uid://cl6qfc2sk5ue2"]
 
 [ext_resource type="Script" path="res://02 Irene/Scenes - I/Interactions/ppl and object interactables/door_statue.gd" id="1_koqgi"]
 [ext_resource type="Texture2D" uid="uid://bi0lbljecj4o6" path="res://02 Irene/Assets - I/isolated objects/SkeletonStatue.png" id="1_ock75"]
 [ext_resource type="PackedScene" uid="uid://dnkxxwhgim1qy" path="res://02 Irene/Scenes - I/Interactions/InteractionArea.tscn" id="2_3biw4"]
 [ext_resource type="PackedScene" uid="uid://ckdmd1fbc1nxb" path="res://02 Irene/Scenes - I/levels and all that/interactable_dialogue.tscn" id="3_om4w1"]
-[ext_resource type="PackedScene" uid="uid://batlsr4q5ikn0" path="res://01 Hannah/Scenes/player.tscn" id="5_i0a0s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_te2sd"]
 size = Vector2(12, 24)
@@ -31,5 +30,3 @@ position = Vector2(0, 11.5)
 shape = SubResource("RectangleShape2D_k1h0o")
 
 [node name="dialogue" parent="." instance=ExtResource("3_om4w1")]
-
-[node name="Player" parent="." instance=ExtResource("5_i0a0s")]

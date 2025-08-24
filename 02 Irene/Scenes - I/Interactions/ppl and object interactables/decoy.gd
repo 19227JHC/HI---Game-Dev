@@ -4,7 +4,7 @@ extends Node2D
 @onready var interaction_area: InteractionArea = $InteractionArea
 
 
-var item_name: String = "YOU SHALL NOT PASS."
+var item_name: String = "YOU SHALL NEVER PASS,\n\nEVIL PLAYER."
 
 
 # Called when the node enters the scene tree for the first time.

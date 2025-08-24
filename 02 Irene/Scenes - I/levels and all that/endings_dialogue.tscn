@@ -1,12 +1,23 @@
-[gd_scene load_steps=12 format=3 uid="uid://g4m0sx1ygkwd"]
+[gd_scene load_steps=17 format=3 uid="uid://g4m0sx1ygkwd"]
 
 [ext_resource type="Script" path="res://02 Irene/Scripts - I/levels and all that - script/the_end.gd" id="1_ffdkl"]
 [ext_resource type="FontFile" uid="uid://cg03ls2khnai" path="res://02 Irene/fonts - I/dogica.otf" id="2_wtnuc"]
 [ext_resource type="FontFile" uid="uid://dytmi3e7gkhj0" path="res://02 Irene/fonts - I/pixely[1].ttf" id="3_85hcf"]
 [ext_resource type="Shader" path="res://02 Irene/Scripts - I/levels and all that - script/dialogue.gdshader" id="4_qwe88"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t0hod"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_112mx"]
 bg_color = Color(0, 0, 0, 0.313726)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cgko3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xs4yp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jukcb"]
+bg_color = Color(0, 0, 0, 0.313726)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yaf8r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yqki2"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j8hec"]
 
@@ -46,31 +57,44 @@ anchor_right = 1.0
 anchor_bottom = 0.6375
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 14
-split_offset = 100
+theme_override_constants/separation = 10
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer2/HSplitContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer2/HSplitContainer"]
+custom_minimum_size = Vector2(635, 330)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_112mx")
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer2/HSplitContainer/PanelContainer"]
+custom_minimum_size = Vector2(635, 330)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="DialogueLabel" type="RichTextLabel" parent="CanvasLayer2/HSplitContainer/CenterContainer"]
-custom_minimum_size = Vector2(628, 0)
+[node name="DialogueLabel" type="RichTextLabel" parent="CanvasLayer2/HSplitContainer/PanelContainer/CenterContainer"]
+custom_minimum_size = Vector2(635, 0)
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("2_wtnuc")
-theme_override_styles/normal = SubResource("StyleBoxFlat_t0hod")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cgko3")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_xs4yp")
 bbcode_enabled = true
 fit_content = true
 scroll_active = false
 
-[node name="CenterContainer2" type="CenterContainer" parent="CanvasLayer2/HSplitContainer"]
+[node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer2/HSplitContainer"]
+custom_minimum_size = Vector2(635, 330)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jukcb")
+
+[node name="CenterContainer2" type="CenterContainer" parent="CanvasLayer2/HSplitContainer/PanelContainer2"]
+custom_minimum_size = Vector2(635, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="DialogueLabel2" type="RichTextLabel" parent="CanvasLayer2/HSplitContainer/CenterContainer2"]
-custom_minimum_size = Vector2(628, 0)
+[node name="DialogueLabel2" type="RichTextLabel" parent="CanvasLayer2/HSplitContainer/PanelContainer2/CenterContainer2"]
+custom_minimum_size = Vector2(635, 0)
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("2_wtnuc")
-theme_override_styles/normal = SubResource("StyleBoxFlat_t0hod")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_yaf8r")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yqki2")
 bbcode_enabled = true
 fit_content = true
 scroll_active = false

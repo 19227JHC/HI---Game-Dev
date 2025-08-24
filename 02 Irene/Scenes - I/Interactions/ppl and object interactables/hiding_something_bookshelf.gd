@@ -40,14 +40,10 @@ func disappear():
 func the_fade_out():
 	var tween = get_tree().create_tween()
 	
-	tween.set_parallel(true)
+	# tween.set_parallel(true) -> this one doesn't work for some reason lol idk why
 	tween.tween_property(sprite, "modulate:a", 0.0, 1.0) # 1 second fade
-	tween.tween_property(accessory_sprite, "modulate:a", 0.0, 1.0)
+	# FINALLY! THE PARALLEL WORKS LIKE THIS WOO-HOOO!!
+	tween.parallel().tween_property(accessory_sprite, "modulate:a", 0.0, 1.0)
 	
 	tween.tween_callback(func(): sprite.queue_free())
 	$InteractionArea/CollisionShape2D.disabled = true
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-	#pass

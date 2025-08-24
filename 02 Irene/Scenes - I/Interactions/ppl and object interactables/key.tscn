@@ -57,7 +57,6 @@ sprite_frames = SubResource("SpriteFrames_t6itx")
 frame_progress = 0.842344
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-visible = false
 shape = SubResource("CircleShape2D_543bx")
 debug_color = Color(0.902866, 0.000150553, 0.754933, 0.42)
 
@@ -76,5 +75,4 @@ color = Color(1, 0.917647, 0.611765, 1)
 [node name="InteractionArea" parent="." instance=ExtResource("3_6b8gh")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
-visible = false
 shape = SubResource("CircleShape2D_0arvn")

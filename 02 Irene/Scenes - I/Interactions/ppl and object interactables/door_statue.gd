@@ -15,13 +15,13 @@ extends Node2D
 
 var dialogue_task = null
 var player = null
+var key = null
+var key_is_consumed := false
+var resolved_tables: Array = []
 
 
 func _ready():
 	player = get_tree().get_first_node_in_group("player")
-
-	var interact_key = get_key_for_action("interact")
-	interaction_area.action_name = "[" + interact_key + "] to interact"
 	interaction_area.interact = Callable(self, "_on_item_interacted")
 
 
@@ -43,58 +43,84 @@ func _on_item_interacted():
 	
 	$dialogue/CanvasLayer.show() # just in case?
 	
-	# have to do place the keys first
-	if not keys_placed():
+	if not required_items_placed() or key_is_consumed:
+		# have to do place the keys first
 		dialogue_manager.set_active_dialogue("not_yet_door_statue")
 		await dialogue_manager._show_dialogue_state()
-	else:
-		#if you've done what you needed to do to leave
+	if key_is_consumed:
+		# technically can leave because of the key, but world isn't saved yet.
+		dialogue_manager.set_active_dialogue("key_found_door_statue")
+		await dialogue_manager._show_dialogue_state()
+	if required_items_placed():
+		# world is saved, WOO HOOO! you may leave freely.
 		dialogue_manager.set_active_dialogue("solved_puzzle_door_statue")
 		await dialogue_manager._show_dialogue_state()
-		# when finished, check the last state
-		match dialogue_manager.last_state:
-			"sacrificial_option":
-				restart()
 
-
-# --------------------------------------to restart--------------------------------------------------
-func restart():
-	# wait for player input
-	await $dialogue._wait_for_continue()
-	trigger_amanda_fade_out()
-	
-	# thank you note appears
-	$dialogue/AnimationPlayer.play("blur")
-	
-	await get_tree().create_timer(2.5).timeout
-	
-	# hide everything
-	$dialogue/CanvasLayer.hide()
-	get_tree().paused = false
-	
-	get_tree().change_scene_to_file("res://02 Irene/Scenes - I/levels and all that/dialogue.tscn")
-
-
-# just to see if the function work - update it doesn't
-func trigger_amanda_fade_out():
-	var tween = get_tree().create_tween()
-	tween.tween_property(sprite, "modulate:a", 0.0, 1.0) # 1 second fade
-	tween.tween_callback(func(): sprite.queue_free())
-	$InteractionArea/CollisionShape2D.disabled = true
 
 # -------------------------------------requirements to leave----------------------------------------
-func keys_placed() -> bool:
-	var count = 0
-	for table_path in tables:
-		var table = get_node_or_null(table_path)
-		if table:
-			var item = table.get_placed_item()
-			if item and item.name in ["It_s_Chemical", "It_s_Chemical2"]:
-				count += 1
+func required_items_placed() -> bool:
+	for path in tables:
+		var node = get_node_or_null(path)
+		if node:
+			resolved_tables.append(node)
+
+	# Safety net
+	if resolved_tables.size() < 3:
+		return false
+
+	var table1 = resolved_tables[0]
+	var table2 = resolved_tables[1]
+	var table3 = resolved_tables[2]
+
+	var item1 = table1.get_placed_item()
+	var item2 = table2.get_placed_item()
+	var item3 = table3.get_placed_item()
+
+	return item1 and item1.name in ["It_s_Chemical", "It_s_Chemical2"] \
+		and item2 and item2.name == "Chemical_Bottle" \
+		and item3 and item3.name in ["It_s_Chemical", "It_s_Chemical2"]
+
+
+# ------------------------------------------key? key? key?------------------------------------------
+func can_accept_item(item) -> bool:
+	return item.is_in_group("key")  # only accepts keys
+
+
+# ---------------------------------------PLACE YOUR OFFERINGG---------------------------------------
+func consume_key(item):
+	# Consume the key
+	item.set_held(false)
+	if player:
+		player.set_held_item(null)
+	item.queue_free()
 	
-	return count >= 2
+	key_is_consumed = true
 
 
-# -------------------------------------RUN DIALOGUE-------------------------------------------------
+# -----------------------------------------key requirement------------------------------------------
+func key_on_hand() -> bool:
+	if player and player.has_method("get_held_item"):
+		var held_item = player.get_held_item()
+		if held_item and held_item.is_in_group("key"):
+			return true
+	return false
+
+
+# --------------------------------------RUN DIALOGUE - backup---------------------------------------
 func _run_item_dialogue():
 	await dialogue_manager._show_dialogue_state()
+
+
+# --------------------------------------change action name------------------------------------------
+func _process(_delta):
+	if not player:
+		return
+
+	var interact_key = get_key_for_action("interact")
+
+	if not required_items_placed() or key_is_consumed:
+		interaction_area.action_name = "[" + interact_key + "] for instructions"
+	if key_is_consumed:
+		interaction_area.action_name = "[" + interact_key + "] to talk.\nAlmost there!"
+	if required_items_placed():
+		interaction_area.action_name = "[" + interact_key + "] to talk.\nYou're done!!"

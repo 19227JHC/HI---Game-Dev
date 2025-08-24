@@ -1,6 +1,9 @@
 extends Node2D
 
 
+signal changeActionName
+
+
 @onready var interaction_area: InteractionArea = $InteractionArea
 @onready var sprite: Sprite2D = $StaticBody2D/Sprite2D
 @onready var dialogue_manager = $dialogue
@@ -8,10 +11,12 @@ extends Node2D
 
 var dialogue_task = null
 var player = null
+var the_good_door = null
 
 
 func _ready():
 	player = get_tree().get_first_node_in_group("player")
+	the_good_door = get_tree().get_first_node_in_group("good_door")
 
 	var interact_key = get_key_for_action("interact")
 	interaction_area.action_name = "[" + interact_key + "] to interact"
@@ -37,9 +42,17 @@ func _on_item_interacted():
 	$dialogue/CanvasLayer.show() # just in case?
 	
 	# have to do place the keys first
-	# if gobal.good_moral_points >= 5:
-	dialogue_manager.set_active_dialogue("skeleton_statue")
-	await dialogue_manager._show_dialogue_state()
+	if gobal.good_moral_points >= 5:
+		dialogue_manager.set_active_dialogue("skeleton_statue_good_enough_yay")
+		await dialogue_manager._show_dialogue_state()
+		changeActionName.emit()
+	elif the_good_door.key_is_consumed == true:
+		dialogue_manager.set_active_dialogue("skeleton_statue_good_enough_yay")
+		await dialogue_manager._show_dialogue_state()
+		changeActionName.emit()
+	else:
+		dialogue_manager.set_active_dialogue("skeleton_statue_too_bad")
+		await dialogue_manager._show_dialogue_state()
 
 
 # -------------------------------------RUN DIALOGUE-------------------------------------------------

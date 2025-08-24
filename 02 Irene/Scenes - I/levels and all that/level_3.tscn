@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://02 Irene/Scripts - I/levels and all that - script/level_3.gd" id="1_kb4a0"]
 [ext_resource type="PackedScene" uid="uid://g4m0sx1ygkwd" path="res://02 Irene/Scenes - I/levels and all that/endings_dialogue.tscn" id="1_l1rob"]
 
-[node name="level_3" type="Control"]
+[node name="bad_ending_explanation_for_name_in_script" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

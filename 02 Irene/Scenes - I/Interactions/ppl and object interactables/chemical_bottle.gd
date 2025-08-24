@@ -73,7 +73,14 @@ func pickup():
 func drop_or_place():
 	var table = find_nearby_table()
 	if table and table.can_drop_item():
+		# temp. disable collision shape becuz it kept on pushing the player and i kept on forgetting to change it
+		collision_shape.disabled = true
+		
+		# Place or swap
 		table.place_item(self)
+		
+		# re-enable it
+		collision_shape.disabled = false
 	else:
 		if player:
 			get_parent().remove_child(self)
@@ -165,6 +172,11 @@ func _process(_delta):
 		interaction_area.action_name = "[" + interact_key + "] drop / [" + drink_key + "] drink"
 		if Input.is_action_just_pressed("drink") and not Input.is_action_just_pressed("interact"):
 			drink()
+		var table = find_nearby_table()
+		if table:
+			interaction_area.action_name = "[" + interact_key + "] drop on table / [" + drink_key + "] drink"
+			if table.placed_item:
+				interaction_area.action_name = "[" + interact_key + "] swap objects / [" + drink_key + "] drink"
 	else:
 		interaction_area.action_name = "[" + interact_key + "] " + item_name
 

@@ -1,6 +1,9 @@
 extends Node2D
 
 
+signal changeActionName # for the door
+
+
 @onready var interaction_area: InteractionArea = $InteractionArea
 @onready var sprite: Sprite2D = $StaticBody2D/Sprite2D
 @onready var dialogue_manager = $dialogue
@@ -36,17 +39,24 @@ func _on_item_interacted():
 	
 	$dialogue/CanvasLayer.show() # just in case?
 	
-	# have to do place the keys first
-	if gobal.good_moral_points >= 2:
+	# canNOT enter !!
+	if gobal.good_moral_points >= 1 and gobal.bad_moral_points == 0:
 		dialogue_manager.set_active_dialogue("naked_statue_too_good")
 		await dialogue_manager._show_dialogue_state()
-	elif gobal.bad_moral_points >= 5:
-		dialogue_manager.set_active_dialogue("naked_statue_evil_enough")
-		await dialogue_manager._show_dialogue_state()
-	else:
-		#if you've done what you needed to do to leave
+	elif gobal.good_moral_points == 0 and gobal.bad_moral_points == 0:
+		# if you've done NOTHING AT. ALL.
 		dialogue_manager.set_active_dialogue("naked_statue_meh")
 		await dialogue_manager._show_dialogue_state()
+	# CAN enter!
+	elif gobal.bad_moral_points >= 3:
+		dialogue_manager.set_active_dialogue("naked_statue_evil_enough")
+		await dialogue_manager._show_dialogue_state()
+		changeActionName.emit()
+	else:
+		# if you've done what you needed to do to leave (aka killed at least one of the enemies)
+		dialogue_manager.set_active_dialogue("naked_statue_just_enough")
+		await dialogue_manager._show_dialogue_state()
+		changeActionName.emit()
 
 
 # -------------------------------------RUN DIALOGUE-------------------------------------------------

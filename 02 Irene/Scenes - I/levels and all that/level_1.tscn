@@ -732,17 +732,17 @@ scale = Vector2(2, 2)
 
 [node name="Enemy" parent="." groups=["enemies"] instance=ExtResource("2_atih0")]
 z_index = 3
-position = Vector2(1217, 313)
+position = Vector2(1194, 287)
 scale = Vector2(2, 2)
 
 [node name="Enemy2" parent="." groups=["enemies"] instance=ExtResource("2_atih0")]
-z_index = 2
-position = Vector2(49, 170)
+z_index = 3
+position = Vector2(44, 189)
 scale = Vector2(2, 2)
 
 [node name="Enemy3" parent="." groups=["enemies"] instance=ExtResource("2_atih0")]
-z_index = 2
-position = Vector2(383, 692)
+z_index = 3
+position = Vector2(269, 705)
 scale = Vector2(2, 2)
 
 [node name="testDoor" parent="." instance=ExtResource("4_115j1")]

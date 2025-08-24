@@ -10,8 +10,8 @@ signal option_selected(index: int)
 @onready var confirm_skip = $CanvasLayer2/ConfirmSkip
 
 # LABELS AND BUTTONS
-@onready var dialogue_label1: RichTextLabel = $CanvasLayer2/HSplitContainer/CenterContainer/DialogueLabel
-@onready var dialogue_label2: RichTextLabel = $CanvasLayer2/HSplitContainer/CenterContainer2/DialogueLabel2
+@onready var dialogue_label1: RichTextLabel = $CanvasLayer2/HSplitContainer/PanelContainer/CenterContainer/DialogueLabel
+@onready var dialogue_label2: RichTextLabel = $CanvasLayer2/HSplitContainer/PanelContainer2/CenterContainer2/DialogueLabel2
 @onready var options_box: VBoxContainer = $CanvasLayer2/OptionsBox
 @onready var buttons: Array[Button] = [
 	$CanvasLayer2/OptionsBox/Button,
@@ -65,79 +65,7 @@ enum Speakers {
 var big_words = 32
 
 # now to store all the dialogues...
-var all_dialogues_set = {
-	# BAD ENDING
-	"bad_ending": {
-		"start:": {
-			"lines": [
-				{"speaker": Speakers.H, "line": "So... the Player succeeded."},
-				{"speaker": Speakers.I, "line": "Quite an unexpected result, indeed.\nWhatever did we do wrong?"},
-				{"speaker": Speakers.H, "line": "Maybe we should've added more enemies!\nThe more the merrier!"},
-				{"speaker": Speakers.I, "line": "Certainly wouldn't have hurt."}
-			],
-			"options": ["What are you-?", "Hey, I'm here too, you know!"],
-			"next_states": ["indignant", "i_am_here"]
-		},
-
-		"indignant": {
-			"lines": [
-				{"speaker": Speakers.H, "line": "Hmm... Did you hear anything?"},
-				{"speaker": Speakers.I, "line": "Nope.\nMust've been the wind."},
-				{"speaker": Speakers.I, "line": "Anywho. I think we should redo this."},
-				{"speaker": Speakers.H, "line": "Most definitely, I don't think it's-"},
-			],
-			"options": [
-				"But I didn't do anything wrong!",
-				"You're the one who summoned me here.\nIt's not my fault I'm not up to your standards.",
-				"HEY! LISTEN TO ME YOU DEAF IDIOTS!"
-			],
-			"next_states": ["nothing_wrong", "totally_your_fault", "you_fool"]
-		},
-
-		"i_am_here": {
-			"lines": [
-
-			]
-		},
-
-		"you_fool": {
-			"lines": [
-				{"speaker": Speakers.H, "line": "Deaf..."},
-				{"speaker": Speakers.I, "line": "...idiots?"},
-				{"speaker": Speakers.H, "line": "This little...dares to-"},
-				{"speaker": Speakers.I, "line": "Oho! You're getting it [i]now[/i]."},
-				{"speaker": Speakers.H,
-				 "line": "[font_size=32]WE ARE THIS WORLD'S CREATORS!\nHOW DARE YOU, A PUNY HUMAN, INSULT US?![/font_size]"},
-				{"speaker": Speakers.I,
-				 "line": "[color=red]An insult to us is an insult to this world.\nI cannot let such an offense slide.[/color]"},
-				{"speaker": Speakers.H,
-				 "line": "WE BANISH YOU TO THE OBLIVION, PLAYER!\nTHE PRIVILEGRE OF CHOOSING YOUR AFTERLIFE\nSHALL [i]NEVER[/i] BE GIVEN TO YOUOU!"},
-				{"speaker": Speakers.I, "line": "[color=red]Goodbye.[/color]"},
-				{"speaker": Speakers.H, "line": "KARMA-"},
-				{"speaker": Speakers.I, "line": "-[i]Never[/i] forgets."}
-			],
-			"options": [
-				"No, WAIT-",
-				"-I'M NOT READY TO-"
-			]  # ,
-			# "next_states": ["secret_ending_bad_ending"] #how do i incorporate this into the code...
-		},
-
-		"secret_ending_bad_ending": {
-			"lines": [
-				{"speaker": Speakers.H, "line": "Good riddance"},
-				{"speaker": Speakers.I, "line": "I hope the next one would be better..."},
-			]
-		},
-	},
-	
-	# GOOD ENDING
-	"good_ending": {
-		"lines": [
-			{"speakers": Speakers.H, "line": ""}
-		]
-	}
-}
+var all_dialogues_set = DialogueSetsManager.all_endings_dialogues_set
 
 
 # ------------------------------------------level on ready------------------------------------------

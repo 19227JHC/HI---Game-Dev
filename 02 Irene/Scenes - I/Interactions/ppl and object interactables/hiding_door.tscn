@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://do6ht7gjgy5th"]
 
-[ext_resource type="Texture2D" uid="uid://ffyjqt1ygvek" path="res://02 Irene/Assets - I/isolated objects/BrokenBookshelves.png" id="1_64w8f"]
 [ext_resource type="Script" path="res://02 Irene/Scenes - I/Interactions/ppl and object interactables/hiding_something_bookshelf.gd" id="1_i80ll"]
+[ext_resource type="Texture2D" uid="uid://bjvbxgptqdxd6" path="res://02 Irene/Assets - I/isolated objects/2BrokenBookshelves.png" id="2_mwidx"]
 [ext_resource type="PackedScene" uid="uid://dnkxxwhgim1qy" path="res://02 Irene/Scenes - I/Interactions/InteractionArea.tscn" id="3_1ej87"]
 [ext_resource type="Texture2D" uid="uid://vmg5bj8k87ke" path="res://02 Irene/Assets - I/isolated objects/BooksOnTop3.png" id="3_14qgo"]
 
@@ -21,12 +21,7 @@ script = ExtResource("1_i80ll")
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
-position = Vector2(-8, 0)
-texture = ExtResource("1_64w8f")
-
-[node name="Sprite2D2" type="Sprite2D" parent="StaticBody2D"]
-position = Vector2(8, 0)
-texture = ExtResource("1_64w8f")
+texture = ExtResource("2_mwidx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_bd5uy")
