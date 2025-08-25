@@ -12,5 +12,9 @@ func _process(delta):
 
 
 func _on_return_buttomn_pressed():
+	$press.play() # plays sound when button is pressed
 	visible = false
 	$AnimationPlayer.play("RESET")
+
+func _on_return_buttomn_mouse_entered():
+	$hover.play() # plays sound when mouse enters/hovers over button

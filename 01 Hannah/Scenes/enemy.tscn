@@ -1,10 +1,14 @@
-[gd_scene load_steps=130 format=3 uid="uid://ba8mn0j2r0kku"]
+[gd_scene load_steps=134 format=3 uid="uid://ba8mn0j2r0kku"]
 
 [ext_resource type="Script" path="res://01 Hannah/Scripts/enemy.gd" id="1_ugsde"]
 [ext_resource type="Texture2D" uid="uid://d1i51y482s2wl" path="res://01 Hannah/Assets/Attack.png" id="1_yvp5a"]
 [ext_resource type="Texture2D" uid="uid://dyy7tcrxssujf" path="res://01 Hannah/Assets/Death.png" id="2_m0lwv"]
 [ext_resource type="Texture2D" uid="uid://ddb35q7s5m7g5" path="res://01 Hannah/Assets/Idle (2).png" id="3_esl7w"]
 [ext_resource type="Texture2D" uid="uid://cs8mdvm0xicb6" path="res://01 Hannah/Assets/Walk (1).png" id="4_ffpxg"]
+[ext_resource type="AudioStream" uid="uid://db7gnrhicjjrv" path="res://01 Hannah/Assets/SOund/Monster_Hiss2.mp3" id="6_pc63j"]
+[ext_resource type="AudioStream" uid="uid://bx78fj5ajx53c" path="res://01 Hannah/Assets/SOund/Monster_Grunt1.mp3" id="7_i2ler"]
+[ext_resource type="AudioStream" uid="uid://c4hsq240844tj" path="res://01 Hannah/Assets/SOund/Monster_SoftGrowl2.mp3" id="8_xiv8x"]
+[ext_resource type="AudioStream" uid="uid://d2takpx84e5wp" path="res://01 Hannah/Assets/SOund/Monster_Rumble4.mp3" id="9_getfy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wkhoo"]
 atlas = ExtResource("1_yvp5a")
@@ -983,6 +987,19 @@ one_shot = true
 [node name="attack_cooldown_timer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="enterSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_pc63j")
+
+[node name="damageSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_i2ler")
+
+[node name="deadSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_xiv8x")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_getfy")
+max_distance = 500.0
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]

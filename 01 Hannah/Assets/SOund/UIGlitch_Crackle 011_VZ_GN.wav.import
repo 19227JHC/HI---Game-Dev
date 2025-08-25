@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dppjlc1wj0p60"
+path="res://.godot/imported/UIGlitch_Crackle 011_VZ_GN.wav-e908321b74d7f273863fbdb9795f3b57.sample"
+
+[deps]
+
+source_file="res://01 Hannah/Assets/SOund/UIGlitch_Crackle 011_VZ_GN.wav"
+dest_files=["res://.godot/imported/UIGlitch_Crackle 011_VZ_GN.wav-e908321b74d7f273863fbdb9795f3b57.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b18jcm65jsgjf"
+path="res://.godot/imported/UIGlitch_Noise Short 033_VZ_GN.wav-5ec9d073a4dcbfa543e25890ce58d76d.sample"
+
+[deps]
+
+source_file="res://01 Hannah/Assets/SOund/UIGlitch_Noise Short 033_VZ_GN.wav"
+dest_files=["res://.godot/imported/UIGlitch_Noise Short 033_VZ_GN.wav-5ec9d073a4dcbfa543e25890ce58d76d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

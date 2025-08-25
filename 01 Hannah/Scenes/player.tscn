@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://batlsr4q5ikn0"]
+[gd_scene load_steps=69 format=3 uid="uid://batlsr4q5ikn0"]
 
 [ext_resource type="Script" path="res://01 Hannah/Scripts/player.gd" id="1_vyinv"]
 [ext_resource type="Texture2D" uid="uid://b1kx4hge58d3g" path="res://01 Hannah/Assets/stab - modified, not to our design yet (1).png" id="2_xemvi"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://63im14sn7jc1" path="res://01 Hannah/Assets/Idle - changedF.png" id="4_xctjo"]
 [ext_resource type="Texture2D" uid="uid://m73mdkh5mhqp" path="res://01 Hannah/Assets/Walk - modified.png" id="5_p34eq"]
 [ext_resource type="Texture2D" uid="uid://bg4dwx15st44i" path="res://01 Hannah/Assets/WalkF.png" id="6_jn38m"]
+[ext_resource type="AudioStream" uid="uid://dgt258erfc52x" path="res://01 Hannah/Assets/SOund/UIGlitch_Bit 147_VZ_GN.wav" id="8_21e58"]
+[ext_resource type="AudioStream" uid="uid://dppjlc1wj0p60" path="res://01 Hannah/Assets/SOund/UIGlitch_Crackle 011_VZ_GN.wav" id="9_xfugv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8txet"]
 atlas = ExtResource("2_xemvi")
@@ -524,6 +526,12 @@ zoom = Vector2(2, 2)
 
 [node name="carry_point" type="Node2D" parent="."]
 position = Vector2(0, -8)
+
+[node name="damgeSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_21e58")
+
+[node name="deathSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_xfugv")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="p_hitbox" to="." method="_on_p_hitbox_body_entered"]

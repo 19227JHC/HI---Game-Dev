@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://batlsr4q5ikn0" path="res://01 Hannah/Scenes/player.tscn" id="1_b2v05"]
 [ext_resource type="PackedScene" uid="uid://ba8mn0j2r0kku" path="res://01 Hannah/Scenes/enemy.tscn" id="2_lu4vs"]
 [ext_resource type="Script" path="res://01 Hannah/Scripts/Healthbar.gd" id="3_6vqoh"]
-[ext_resource type="Texture2D" uid="uid://djprlqqf1nhch" path="res://01 Hannah/Assets/HealthBarAS/HealthBar2.png" id="3_io0or"]
-[ext_resource type="Texture2D" uid="uid://cdnb83yak0y53" path="res://01 Hannah/Assets/HealthBarAS/Ultimate UI PixelArt Icons_WHITE sprite sheet copy.png" id="4_mmqpa"]
+[ext_resource type="Texture2D" uid="uid://djprlqqf1nhch" path="res://01 Hannah/Assets/UI/HealthBar2.png" id="3_io0or"]
+[ext_resource type="Texture2D" uid="uid://cdnb83yak0y53" path="res://01 Hannah/Assets/UI/Ultimate UI PixelArt Icons_WHITE sprite sheet copy.png" id="4_mmqpa"]
 [ext_resource type="PackedScene" uid="uid://b8tflxy7ivyaq" path="res://02 Irene/Scenes - I/UI/dead.tscn" id="6_eio5h"]
 [ext_resource type="PackedScene" uid="uid://d12r8d5c8hufq" path="res://02 Irene/Scenes - I/UI/pause.tscn" id="13_7655x"]
 
