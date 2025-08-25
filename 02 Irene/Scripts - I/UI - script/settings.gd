@@ -68,11 +68,17 @@ func _create_action_list():
 
 
 func _on_input_button_pressed(button, action):
+	$press.play() # plays sound when button is pressed - HANNAH
 	if !is_remapping:
 		is_remapping = true
 		action_to_remap = action
 		remapping_button = button
 		button.find_child("LabelInput").text = "Press key to bind..."
+
+
+# HANNAH WAS HERE
+func _on_input_button_mouse_entered():
+	$hover.play() # plays sound when mouse enters/hovers over button
 
 
 func _input(event):
@@ -102,11 +108,17 @@ func _update_action_list(button, event):
 
 #-------------------------------------------BUTTONS-------------------------------------------------
 func _on_return_button_pressed():
+	$press.play() # plays sound when button is pressed - HANNAH
 	visible = false
 	$AnimationPlayer.play("RESET")
 	#queue_free()
 	#if came_from_node:
 		#came_from_node.show()
+
+
+# HANNAH WAS HERE
+func _on_return_button_mouse_entered():
+	$hover.play() # plays sound when mouse enters/hovers over button
 
 
 func _on_volume_value_changed(value):
@@ -136,4 +148,10 @@ func _on_resolution_item_selected(index):
 
 # reset THE KEY INPUTS
 func _on_reset_button_pressed():
+	$press.play() # plays sound when button is pressed - HANNAH
 	_create_action_list()
+
+
+# HANNAH WAS HERE
+func _on_reset_button_mouse_entered():
+	$hover.play() # plays sound when mouse enters/hovers over button

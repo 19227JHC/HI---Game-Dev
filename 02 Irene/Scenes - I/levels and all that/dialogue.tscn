@@ -1,10 +1,13 @@
-[gd_scene load_steps=23 format=3 uid="uid://bxaysx2wbu4b2"]
+[gd_scene load_steps=26 format=3 uid="uid://bxaysx2wbu4b2"]
 
 [ext_resource type="Script" path="res://02 Irene/Scripts - I/levels and all that - script/dialogue.gd" id="1_ey6jv"]
 [ext_resource type="Shader" path="res://02 Irene/Scripts - I/levels and all that - script/dialogue.gdshader" id="2_bwabt"]
 [ext_resource type="FontFile" uid="uid://cg03ls2khnai" path="res://02 Irene/fonts - I/dogica.otf" id="2_r1h6a"]
 [ext_resource type="Shader" path="res://02 Irene/Scripts - I/levels and all that - script/dialogue_thank_you.gdshader" id="3_yl3u7"]
 [ext_resource type="FontFile" uid="uid://dytmi3e7gkhj0" path="res://02 Irene/fonts - I/pixely[1].ttf" id="4_orlvg"]
+[ext_resource type="AudioStream" uid="uid://bagtp1s2op3m0" path="res://01 Hannah/Assets/SOund/UIBeep_Clicky 025_VZ_GN.wav" id="6_37cdh"]
+[ext_resource type="AudioStream" uid="uid://dkbxluh70v0g8" path="res://01 Hannah/Assets/SOund/UIBeep_Clicky 024_VZ_GN.wav" id="7_ghx3e"]
+[ext_resource type="AudioStream" uid="uid://dhp47ct5mhu1u" path="res://01 Hannah/Assets/SOund/Strange Noise - Free Sound.mp3" id="8_8ww5v"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2vjqy"]
 
@@ -68,6 +71,8 @@ expand_margin_right = 5.0
 expand_margin_bottom = 5.0
 
 [sub_resource type="Theme" id="Theme_l7uag"]
+resource_local_to_scene = true
+default_font = ExtResource("2_r1h6a")
 Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
 Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
 Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
@@ -255,11 +260,12 @@ theme_override_fonts/font = ExtResource("2_r1h6a")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_2vjqy")
 
 [node name="ConfirmSkip" type="ConfirmationDialog" parent="CanvasLayer2"]
-size = Vector2i(912, 100)
+initial_position = 1
+size = Vector2i(1200, 100)
 theme = SubResource("Theme_l7uag")
-ok_button_text = "Yeah, totally. Skip it all!"
-dialog_text = "Are you sure? This will negatively impact your experience. We will automatically treat this as \"Yes, I want to help.\""
-cancel_button_text = "Okay, I'll do the dialogues."
+ok_button_text = "Yeah, totally."
+dialog_text = "Are you sure? This will negatively impact your experience."
+cancel_button_text = "No, never mind."
 
 [node name="ThankYou" type="ColorRect" parent="CanvasLayer2"]
 material = SubResource("ShaderMaterial_g306h")
@@ -276,11 +282,15 @@ anchor_left = 0.883594
 anchor_top = 0.554167
 anchor_right = 0.994531
 anchor_bottom = 0.590278
+offset_left = -197.0
+offset_top = 4.99979
+offset_right = 5.00037
+offset_bottom = 4.99982
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(452, 209)
 theme_override_fonts/font = ExtResource("4_orlvg")
-text = "NEXT (☞ ͡° ͜ʖ ͡°)☞"
+text = "SPACE / ENTER  FOR  NEXT (☞ ͡° ͜ʖ ͡°)☞ "
 
 [node name="GlitchLabel" type="Label" parent="CanvasLayer2"]
 offset_left = 6.0
@@ -343,6 +353,21 @@ libraries = {
 "": SubResource("AnimationLibrary_rqu1c")
 }
 
+[node name="hover" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_37cdh")
+
+[node name="press" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_ghx3e")
+
+[node name="sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_8ww5v")
+
+[connection signal="mouse_entered" from="CanvasLayer2/VBoxContainer/SkipAllButton" to="." method="_on_skip_all_button_mouse_entered"]
 [connection signal="pressed" from="CanvasLayer2/VBoxContainer/SkipAllButton" to="." method="_on_skip_all_button_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer2/VBoxContainer/SkipButton" to="." method="_on_skip_button_mouse_entered"]
 [connection signal="pressed" from="CanvasLayer2/VBoxContainer/SkipButton" to="." method="_on_skip_button_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer2/OptionsBox/Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_entered" from="CanvasLayer2/OptionsBox/Button2" to="." method="_on_button_2_mouse_entered"]
+[connection signal="mouse_entered" from="CanvasLayer2/OptionsBox/Button3" to="." method="_on_button_3_mouse_entered"]
 [connection signal="confirmed" from="CanvasLayer2/ConfirmSkip" to="." method="_on_confirm_skip_confirmed"]
+[connection signal="mouse_entered" from="CanvasLayer2/ConfirmSkip" to="." method="_on_confirm_skip_mouse_entered"]

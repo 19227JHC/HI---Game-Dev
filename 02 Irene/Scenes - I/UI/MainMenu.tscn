@@ -1,20 +1,23 @@
-[gd_scene load_steps=10 format=3 uid="uid://cwceet14npvhv"]
+[gd_scene load_steps=13 format=3 uid="uid://cwceet14npvhv"]
 
 [ext_resource type="Script" path="res://02 Irene/Scripts - I/UI - script/MainMenu.gd" id="1_5dvoe"]
-[ext_resource type="Texture2D" uid="uid://cfwg7hdqrxa53" path="res://02 Irene/Assets - I/noticeboard-800.png" id="1_irka3"]
 [ext_resource type="PackedScene" uid="uid://c5ea5yed0s5yf" path="res://02 Irene/Scenes - I/UI/settings.tscn" id="2_4lhw6"]
 [ext_resource type="FontFile" uid="uid://dytmi3e7gkhj0" path="res://02 Irene/fonts - I/pixely[1].ttf" id="2_jm0x6"]
+[ext_resource type="Texture2D" uid="uid://c4r32yas5v855" path="res://02 Irene/Assets - I/school_board.png" id="3_e2ctq"]
 [ext_resource type="AudioStream" uid="uid://brthprpjwdlgq" path="res://02 Irene/Empty Streets.ogg" id="4_nqses"]
+[ext_resource type="PackedScene" uid="uid://b6vdjvkhm7f63" path="res://01 Hannah/Scenes/howplay.tscn" id="6_dfsnf"]
+[ext_resource type="AudioStream" uid="uid://bagtp1s2op3m0" path="res://01 Hannah/Assets/SOund/UIBeep_Clicky 025_VZ_GN.wav" id="6_eq6ss"]
+[ext_resource type="AudioStream" uid="uid://dkbxluh70v0g8" path="res://01 Hannah/Assets/SOund/UIBeep_Clicky 024_VZ_GN.wav" id="7_rwpwc"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6x8xo"]
-texture = ExtResource("1_irka3")
-modulate_color = Color(0.270588, 0.270588, 0.270588, 1)
+texture = ExtResource("3_e2ctq")
+modulate_color = Color(0.82606, 0.82606, 0.82606, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n0h4r"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_thpbw"]
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_earip"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_thpbw"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -46,30 +49,41 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -172.5
-offset_top = -78.5
-offset_right = 172.5
-offset_bottom = 78.5
+offset_left = -56.0
+offset_top = -84.0
+offset_right = 289.0
+offset_bottom = 73.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1.25, 1.25)
 
 [node name="start_button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(0.282353, 0.282353, 0.282353, 1)
-theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.212882, 0.0804426, 0.0575589, 1)
+theme_override_colors/font_hover_color = Color(0.713609, 0.143679, 1.92523e-07, 1)
 theme_override_fonts/font = ExtResource("2_jm0x6")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_n0h4r")
 text = "START HERE"
 flat = true
 
+[node name="tutorial_button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.212882, 0.0804426, 0.0575589, 1)
+theme_override_colors/font_hover_color = Color(0.713609, 0.143679, 1.92523e-07, 1)
+theme_override_fonts/font = ExtResource("2_jm0x6")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_earip")
+text = "TUTORIAL"
+flat = true
+
 [node name="settings_button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(0.281187, 0.281187, 0.281187, 1)
-theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.212882, 0.0804426, 0.0575589, 1)
+theme_override_colors/font_hover_color = Color(0.713609, 0.143679, 1.92523e-07, 1)
 theme_override_fonts/font = ExtResource("2_jm0x6")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_thpbw")
 text = "SETTINGS"
@@ -78,9 +92,9 @@ flat = true
 [node name="exit_button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(0.281187, 0.281187, 0.281187, 1)
-theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.212882, 0.0804426, 0.0575589, 1)
+theme_override_colors/font_hover_color = Color(0.713609, 0.143679, 1.92523e-07, 1)
 theme_override_fonts/font = ExtResource("2_jm0x6")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_earip")
 text = "EXIT GAME"
@@ -88,8 +102,23 @@ flat = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Settings" parent="CanvasLayer" instance=ExtResource("2_4lhw6")]
+[node name="Howplay" parent="CanvasLayer" instance=ExtResource("6_dfsnf")]
+visible = false
 
+[node name="Settings" parent="CanvasLayer" instance=ExtResource("2_4lhw6")]
+visible = false
+
+[node name="hover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_eq6ss")
+
+[node name="press" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_rwpwc")
+
+[connection signal="mouse_entered" from="VBoxContainer/start_button" to="." method="_on_start_button_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/start_button" to="." method="_on_start_button_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/tutorial_button" to="." method="_on_tutorial_button_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/tutorial_button" to="." method="_on_tutorial_button_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/settings_button" to="." method="_on_settings_button_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/settings_button" to="." method="_on_settings_button_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/exit_button" to="." method="_on_exit_button_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/exit_button" to="." method="_on_exit_button_pressed"]

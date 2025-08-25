@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://wq3sg401yc4k"
+path="res://.godot/imported/UIMvmt_Transition 001_VZ_GN.wav-b67b3e487c1cf928ee171903797627a5.sample"
+
+[deps]
+
+source_file="res://01 Hannah/Assets/SOund/UIMvmt_Transition 001_VZ_GN.wav"
+dest_files=["res://.godot/imported/UIMvmt_Transition 001_VZ_GN.wav-b67b3e487c1cf928ee171903797627a5.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

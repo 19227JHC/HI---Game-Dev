@@ -1,8 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://d12r8d5c8hufq"]
+[gd_scene load_steps=14 format=3 uid="uid://d12r8d5c8hufq"]
 
 [ext_resource type="Script" path="res://02 Irene/Scripts - I/UI - script/pause.gd" id="1_lakyi"]
 [ext_resource type="Shader" path="res://02 Irene/Scripts - I/UI - script/pause.gdshader" id="2_2y15g"]
 [ext_resource type="PackedScene" uid="uid://c5ea5yed0s5yf" path="res://02 Irene/Scenes - I/UI/settings.tscn" id="3_q2obi"]
+[ext_resource type="AudioStream" uid="uid://bagtp1s2op3m0" path="res://01 Hannah/Assets/SOund/UIBeep_Clicky 025_VZ_GN.wav" id="4_7xnco"]
+[ext_resource type="AudioStream" uid="uid://dkbxluh70v0g8" path="res://01 Hannah/Assets/SOund/UIBeep_Clicky 024_VZ_GN.wav" id="5_jrq88"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_465cl"]
 shader = ExtResource("2_2y15g")
@@ -126,13 +128,14 @@ flat = true
 icon_alignment = 1
 
 [node name="Restart" type="Button" parent="PanelContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 focus_mode = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(0.282353, 0.282353, 0.282353, 1)
 theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
 theme_override_styles/focus = SubResource("StyleBoxEmpty_61a0e")
-text = "Restart Level"
+text = "Restart"
 flat = true
 icon_alignment = 1
 
@@ -164,13 +167,23 @@ libraries = {
 "": SubResource("AnimationLibrary_4n86p")
 }
 
+[node name="hover" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_7xnco")
+
+[node name="press" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_jrq88")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 10
+layer = 2
 
 [node name="Settings" parent="CanvasLayer" instance=ExtResource("3_q2obi")]
 visible = false
 
+[connection signal="mouse_entered" from="PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_mouse_entered"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="mouse_entered" from="PanelContainer/VBoxContainer/Restart" to="." method="_on_restart_mouse_entered"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="mouse_entered" from="PanelContainer/VBoxContainer/Settings" to="." method="_on_settings_mouse_entered"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="mouse_entered" from="PanelContainer/VBoxContainer/Exit_To_Menu" to="." method="_on_exit_to_menu_mouse_entered"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Exit_To_Menu" to="." method="_on_exit_to_menu_pressed"]

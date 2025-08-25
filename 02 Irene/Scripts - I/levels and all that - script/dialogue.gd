@@ -37,6 +37,7 @@ var glitches_enabled: bool = true
 
 
 func _ready():
+	$sound.play() # - HANNAH (attempting to add mystic)
 	$AnimationPlayer.play("RESET")
 	
 	buttons = $CanvasLayer2/OptionsBox.get_children()
@@ -52,6 +53,7 @@ func _ready():
 
 #--------------------------------------do you want glitches?----------------------------------------
 func _on_glitch_toggle_toggled(pressed: bool):
+	$press.play() # plays sound when button is pressed - HANNAH
 	glitches_enabled = pressed
 
 
@@ -153,6 +155,7 @@ func _show_dialogue_state():
 
 #----------------------------------------dialogue logic---------------------------------------------
 func _on_button_pressed(index):
+	$press.play() # plays sound when button is pressed - HANNAH
 	match state:
 		"choice_1":
 			if index == 0:
@@ -284,12 +287,15 @@ func _wait_for_continue():
 
 #----------------------------------on [what] button pressed-----------------------------------------
 func _on_skip_button_pressed():
+	$press.play() # plays sound when button is pressed  HANNAH
 	skipping = true
 
 func _on_skip_all_button_pressed():
+	$press.play() # plays sound when button is pressed - HANNAH
 	confirm_skip.popup_centered()
 
 func _on_confirm_skip_confirmed():
+	$press.play() # plays sound when button is pressed - HANNAH
 	skip_all = true
 	skip_confirmed = true
 
@@ -328,3 +334,24 @@ func trigger_glitch():
 	glitch_material.set_shader_parameter("glitch_active", false)
 	glitch_material.set_shader_parameter("shake_rate", 0.0)
 	glitch_material.set_shader_parameter("shake_power", 0.0)
+
+
+# --------------------------------- HANNAH ------------------------------------
+func _on_skip_all_button_mouse_entered():
+	$hover.play() # plays sound when mouse enters/hovers over button
+
+func _on_skip_button_mouse_entered():
+	$hover.play() # plays sound when mouse enters/hovers over button
+
+# player options hover
+func _on_button_mouse_entered():
+	$hover.play() # plays sound when mouse enters/hovers over button
+
+func _on_button_2_mouse_entered():
+	$hover.play() # plays sound when mouse enters/hovers over button
+
+func _on_button_3_mouse_entered():
+	$hover.play() # plays sound when mouse enters/hovers over button.
+
+func _on_confirm_skip_mouse_entered():
+	$hover.play() # plays sound when mouse enters/hovers over button.

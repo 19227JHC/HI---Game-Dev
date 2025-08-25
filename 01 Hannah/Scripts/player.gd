@@ -3,6 +3,10 @@ class_name Player # 4 connections
 
 signal healthChanged # 4 health bar
 
+# sound effects
+@onready var damageSFX = $damgeSFX
+@onready var deathSFX = $deathSFX
+
 # I moved it to gobal, don't panic!!
 #@export var maxHealth = 120
 #@export var currentHealth: int = maxHealth
@@ -67,6 +71,7 @@ func _physics_process(_delta):
 		
 		player_alive = false
 		currentHealth = 0
+		deathSFX.play()
 		gobal.currentHealth = currentHealth   # <-- update global
 		death_anim_played = true
 		print("player has been killed") # debugging
@@ -98,6 +103,7 @@ func _physics_process(_delta):
 func enemy_attack(enemy_position: Vector2):
 	if player_alive:
 		currentHealth -= 20
+		damageSFX.play()
 		gobal.currentHealth = currentHealth   # <-- update gobal
 		healthChanged.emit()
 		knockback((global_position - enemy_position).normalized())
@@ -257,3 +263,7 @@ func _process(delta):
 	if force_camera_current_frames > 0:
 		camera.make_current()
 		force_camera_current_frames -= 1
+
+
+func get_health() -> int:
+	return currentHealth

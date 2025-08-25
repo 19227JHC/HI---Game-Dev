@@ -1,5 +1,10 @@
 extends CharacterBody2D
 
+# sound effects
+@onready var player_enterSFX = $enterSFX # when player enter detection area
+@onready var damageSFX = $damageSFX  # when enemy takes damge
+@onready var deathSFX = $deadSFX # when death is triggered
+
 # ----- variables -----
 var speed = 40 # movment speed
 var dead = false 
@@ -31,6 +36,7 @@ var state = IDLE
 
 func _ready():
 	last_direction = Vector2.DOWN  # Ensure direction is initialized
+	$AudioStreamPlayer2D.play()
 	play_idle_animation()
 	change_state(IDLE)
 
@@ -170,6 +176,7 @@ func _on_detection_area_body_entered(body):
 	if body.name == "Player":
 		player = body
 		player_chase = true
+		player_enterSFX.play() # sound effect 
 		if not dead:
 			change_state(CHASE)
 
@@ -198,12 +205,14 @@ func deal_with_damage():
 	if player_inattack_range and gobal.player_current_attack:
 		if can_take_damage:
 			health -= 20
+			damageSFX.play() # sound effect
 			flash()
 			knockback((position - player.position))
 			$take_damage.start()
 			can_take_damage = false
 			print("Enemy Health = ", health) # Debugging
 			if health <= 0 and not dead:
+				deathSFX.play() # sound effect
 				change_state(DEAD)
 
 func _on_take_damage_timeout():

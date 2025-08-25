@@ -35,7 +35,6 @@ func _ready():
 		eject()
 
 
-
 # ----------to actively change the input keys in accordance to what it is in the InputMap-----------
 func get_key_for_action(action_name: String) -> String:
 	var events = InputMap.action_get_events(action_name)
@@ -46,6 +45,18 @@ func get_key_for_action(action_name: String) -> String:
 		elif ev is InputEventMouseButton:
 			return "Mouse" + str(ev.button_index)
 	return action_name  # fallback if no key found
+
+
+# ---------------------------------------to find the table------------------------------------------
+func find_door() -> Node2D:
+	var doors = get_tree().get_nodes_in_group("good_door")
+	if doors.size() == 0:
+		return null
+
+	var door = doors[0] as Node2D
+	if player and player.global_position.distance_to(door.global_position) <= 64:
+		return door
+	return null
 
 
 # --------------------------------to pick up and drop object----------------------------------------
@@ -71,7 +82,7 @@ func pickup_or_drop():
 	else:
 		var door = find_door()
 		if door and door.can_accept_item(self):
-			door.place_item(self)  # door CONSUMES the key and the door (should) open
+			door.consume_key(self)  # door CONSUMES the key and the door (should) open
 			return  # stop other drop logic cause the key is gone
 
 		else:
@@ -105,18 +116,6 @@ func eject():
 		var drop_offset = Vector2(32, 0)
 		drop_offset = drop_offset.rotated(player.rotation)
 		global_position = carry_point.global_position + drop_offset
-
-
-# ---------------------------------------to find the table------------------------------------------
-func find_door() -> Node2D:
-	var doors = get_tree().get_nodes_in_group("good_door")
-	if doors.size() == 0:
-		return null
-
-	var door = doors[0] as Node2D
-	if player and player.global_position.distance_to(door.global_position) <= 64:
-		return door
-	return null
 
 
 # ------------------------------------are you holding anything?-------------------------------------

@@ -1,18 +1,15 @@
 extends Node2D
 
-
 @onready var interaction_area: InteractionArea = $InteractionArea
-@onready var sprite = $StaticBody2D/Sprite2D
-@onready var collision_shape = $StaticBody2D/CollisionShape2D
-
+@onready var sprite: Sprite2D = $StaticBody2D/Sprite2D
+@onready var collision_shape: CollisionShape2D = $StaticBody2D/CollisionShape2D
 
 @export var item_name: String = "to pick up"
 @export var carry_point_path: NodePath  # Drag your player's carry_point here
 
-
-var held = false
-var player = null
-var carry_point = null
+var held: bool = false
+var player: Node = null
+var carry_point: Node = null
 
 
 func _ready():
@@ -24,9 +21,8 @@ func _ready():
 	else:
 		print("Player NOT found!")
 
-# Set up the interaction behavior dynamically
-	if player.can_interact:
-		# Set up the interaction behavior dynamically
+	# Set up the interaction behavior dynamically
+	if player and player.can_interact:
 		interaction_area.action_name = item_name
 		interaction_area.interact = Callable(self, "pickup_or_drop")
 	else:
@@ -39,10 +35,10 @@ func get_key_for_action(action_name: String) -> String:
 	if events.size() > 0:
 		var ev = events[0]
 		if ev is InputEventKey:
-			return OS.get_keycode_string(ev.physical_keycode)  # shows actual key, e.g. "F"
+			return OS.get_keycode_string(ev.physical_keycode)
 		elif ev is InputEventMouseButton:
 			return "Mouse" + str(ev.button_index)
-	return action_name  # fallback if no key found
+	return action_name
 
 
 # --------------------------------to pick up and drop object----------------------------------------
@@ -82,18 +78,19 @@ func pickup_or_drop():
 				get_parent().remove_child(self)
 				player.get_parent().add_child(self)
 				self.scale = Vector2(2, 2)
-				
+
 				# Drop slightly in front of the player so it doesn't overlap their collision
-				var drop_offset = Vector2(32, 0) # 16 pixels forward
-				drop_offset = drop_offset.rotated(player.rotation) # rotate to match player facing
+				var drop_offset = Vector2(32, 0)
+				drop_offset = drop_offset.rotated(player.rotation)
 				global_position = carry_point.global_position + drop_offset
-		
+
 		# Re-enable collision when dropped or placed
 		collision_shape.disabled = false
-		
 		held = false
+
 		if player and player.has_method("set_held_item"):
 			player.set_held_item(null)
+
 
 # forcibly eject
 func eject():
@@ -115,13 +112,14 @@ func eject():
 func find_nearby_table() -> Node2D:
 	var tables = get_tree().get_nodes_in_group("tables")
 	for table in tables:
-		if player.global_position.distance_to(table.global_position) < 64:  # Adjust as needed
+		if player.global_position.distance_to(table.global_position) < 64:
 			return table
 	return null
 
 
 func set_held(value: bool):
 	held = value
+
 
 # --------------------------------------change action name------------------------------------------
 func _process(_delta):
@@ -132,14 +130,12 @@ func _process(_delta):
 
 	# If player CANNOT interact
 	if not player.can_interact:
-		# If is held, eject right away
 		if held:
 			eject()
 			if player.has_method("set_held_item"):
 				player.set_held_item(null)
 			held = false
 
-		# no interaction
 		interaction_area.interact = Callable(self, "_do_nothing")
 		interaction_area.action_name = ""
 		return
@@ -156,6 +152,7 @@ func _process(_delta):
 			interaction_area.action_name = "[" + interact_key + "] to drop object"
 	else:
 		interaction_area.action_name = "[" + interact_key + "] " + item_name
+
 
 func _do_nothing():
 	pass

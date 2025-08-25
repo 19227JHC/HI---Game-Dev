@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cd7pxgqhcmh6h"
+path="res://.godot/imported/Monster_SoftGrowl2.mp3-a506ad6d1373386f3e83558b92134ebd.mp3str"
+
+[deps]
+
+source_file="res://01 Hannah/Assets/SOund/Monster_SoftGrowl2.mp3"
+dest_files=["res://.godot/imported/Monster_SoftGrowl2.mp3-a506ad6d1373386f3e83558b92134ebd.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

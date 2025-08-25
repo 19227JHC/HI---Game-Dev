@@ -1,9 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://g4m0sx1ygkwd"]
+[gd_scene load_steps=19 format=3 uid="uid://g4m0sx1ygkwd"]
 
 [ext_resource type="Script" path="res://02 Irene/Scripts - I/levels and all that - script/the_end.gd" id="1_ffdkl"]
 [ext_resource type="FontFile" uid="uid://cg03ls2khnai" path="res://02 Irene/fonts - I/dogica.otf" id="2_wtnuc"]
 [ext_resource type="FontFile" uid="uid://dytmi3e7gkhj0" path="res://02 Irene/fonts - I/pixely[1].ttf" id="3_85hcf"]
 [ext_resource type="Shader" path="res://02 Irene/Scripts - I/levels and all that - script/dialogue.gdshader" id="4_qwe88"]
+[ext_resource type="AudioStream" uid="uid://bagtp1s2op3m0" path="res://01 Hannah/Assets/SOund/UIBeep_Clicky 025_VZ_GN.wav" id="5_ij1mq"]
+[ext_resource type="AudioStream" uid="uid://dkbxluh70v0g8" path="res://01 Hannah/Assets/SOund/UIBeep_Clicky 024_VZ_GN.wav" id="5_jvi6d"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_112mx"]
 bg_color = Color(0, 0, 0, 0.313726)
@@ -105,15 +107,15 @@ anchor_left = -0.89274
 anchor_top = 0.594715
 anchor_right = -0.781803
 anchor_bottom = 0.630826
-offset_left = 1626.71
-offset_top = -1.19498
-offset_right = 1754.61
-offset_bottom = 12.9606
+offset_left = 1433.71
+offset_top = -0.194794
+offset_right = 1631.71
+offset_bottom = 13.9608
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(452, 209)
 theme_override_fonts/font = ExtResource("3_85hcf")
-text = "NEXT (☞ ͡° ͜ʖ ͡°)☞"
+text = "SPACE / ENTER  FOR  NEXT (☞ ͡° ͜ʖ ͡°)☞"
 metadata/_edit_use_anchors_ = true
 
 [node name="NextIndicator2" type="Label" parent="CanvasLayer2"]
@@ -122,15 +124,15 @@ anchor_left = 1.81861
 anchor_top = 0.585569
 anchor_right = 2.02135
 anchor_bottom = 0.62168
-offset_left = -1195.82
-offset_top = 2.39001
-offset_right = -1186.17
-offset_bottom = 16.5456
+offset_left = -1393.82
+offset_top = 7.39029
+offset_right = -1313.33
+offset_bottom = 21.5459
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(452, 209)
 theme_override_fonts/font = ExtResource("3_85hcf")
-text = "NEXT (☞ ͡° ͜ʖ ͡°)☞"
+text = "SPACE / ENTER  FOR  NEXT (☞ ͡° ͜ʖ ͡°)☞"
 metadata/_edit_use_anchors_ = true
 
 [node name="OptionsBox" type="VBoxContainer" parent="CanvasLayer2"]
@@ -180,15 +182,7 @@ size_flags_vertical = 3
 focus_mode = 0
 theme_override_fonts/font = ExtResource("2_wtnuc")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_kjxfd")
-text = "Skip All"
-
-[node name="SkipButton" type="Button" parent="CanvasLayer2/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-focus_mode = 0
-theme_override_fonts/font = ExtResource("2_wtnuc")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_kjxfd")
-text = "Skip"
+text = "Exit Game"
 
 [node name="GlitchLabel" type="Label" parent="CanvasLayer2"]
 offset_left = 6.0
@@ -209,6 +203,13 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_dpg5i")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_203a5")
 button_pressed = true
 
+[node name="ConfirmSkip" type="ConfirmationDialog" parent="CanvasLayer2"]
+initial_position = 2
+size = Vector2i(268, 100)
+ok_button_text = "I want to leave."
+dialog_text = "You truly want to exit the game?"
+cancel_button_text = "Cancel, cancel!!"
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
 
@@ -221,3 +222,16 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 metadata/_edit_use_anchors_ = true
+
+[node name="hover" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_ij1mq")
+
+[node name="press" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_jvi6d")
+
+[connection signal="mouse_entered" from="CanvasLayer2/OptionsBox/Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_entered" from="CanvasLayer2/OptionsBox/Button2" to="." method="_on_button_2_mouse_entered"]
+[connection signal="mouse_entered" from="CanvasLayer2/OptionsBox/Button3" to="." method="_on_button_3_mouse_entered"]
+[connection signal="mouse_entered" from="CanvasLayer2/VBoxContainer/SkipAllButton" to="." method="_on_skip_all_button_mouse_entered"]
+[connection signal="pressed" from="CanvasLayer2/VBoxContainer/SkipAllButton" to="." method="_on_skip_all_button_pressed"]
+[connection signal="confirmed" from="CanvasLayer2/ConfirmSkip" to="." method="_on_confirm_skip_confirmed"]

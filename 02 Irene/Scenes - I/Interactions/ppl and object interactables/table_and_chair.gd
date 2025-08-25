@@ -62,9 +62,14 @@ func swap_items(new_item: Node2D):
 		push_error("Player not found when swapping items.")
 		return
 
+	var carry_point = player.get_node("carry_point")
+
+	# Disable collisions on both items
+	set_collision_disabled(placed_item, true)
+	set_collision_disabled(new_item, true)
+
 	# Give old item to player
 	remove_child(placed_item)
-	var carry_point = player.get_node("carry_point")
 	carry_point.add_child(placed_item)
 	placed_item.position = Vector2.ZERO
 	placed_item.scale = Vector2(1, 1)
@@ -86,9 +91,23 @@ func swap_items(new_item: Node2D):
 	if player.has_method("set_held_item"):
 		player.set_held_item(null)
 
+	# Re-enable collisions on both items
+	set_collision_disabled(placed_item, false)
+	set_collision_disabled(new_item, false)
+
 
 func clear_placed_item():
 	placed_item = null
+
+
+
+# --------------------------------------for easy collision------------------------------------------
+func set_collision_disabled(item: Node, disabled: bool) -> void:
+	if not item:
+		return
+	var shape: CollisionShape2D = item.get_node_or_null("StaticBody2D/CollisionShape2D")
+	if shape:
+		shape.disabled = disabled
 
 
 # -------------------------------for the door's requirements to open--------------------------------

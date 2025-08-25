@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bagtp1s2op3m0"
+path="res://.godot/imported/UIBeep_Clicky 025_VZ_GN.wav-3aa52c1f801f19c6bdcad6cfacb7eafe.sample"
+
+[deps]
+
+source_file="res://01 Hannah/Assets/SOund/UIBeep_Clicky 025_VZ_GN.wav"
+dest_files=["res://.godot/imported/UIBeep_Clicky 025_VZ_GN.wav-3aa52c1f801f19c6bdcad6cfacb7eafe.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

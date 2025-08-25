@@ -546,6 +546,7 @@ var all_interaction_dialogue_sets = {
 				"[There's... crying? Someone's crying in the distance!]",
 				"Best of luck on your next journey, Player. We will never forget this."
 			]
+			# SACRIFICIAL END
 		},
 		"nope_sorry_i_value_life": {
 			"lines": ["That's alright."],
@@ -564,7 +565,7 @@ var all_interaction_dialogue_sets = {
 			],
 			"next_states": [
 				"confusion_what_items",
-				"already_place_items",
+				"already_placed_items",
 				"if_not_then_what"
 			]
 		},
@@ -618,12 +619,6 @@ var all_interaction_dialogue_sets = {
 		"never_gonna_let_you_down": {
 			"lines": ["Thank you."],
 			"next_states": ["best_of_luck"]
-		},
-		
-		"sacrificial_option": {
-			"lines": [
-				"placeholder here"
-			]
 		},
 		
 		# THE ENDINGS
@@ -741,16 +736,196 @@ var all_endings_dialogues_set = {
 	"good_ending": {
 		"start": {
 			"lines": [
-				{"speakers": Speakers.H, "line": "And that's a wrap! Oh, what a roller coaster of a ride!"},
-				{"speakers": Speakers.I, "line": "Couldn't agree with you more. I loved this one."},
-				{"speakers": Speakers.H, "line": "Quite unfortunate that their adventure had ended..."},
-				{"speakers": Speakers.I, "line": "Yes, quite."},
+				{"speakers": Speakers.H, "line": "And that's a wrap! Oh, what a roller\n\ncoaster of a ride!"},
+				{"speakers": Speakers.I, "line": "Couldn't agree with you more.\n\nI loved this one."},
+				{"speakers": Speakers.H, "line": "Quite unfortunate that their adventure\n\nhad ended..."},
+				{"speakers": Speakers.I, "line": "Yes, quite."}
+			],
+			"options": [
+				"Ahem.",
+				"Can you not hear me?",
+				"Yoo-hoo! I'm still here!"
+			],
+			"next_states": ["ahem_1", "ahem_1", "ahem_2"]
+		},
+		"ahem_1": {
+			"lines": [
 				{"speakers": Speakers.I, "line": "There are so much left to explore!"},
-				{"speakers": Speakers.I, "line": "I want the Player to experience them all!"},
-				{"speakers": Speakers.H, "line": "The thirst for more exists in everyone, it seemed."},
-				{"speakers": Speakers.I, "line": "Everyone but the Player, you mean.\n\nThis one's hasn't experienced it all!"},
-			
+				{"speakers": Speakers.I, "line": "I want the Player to experience them\n\n[font_size=24][i]all![/i][/font_size]"},
+				{"speakers": Speakers.H, "line": "The thirst for more exists in\n\neveryone, it seemed."},
+				{"speakers": Speakers.I, "line": "Everyone but the Player, you mean.\n\nThis one's hasn't experienced it all!"}
+			],
+			"options": ["AHEM!"],
+			"next_states": ["ahem_2"] # snuck in yet another reference; it's more subtle this time (Frozen)
+		},
+		"ahem_2": {
+			"lines": [
+				{"speakers": Speakers.H, "line": "It's quite a shame-\n\n[font_size=24][i]OH MY![/i][/font_size]"},
+				{"speakers": Speakers.I, "line": "Huh? What is it?"},
+				{"speakers": Speakers.H, "line": "The Player's still here!"},
+				{"speakers": Speakers.I, "line": "That's odd...\n\nis there a bug here somewhere?"}
+			],
+			"options": [
+				"Sorry, um, your ma...jesties?"
+			],
+			"next_states": ["your_ma_jesties"]
+		},
+		"your_ma_jesties": {
+			"lines": [
+				{"speakers": Speakers.H, "line": "Oh no! Please don't call us that!"},
+				{"speakers": Speakers.I, "line": "Agreed. That was weird."},
+				{"speakers": Speakers.H, "line": "..."},
+				{"speakers": Speakers.I, "line": "..."}
+			],
+			"options": ["..."],
+			"next_states": ["dot_dot_dot"]
+		},
+		
+		# QNA TIME!
+		"dot_dot_dot": {
+			"lines": [
+				{"speakers": Speakers.H, "line": "Well.\n\nWhat do we do now?"},
+				{"speakers": Speakers.I, "line": "I suppose, because they've come\n\n[font_size=24][i]this[/i][/font_size] far..."},
+				{"speakers": Speakers.I, "line": "We might as well offer some wisdom."},
+				{"speakers": Speakers.H, "line": "Are you sure that's...\n\n[font_size=24][i]wise?[/i][/font_size]"},
+				{"speakers": Speakers.I, "line": "..."},
+				{"speakers": Speakers.I, "line": "Well.\n\nCan't hurt, can it?"},
+				{"speakers": Speakers.I, "line": "Besides, the Player have saved us!\n\nThink of this as a... reward, of sorts."},
+				{"speakers": Speakers.H, "line": "I guess so.\n\nYou talk, though"},
+				{"speakers": Speakers.I, "line": "Sure!\n\nWhat say you, Player?"}
+			],
+			"options": ["Will there be any continuation of this?", "How was this world made?", "Just how old are you people..?"],
+			"next_states": ["sequel_or_not", "how_world_made", "how_old"]
+		},
+		# sequel
+		"sequel_or_not": {
+			"lines": [
+				{"speakers": Speakers.H, "line": "Oh wow..."},
+				{"speakers": Speakers.I, "line": "That's, um..."},
+				{"speakers": Speakers.H, "line": "That's a loaded question, for sure..."},
+				{"speakers": Speakers.I, "line": "Yeah...\n\nHow should we answer this..."},
+				{"speakers": Speakers.H, "line": "Player, the future isn't our domain."},
+				{"speakers": Speakers.I, "line": "I don't think any of us hold\n\n[font_size=24][i]any[/i][/font_size] kind of power upon it."},
+				{"speakers": Speakers.H, "line": "Bottom line is,"},
+				{"speakers": Speakers.I, "line": "...we don't really know ourselves."},
+			],
+			"options": ["Oh.", "That's okay, then."],
+			"next_states": ["that_is_fine", "that_is_fine"]
+		},
+		"that_is_fine": {
+			"lines": [
+				{"speakers": Speakers.I, "line": "We'll definitely let you know\n\nif we've got any news, though!"},
+				{"speakers": Speakers.H, "line": "And it's not like it's outside\n\nthe realm of possibility, Player."},
+				{"speakers": Speakers.H, "line": "In fact, I'd like to think that\n\n[font_size=24][i]Nothing[/i][/font_size]\n\nreally is."},
+				{"speakers": Speakers.I, "line": "Yeah, so you\n\ntotally should watch out for that!"},
+			],
+			"options": [
+				"Well then...\n\nCan I ask how this world was made?",
+				"Would it be too much\n\nif I asked how old you guys are?",
+				"okay.\n\nAnd I think I'm done with questions, thanks."
+			],
+			"next_states": ["how_world_made", "how_old", "done"]
+		},
+		# how was this world made?
+		"how_world_made": {
+			"lines": [
+				{"speakers": Speakers.H, "line": "Well, (clears throat)\n\nOnce Upon A Time..."},
+				{"speakers": Speakers.I, "line": "Wait- Not the-"},
+				{"speakers": Speakers.H, "line": "In A Land..."},
+				{"speakers": Speakers.H, "line": "...Far, Far Away..."},
+				{"speakers": Speakers.I, "line": "It's a yes and a no, really."},
+				{"speakers": Speakers.H, "line": "-Two commoners banded together\n\nto make a beautiful castle-"},
+				{"speakers": Speakers.I, "line": "More like suffered through the long,\n\narduous process together..."},
+				{"speakers": Speakers.H, "line": "-And created this wonderful world!"},
+				{"speakers": Speakers.I, "line": "Uh, yeah...\n\nWhatever that was, I suppose."},
+			],
+			"options": ["Castle...", "Then a whole new world?!"], # Aladdin reference now, muehehehe
+			"next_states": ["details_schmetails", "details_schmetails"]
+		},
+		"details_schmetails": {
+			"lines": [
+				{"speakers": Speakers.I, "line": "Sorry, Player.\n\nMy memory's a bit spotty..."},
+				{"speakers": Speakers.H, "line": "Mine too..."},
+				{"speakers": Speakers.H, "line": "Do come back and ask us\n\nnext time, though!"},
+				{"speakers": Speakers.I, "line": "We'll probably remember then, haha!"},
+				{"speakers": Speakers.H, "line": "Exams took too much out of us, eh?"},
+				{"speakers": Speakers.I, "line": "Yeah, most definitely..."},
+			],
+			"options": [
+				"Forgetful already?\n\nHow old are you exactly?",
+				"Meet again? When exactly is that?",
+				"...I'll let you guys rest.\n\nThank you, though."
+			],
+			"next_states": ["how_old", "sequel_or_not", "done"]
+		},
+		# old age?!
+		"how_old": {
+			"lines": [
+				{"speakers": Speakers.I, "line": "[font_size=24][i]*LE GASP![/i][/font_size]"},
+				{"speakers": Speakers.H, "line": "You should [font_size=24][i]NOT[/i][/font_size] have asked us\n\n
+				[font_size=24][b][i]that.[/i][/b][/font_size]"}
+			],
+			"options": ["I was just curious!"],
+			"next_states": ["just_curious"]
+		},
+		"just_curious": {
+			"lines": [
+				{"speakers": Speakers.H, "line": "Take your curiosity elsewhere!"},
+				{"speakers": Speakers.I, "line": "Age is quite the sensitive topic.\n\nThere is no right answer, trust me."},
+			],
+			"options": [
+				"Well then...\n\nCan I ask how this world was made?",
+				"And about that sequel...",
+				"I think I'm done with questions, thanks."
+			],
+			"next_states": ["how_world_made", "sequel_or_not", "done"]
+		},
+		
+		# DONE!
+		"done": {
+			"lines": [
+				{"speakers": Speakers.I, "line": "You are most welcome, Player."},
+				{"speakers": Speakers.H, "line": "Well that's a wrap, then!"},
+				{"speakers": Speakers.I, "line": "We hope you've had fun here, Player."},
+				{"speakers": Speakers.I, "line": "Yeah, and it's time for us to leave now..."},
+				{"speakers": Speakers.H, "line": "But worry not!\n\nFor it won't be the last you'll\n\nsee of us!"}
+			],
+			"options": [
+				"Goodbye.\n\nMay the roads take you on the journey of your dreams.", # guys... I think I just found our motto!
+				"Wait! Is there an option to restart?"
+			],
+			"next_states": ["true_end", "restart_please"]
+		},
+		"true_end": {
+			"lines": [
+				{"speakers": Speakers.H, "line": "You know, I really liked that\n\nlast thing you said..."},
+				{"speakers": Speakers.I, "line": "Me too! We'll frame it\n\nand display it somewhere."},
+				{"speakers": Speakers.H, "line": "Thanks for all the precious memories..."},
+				{"speakers": Speakers.I, "line": "...they're something we'll cherish,\n\n something we hope you'll cherish too!"},
 			]
+			# END END
+		},
+		"restart_please": {
+			"lines": [
+				{"speakers": Speakers.H, "line": "But of course!"},
+				{"speakers": Speakers.I, "line": "Just click yes-"},
+				{"speakers": Speakers.H, "line": "-And the road will-"},
+				{"speakers": Speakers.I, "line": "-Open up for you!"},
+			],
+			"options": ["Yes"],
+			"next_states": ["restart_end"]
+		},
+		"restart_end": {
+			"lines": [
+				{"speakers": Speakers.H, "line": "I guess this goodbye wasn't\n\nreally needed, then."},
+				{"speakers": Speakers.I, "line": "Who knew we'd be seeing you\n\nagain so soon!"},
+				{"speakers": Speakers.I, "line": "Regardless, though."},
+				{"speakers": Speakers.I, "line": "May your journey always be blessed\n\nwith the best orange juice!"},
+				{"speakers": Speakers.H, "line": "(elbows the other) Psst- It was,\n\nMay the roads take you on the journey\n\nof your dreams!"},
+				{"speakers": Speakers.I, "line": "Oh right!"},
+				{"speakers": Speakers.I, "line": "Well anyways, good luck, Player!"}
+			]
+			# END END
 		},
 		
 		# just so i can copy paste easily
@@ -766,10 +941,10 @@ var all_endings_dialogues_set = {
 	"bad_ending": {
 		"start:": {
 			"lines": [
-				{"speaker": Speakers.H, "line": "So... the Player succeeded."},
-				{"speaker": Speakers.I, "line": "Quite an unexpected result, indeed.\n\nWhatever did we do wrong?"},
-				{"speaker": Speakers.H, "line": "Maybe we should've added more enemies!\n\nThe more the merrier!"},
-				{"speaker": Speakers.I, "line": "Certainly wouldn't have hurt."}
+				{"speakers": Speakers.H, "line": "So... the Player succeeded."},
+				{"speakers": Speakers.I, "line": "Quite an unexpected result, indeed.\n\nWhatever did we do wrong?"},
+				{"speakers": Speakers.H, "line": "Maybe we should've added more enemies!\n\nThe more the merrier!"},
+				{"speakers": Speakers.I, "line": "Certainly wouldn't have hurt."}
 			],
 			"options": ["What are you-?", "Hey, I'm here too, you know!"],
 			"next_states": ["indignant", "i_am_here"]
@@ -777,10 +952,10 @@ var all_endings_dialogues_set = {
 
 		"indignant": {
 			"lines": [
-				{"speaker": Speakers.H, "line": "Hmm... Did you hear anything?"},
-				{"speaker": Speakers.I, "line": "Nope.\n\nMust've been the wind."},
-				{"speaker": Speakers.I, "line": "Anywho. I think we should redo this."},
-				{"speaker": Speakers.H, "line": "Most definitely, I don't think it's-"},
+				{"speakers": Speakers.H, "line": "Hmm... Did you hear anything?"},
+				{"speakers": Speakers.I, "line": "Nope.\n\nMust've been the wind."},
+				{"speakers": Speakers.I, "line": "Anywho. I think we should redo this."},
+				{"speakers": Speakers.H, "line": "Most definitely, I don't think it's-"},
 			],
 			"options": [
 				"But I didn't do anything wrong!",
@@ -818,31 +993,139 @@ var all_endings_dialogues_set = {
 		},
 		"monsters_what_monsters": {
 			"lines": [
-				
-			]
+				{"speakers": Speakers.H, "line": "[font_size=24][i]Just[/i][/font_size] a couple of..."},
+				{"speakers": Speakers.I, "line": "...[font_size=24][i]monsters[/i][/font_size]?"},
+				{"speakers": Speakers.H, "line": "Those [font_size=24][i]monsters[/i][/font_size] you speak of..."},
+				{"speakers": Speakers.I, "line": "...are as [color=red]human[/color] as [font_size=24][i]you[/i][/font_size] are."},
+				{"speakers": Speakers.H, "line": "And yet... You still killed them."},
+				{"speakers": Speakers.I, "line": "Shed their blood upon our [color=red]SACRED GROUNDS[/color]!"}
+			],
+			"options": [
+				"Was this not supposed to be the easy way out?!",
+				"The SCHOOL???",
+				"I'm sorry! I didn't know!"
+			],
+			"next_states": ["easy_way_out", "sacred_grounds", "i_did_not_know"]
+		},
+		"easy_way_out": {
+			"lines": [
+				{"speakers": Speakers.I, "lines": "(giggling uncontrollably) AHAHA!"},
+				{"speakers": Speakers.H, "line": "Dear Player,"},
+				{"speakers": Speakers.I, "line": "-AHAHAHAHAHAHAHA-"},
+				{"speakers": Speakers.H, "line": "I believe you missed an imporant value\n\nin life."},
+				{"speakers": Speakers.I, "line": "[font_size=24][i]-AHAHAHAHAHAHAHAHAHAHA-[/i]"},
+				{"speakers": Speakers.H, "line": "[color=red]Nothing[/color] is easy in life."},
+				{"speakers": Speakers.I, "line": "-Ahahaha! You [font_size=24][i]really[/i] thought it'd\n\nbe easy?!"},
+				{"speakers": Speakers.H, "line": "Truly foolish. That door is\n\nthe Devil's trap."},
+				{"speakers": Speakers.I, "line": "Hmm. Yes. And for that-"},
+				{"speakers": Speakers.H, "line": "-You will now die."},
+				{"speakers": Speakers.I, "line": "Buh-Byee!"},
+			],
+			"options": [
+				"No, WAIT-",
+				"-I'M NOT READY TO-"
+			],
+			"next_states": ["secret_ending_bad_ending", "secret_ending_bad_ending"]
+		},
+		"sacred_grounds": {
+			"lines": [
+				{"speakers": Speakers.H, "line": "Yes.\n\nSchools are where the young learn and grow!"},
+				{"speakers": Speakers.I, "line": "Are you not in one yourself?"},
+				{"speakers": Speakers.H, "line": "Eh.\n\nNever mind that,\n\nWe should really get this over and done with..."},
+				{"speakers": Speakers.I, "line": "True...\n\nToo much secrets of thsi world has been spilled."},
+				{"speakers": Speakers.H, "line": "Goodbye, Player."},
+				{"speakers": Speakers.I, "line": "It's time for your [font_size=24][color=red][i]eternal sleep[/i][/color][/font_size]."},
+			],
+			"options": [
+				"No, WAIT-",
+				"-I'M NOT READY TO-"
+			],
+			"next_states": ["secret_ending_bad_ending", "secret_ending_bad_ending"]
+		},
+		"i_did_not_know": {
+			"lines": [
+				{"speakers": Speakers.H, "line": "[color=red][font_size=32]THERE HAS BEEN [i]MULTIPLE[/i] WARNINGS![/font_size][/color]"},
+				{"speakers": Speakers.I, "line": "And yet, you ignore them all..."},
+				{"speakers": Speakers.H, "line": "We do not appreciate liars."},
+				{"speakers": Speakers.I, "line": "And ignorant fools, more so."},
+				{"speakers": Speakers.H, "line": "I think it's time for you to leave,\n\n[font_size=24][i]Player[/i][/font_size]."},
+				{"speakers": Speakers.I, "line": "You've known too much, already."},
+			],
+			"options": [
+				"No, WAIT-",
+				"-I'M NOT READY TO-"
+			],
+			"next_states": ["secret_ending_bad_ending", "secret_ending_bad_ending"]
 		},
 		# when I said happy-ish ending, this is the one ⬇️
 		"mission_is_it": {
 			"lines": [
-				
+				{"speakers": Speakers.H, "line": "Oh?\n\nIs that... so?"},
+				{"speakers": Speakers.I, "line": "Hmm..."},
+				{"speakers": Speakers.H, "line": "I [font_size=24][i]do[/i][/font_size] respect a dedicated motive..."},
+				{"speakers": Speakers.I, "line": "But the Player killed-"},
+				{"speakers": Speakers.H, "line": "-Many, yes. But also saved one."},
+				{"speakers": Speakers.I, "line": "[color=red]AND YOU THINK SAVING ONE\n\nOUTWEIGHS ALL THE PAIN?![/color]"},
+				{"speakers": Speakers.H, "line": "No, but.
+				\n\nIt [font_size=24][i]was[/i][/font_size] the mission we gave the Player."},
+				{"speakers": Speakers.I, "line": "But-"},
+				{"speakers": Speakers.H, "line": "I thought [font_size=24][i]you[/i][/font_size] wanted us to be kind
+				\n\nto Players? The Good or Bad?"},
+				{"speakers": Speakers.I, "line": "I-"},
+				{"speakers": Speakers.I, "line": "..."},
+				{"speakers": Speakers.I, "line": "Ugh, very well, then."},
+			],
+			"options": ["Then...\n\nAm I free?"],
+			"next_states": ["free"]
+		},
+		"free": {
+			"lines": [
+				{"speakers": Speakers.H, "line": "I suppose..."},
+				{"speakers": Speakers.I, "line": "You are free to leave...\n\nor restart to see where\n\nyour mistakes lie."},
+				{"speakers": Speakers.I, "line": "What say you, Player?"},
+			],
+			"options": ["End this, please.", "Restart."], # Welp. Snuck in an EPIC reference without knowing ehe
+			"next_states": ["end_this", "restart"]
+		},
+		"end_this": {
+			"lines": [
+				{"speakers": Speakers.H, "line": "Very well, then, Player."},
+				{"speakers": Speakers.I, "line": "And before you leave-"},
+				{"speakers": Speakers.I, "line": "I..."},
+				{"speakers": Speakers.H, "line": "Oh, just say it!"},
+				{"speakers": Speakers.I, "line": "I [font_size=24][i]do[/i][/font_size] admire your conviction
+				\n\nto your mission."},
 			]
+			# END GAME END
+		},
+		"restart": {
+			"lines": [
+				{"speakers": Speakers.H, "line": "Very well, then, Player."},
+				{"speakers": Speakers.I, "line": "And before you leave-"},
+				{"speakers": Speakers.I, "line": "I..."},
+				{"speakers": Speakers.H, "line": "Oh, just say it!"},
+				{"speakers": Speakers.I, "line": "I [font_size=24][i]do[/i][/font_size] admire your conviction\n\nto your mission."},
+				{"speakers": Speakers.H, "line": "See you around!"},
+			]
+			# END GAME END
 		},
 		"totally_your_fault": {
 			"lines": [
 				{"speakers": Speakers.H, "line": "I'm sorry..."},
-				{"speakers": Speakers.I, "line": "But [i]you're[/i] the one who [i]chose[/i] to entered this world."},
-				{"speakers": Speakers.H, "line": "Your argument does not have any merit, I'm afraid."},
-				{"speakers": Speakers.I, "line": "It means it's quite stupid, and that you're a doofus."},
+				{"speakers": Speakers.I, "line": "But [font_size=24][i]you're[/i][/font_size] the one who\n\n
+				[font_size=24][i]chose[/i]\n\nto entered this world."},
+				{"speakers": Speakers.H, "line": "Your argument does not have any merit,\n\nI'm afraid."},
+				{"speakers": Speakers.I, "line": "It means it's quite stupid,\n\nand that you're a doofus."},
 				{"speakers": Speakers.H, "line": "Hey! We speak corteously to humans."},
 				{"speakers": Speakers.I, "line": "Not evil ones, though,"},
 				{"speakers": Speakers.H, "line": "You make a good point..."},
 				{"speakers": Speakers.H, "line": "I will too, then!"},
 				{"speakers": Speakers.I, "line": "Ah, wait, no-"},
-				{"speakers": Speakers.H, "line": "(This one takes a deep breath, and then-) YOU LITTLE ******"},
-				{"speakers": Speakers.I, "line": "I'm afraid we have to stop this here, Player."},
+				{"speakers": Speakers.H, "line": "(This one takes a deep breath, and then-)\n\nYOU LITTLE ******"},
+				{"speakers": Speakers.I, "line": "I'm afraid we have to stop this here,\n\nPlayer."},
 				{"speakers": Speakers.H, "line": "-LITTLE ***** *** ************* **** **"},
 				{"speakers": Speakers.I, "line": "Now, begone!"},
-				{"speakers": Speakers.I, "line": "I hope you reflect on your actions here. Remember, Karma-"},
+				{"speakers": Speakers.I, "line": "I hope you reflect on your actions here.\n\nRemember, Karma-"},
 				{"speakers": Speakers.H, "line": "*stops the tirade for a moment\n\n-NEVER FORGETS-*continues the tirade"},
 			]
 			# END
@@ -852,11 +1135,12 @@ var all_endings_dialogues_set = {
 			"lines": [
 				{"speakers": Speakers.H, "line": "Who-"},
 				{"speakers": Speakers.I, "line": "Pssh, look, over there!"},
-				{"speakers": Speakers.H, "line": "What the?! Who invited [i]that[/i] bum?"},
+				{"speakers": Speakers.H, "line": "What the?! Who invited [font_size=24][i]that[/i][/font_size] bum?"},
 				{"speakers": Speakers.I, "line": "I'm guessing it's no one."},
-				{"speakers": Speakers.I, "line": "Now, don't you know eavesdropping is bad, little Player?"},
-				{"speakers": Speakers.H, "line": "How horrible!\n\nnThey've been destorying our world and killing our little creations;
-				\n\nand now, tresprassing to our [i][color=red]sacred place[/color][/i]?!"},
+				{"speakers": Speakers.I, "line": "Now, don't you know eavesdropping is bad,\n\nlittle Player?"},
+				{"speakers": Speakers.H, "line": "How horrible!\n\nnThey've been destorying our world
+				and killing our little creations;
+				\n\nand now, tresprassing to our [font_size=24][i][color=red]sacred place[/color][/i][/font_size]?!"},
 				{"speakers": Speakers.I, "line": "Destructive [b]AND[/b] disrespectful."},
 				{"speakers": Speakers.I, "line": "I propose we get rid of them\n\n
 				before they accidentally hear a secret of this world..."},
@@ -872,20 +1156,20 @@ var all_endings_dialogues_set = {
 
 		"you_fool": {
 			"lines": [
-				{"speaker": Speakers.H, "line": "Deaf..."},
-				{"speaker": Speakers.I, "line": "...idiots?"},
-				{"speaker": Speakers.H, "line": "This little...dares to-"},
-				{"speaker": Speakers.I, "line": "Oho! You're getting it [i]now[/i]."},
-				{"speaker": Speakers.H,
+				{"speakers": Speakers.H, "line": "Deaf..."},
+				{"speakers": Speakers.I, "line": "...idiots?"},
+				{"speakers": Speakers.H, "line": "This little...dares to-"},
+				{"speakers": Speakers.I, "line": "Oho! You're getting it [font_size=24][i]now[/i][/font_size]."},
+				{"speakers": Speakers.H,
 				 "line": "[font_size=32]WE ARE THIS WORLD'S CREATORS!\n\nHOW DARE YOU, A PUNY HUMAN, INSULT US?![/font_size]"},
-				{"speaker": Speakers.I,
+				{"speakers": Speakers.I,
 				 "line": "[color=red]An insult to us is an insult to this world.\n\nI cannot let such an offense slide.[/color]"},
-				{"speaker": Speakers.H,
+				{"speakers": Speakers.H,
 				 "line": "WE BANISH YOU TO THE OBLIVION, PLAYER!\n\nTHE PRIVILEGRE OF CHOOSING YOUR AFTERLIFE
-					\n\nSHALL [i]NEVER[/i] BE GIVEN TO YOUOU!"},
-				{"speaker": Speakers.I, "line": "[color=red]Goodbye.[/color]"},
-				{"speaker": Speakers.H, "line": "KARMA-"},
-				{"speaker": Speakers.I, "line": "-[i]Never[/i] forgets."}
+					\n\nSHALL [font_size=24][i]NEVER[/i][/font_size] BE GIVEN TO YOUOU!"},
+				{"speakers": Speakers.I, "line": "[color=red]Goodbye.[/color]"},
+				{"speakers": Speakers.H, "line": "KARMA-"},
+				{"speakers": Speakers.I, "line": "-[font_size=24][i]Never[/i][/font_size] forgets."}
 			],
 			"options": [
 				"No, WAIT-",
@@ -898,10 +1182,10 @@ var all_endings_dialogues_set = {
 		# ...I might just make one lead to a 'happy ish' ending, I suppose.
 		"secret_ending_bad_ending": {
 			"lines": [
-				{"speaker": Speakers.H, "line": "Good riddance."},
-				{"speaker": Speakers.I, "line": "Yeah, for sure.\n\nI hope the next one would be better..."},
+				{"speakers": Speakers.H, "line": "Good riddance."},
+				{"speakers": Speakers.I, "line": "Yeah, for sure.\n\nI hope the next one would be better..."},
 				{"speakers": Speakers.H, "line": "We cannot afford another failure."},
-				{"speakers": Speakers.I, "line": "Agreed. We must be more careful in our next choice..."}
+				{"speakers": Speakers.I, "line": "Agreed.\n\nWe must be more careful in our next choice..."}
 			]
 			# END
 			# no nice 'do you wanna restart' button, sorry not sorry.

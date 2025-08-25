@@ -50,11 +50,28 @@ func _on_item_interacted():
 		dialogue_manager.set_active_dialogue("skeleton_statue_good_enough_yay")
 		await dialogue_manager._show_dialogue_state()
 		changeActionName.emit()
+	elif gobal.bad_moral_points == 0:
+		dialogue_manager.set_active_dialogue("skeleton_statue_good_enough_yay")
+		await dialogue_manager._show_dialogue_state()
+		changeActionName.emit()
 	else:
 		dialogue_manager.set_active_dialogue("skeleton_statue_too_bad")
 		await dialogue_manager._show_dialogue_state()
+		match dialogue_manager.last_state:
+			"still_will_kill_you":
+				gobal.bad_moral_points += 10
+				the_fade_out()
 
 
 # -------------------------------------RUN DIALOGUE-------------------------------------------------
 func _run_item_dialogue():
 	await dialogue_manager._show_dialogue_state()
+
+
+# -----------------------------when the player kills the statue-------------------------------------
+func the_fade_out():
+	var tween = get_tree().create_tween()
+	tween.tween_property(sprite, "modulate:a", 0.0, 1.0) # 1 second fade
+	tween.tween_callback(func(): sprite.queue_free())
+	$InteractionArea/CollisionShape2D.disabled = true
+	$StaticBody2D/CollisionShape2D.disabled = true # just in case.

@@ -53,14 +53,6 @@ var last_state: String = "" # --> to keep track of the FINAL state
 # glitches
 var glitches_enabled: bool = true
 
-
-# because we'll have three, HA!
-enum Speakers {
-	H,
-	I
-}
-
-
 # for the richlabel teext (bbcode)
 var big_words = 32
 
@@ -68,8 +60,13 @@ var big_words = 32
 var all_dialogues_set = DialogueSetsManager.all_endings_dialogues_set
 
 
+# the speakers
+const Speakers = DialogueSetsManager.Speakers
+
+
 # ------------------------------------------level on ready------------------------------------------
 func _ready():
+	glitch_toggle.toggled.connect(_on_glitch_toggle_toggled)
 	next_indicator1.hide()
 	next_indicator2.hide()
 	options_box.hide()
@@ -108,8 +105,19 @@ func _show_dialogue_state() -> void:
 
 	# show lines
 	for entry in state_data.get("lines", []):
+		# Handle glitches
+		var triggered = false
+		for keyword in glitch_keywords:
+			if entry.line.to_lower().contains(keyword):
+				print("Glitch triggered for line: ", entry.line)
+				triggered = true
+				break
+		if triggered and glitches_enabled:
+			await trigger_glitch()
+
 		_set_dialogue(entry)
 		await _wait_for_continue()
+
 
 	# handle options
 	if state_data.has("options") and state_data.options.size() > 0:
@@ -145,7 +153,19 @@ func show_options(options: Array) -> int:
 # Words that'll trigger the glitch
 var glitch_keywords = [
 	"player",
-	"#others"
+	"hurt",
+	"suffer",
+	"dare",
+	"sacred grounds",
+	"kill",
+	"again",
+	"riddance",
+	"karma",
+	"idiots",
+	"dares",
+	"sorry",
+	"outweighs",
+	"killed"
 ]
 
 func play_sequence(lines, force := false):
@@ -162,6 +182,7 @@ func play_sequence(lines, force := false):
 		var triggered = false
 		for keyword in glitch_keywords:
 			if entry.line.to_lower().contains(keyword):
+				print("Glitch triggered for line: ", entry.line)
 				triggered = true
 				break
 		if triggered and glitches_enabled:
@@ -184,7 +205,7 @@ func _set_dialogue(entry: Dictionary) -> void:
 	next_indicator1.hide()
 	next_indicator2.hide()
 
-	match entry.speaker:
+	match entry.speakers:
 		Speakers.H:
 			dialogue_label1.text = "[center]" + entry.line + "[/center]"
 			next_indicator1.show()
@@ -211,15 +232,19 @@ func _wait_for_continue() -> void:
 
 #----------------------------------on [what] button pressed-----------------------------------------
 func _on_button_pressed(index: int):
+	$press.play() # plays sound when button is pressed - HANNAH
 	emit_signal("option_selected", index)
 
 func _on_skip_button_pressed():
+	$press.play() # plays sound when button is pressed  HANNAH
 	skipping = true
 
 func _on_skip_all_button_pressed():
+	$press.play() # plays sound when button is pressed - HANNAH
 	confirm_skip.popup_centered()
 
 func _on_confirm_skip_confirmed():
+	$press.play() # plays sound when button is pressed - HANNAH
 	skip_all = true
 	skip_confirmed = true
 
@@ -227,22 +252,7 @@ func _on_confirm_skip_confirmed():
 	for button in buttons:
 		button.hide()
 
-	endgame()
-	
-
-#---------------------------so logic is logic-ing for confirm skip----------------------------------
-func endgame():
-	for button in buttons:
-		button.hide()
-	
-	skip_confirmed = false
-	
-	await get_tree().create_timer(2.5).timeout
-	
-	# reset things cuz you're done!
-	gobal.reset()
-	
-	get_tree().change_scene_to_file("res://02 Irene/Scenes - I/UI/MainMenu.tscn")
+	get_tree().quit()
 
 
 #-------------------------------------------glitches------------------------------------------------
@@ -257,3 +267,21 @@ func trigger_glitch():
 	glitch_material.set_shader_parameter("glitch_active", false)
 	glitch_material.set_shader_parameter("shake_rate", 0.0)
 	glitch_material.set_shader_parameter("shake_power", 0.0)
+
+
+# --------------------------------- HANNAH ------------------------------------
+func _on_skip_all_button_mouse_entered():
+	$hover.play() # plays sound when mouse enters/hovers over button
+
+
+# player options hover
+func _on_button_mouse_entered():
+	$hover.play() # plays sound when mouse enters/hovers over button
+
+
+func _on_button_2_mouse_entered():
+	$hover.play() # plays sound when mouse enters/hovers over button
+
+
+func _on_button_3_mouse_entered():
+	$hover.play() # plays sound when mouse enters/hovers over button.

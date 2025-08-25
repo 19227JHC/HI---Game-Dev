@@ -16,6 +16,7 @@ var my_statue = null
 func _ready():
 	my_statue = get_tree().get_first_node_in_group("skeleton_statue")
 	interaction_area.interact = Callable(self, "_on_interact")
+	interaction_area.action_name = item_name
 
 	player = get_tree().get_first_node_in_group("player")
 	if player:
@@ -98,9 +99,9 @@ func change_action_name():
 # don't think i'll need it anymore because of the signal thing
 func _process(delta):
 	# or gobal.bad_moral_points == 0 -> put out just for testing!!
-	#if gobal.good_moral_points >= 7 or key_is_consumed == true:
-		#var interact_key = get_key_for_action("interact")
-		#interaction_area.action_name = "[" + interact_key + "] to enter"
+	if key_is_consumed == true:
+		var interact_key = get_key_for_action("interact")
+		interaction_area.action_name = "[" + interact_key + "] to enter"
 	#else:
 		#interaction_area.action_name = item_name
 	pass

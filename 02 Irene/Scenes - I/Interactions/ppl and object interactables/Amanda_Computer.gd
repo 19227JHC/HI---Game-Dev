@@ -50,7 +50,7 @@ func _on_item_interacted():
 			# Also make sure currentHealth doesn't exceed the new max
 			player.currentHealth = min(player.currentHealth, player.maxHealth)
 			gobal.currentHealth = player.currentHealth
-			healthChanged.emit()
+			player.healthChanged.emit()
 			gobal.good_moral_points += 20
 			print("Player current maxHealth:", player.maxHealth)
 			print("Player current good_moral_points:", gobal.good_moral_points)
@@ -60,7 +60,7 @@ func _on_item_interacted():
 		"cruel_ending":
 			player.currentHealth /= 2
 			gobal.currentHealth = player.currentHealth  # <-- update global
-			healthChanged.emit()
+			player.healthChanged.emit()
 			gobal.bad_moral_points += 10
 			print("Player current currentHealth:", player.currentHealth)
 			print("Player current bad_moral_points:", gobal.bad_moral_points)

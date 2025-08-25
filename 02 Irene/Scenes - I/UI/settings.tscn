@@ -1,9 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://c5ea5yed0s5yf"]
+[gd_scene load_steps=20 format=3 uid="uid://c5ea5yed0s5yf"]
 
 [ext_resource type="Script" path="res://02 Irene/Scripts - I/UI - script/settings.gd" id="1_4tdos"]
 [ext_resource type="FontFile" uid="uid://cg03ls2khnai" path="res://02 Irene/fonts - I/dogica.otf" id="1_50as0"]
 [ext_resource type="FontFile" uid="uid://dytmi3e7gkhj0" path="res://02 Irene/fonts - I/pixely[1].ttf" id="2_g03gn"]
 [ext_resource type="PackedScene" uid="uid://jv4nmtu2f44i" path="res://02 Irene/Scenes - I/levels and all that/input_button.tscn" id="4_mg7nv"]
+[ext_resource type="AudioStream" uid="uid://bagtp1s2op3m0" path="res://01 Hannah/Assets/SOund/UIBeep_Clicky 025_VZ_GN.wav" id="5_twqpi"]
+[ext_resource type="AudioStream" uid="uid://dkbxluh70v0g8" path="res://01 Hannah/Assets/SOund/UIBeep_Clicky 024_VZ_GN.wav" id="6_c8f3w"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aflva"]
 bg_color = Color(1, 1, 1, 1)
@@ -201,6 +203,12 @@ text = "RETURN"
 libraries = {
 "": SubResource("AnimationLibrary_3lwgr")
 }
+
+[node name="hover" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_twqpi")
+
+[node name="press" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_c8f3w")
 
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/volume" to="." method="_on_volume_value_changed"]
 [connection signal="toggled" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/mute" to="." method="_on_mute_toggled"]

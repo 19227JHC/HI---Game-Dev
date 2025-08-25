@@ -1,9 +1,9 @@
-[gd_scene load_steps=30 format=3 uid="uid://dvkyqxq4ehsv"]
+[gd_scene load_steps=31 format=3 uid="uid://dvkyqxq4ehsv"]
 
 [ext_resource type="Script" path="res://02 Irene/Scripts - I/levels and all that - script/level_2.gd" id="1_ad510"]
 [ext_resource type="TileSet" uid="uid://c4yjh1sv168t1" path="res://02 Irene/level_1.tres" id="1_cjtuo"]
-[ext_resource type="PackedScene" uid="uid://dsda4m63onxxl" path="res://02 Irene/Scenes - I/Interactions/ppl and object interactables/door_level_2.tscn" id="3_1nsy1"]
 [ext_resource type="PackedScene" uid="uid://batlsr4q5ikn0" path="res://01 Hannah/Scenes/player.tscn" id="3_ftl8w"]
+[ext_resource type="PackedScene" uid="uid://dsda4m63onxxl" path="res://02 Irene/Scenes - I/Interactions/ppl and object interactables/door_level_2.tscn" id="3_gowhs"]
 [ext_resource type="PackedScene" uid="uid://ba8mn0j2r0kku" path="res://01 Hannah/Scenes/enemy.tscn" id="4_8sabk"]
 [ext_resource type="PackedScene" uid="uid://6bnrd0kbdqjh" path="res://02 Irene/Scenes - I/Interactions/ppl and object interactables/door_level_2_2.tscn" id="4_lfwqa"]
 [ext_resource type="Texture2D" uid="uid://djprlqqf1nhch" path="res://01 Hannah/Assets/HealthBarAS/HealthBar2.png" id="4_ypk61"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://47v26ogjd2s4" path="res://02 Irene/Scenes - I/Interactions/ppl and object interactables/broken_bookshelf.tscn" id="14_lox3w"]
 [ext_resource type="PackedScene" uid="uid://4d87yfgj7pvn" path="res://02 Irene/Scenes - I/Interactions/ppl and object interactables/test_door.tscn" id="16_15h3j"]
 [ext_resource type="PackedScene" uid="uid://cca2whw4iachk" path="res://02 Irene/Scenes - I/Interactions/ppl and object interactables/naked_statue.tscn" id="17_j1ht1"]
+[ext_resource type="PackedScene" uid="uid://cc43khi3jdv1d" path="res://02 Irene/Scenes - I/Interactions/ppl and object interactables/key2.tscn" id="17_x87cd"]
 [ext_resource type="PackedScene" uid="uid://cl6qfc2sk5ue2" path="res://02 Irene/Scenes - I/Interactions/ppl and object interactables/door_statue.tscn" id="18_vsfkm"]
 [ext_resource type="PackedScene" uid="uid://gpqkkmaouafk" path="res://02 Irene/Scenes - I/Interactions/ppl and object interactables/hiding_chemical.tscn" id="19_0w221"]
 [ext_resource type="AudioStream" uid="uid://brthprpjwdlgq" path="res://02 Irene/Empty Streets.ogg" id="20_x1sac"]
@@ -114,11 +115,10 @@ tile_set = ExtResource("1_cjtuo")
 format = 2
 layer_0/tile_data = PackedInt32Array(3473432, 2490376, 20, 3538968, 2490376, 21, 3473433, 2555912, 20, 3538969, 2555912, 21, 3473434, 2621448, 20, 3538970, 2621448, 21, 3473435, 2686984, 20, 3538971, 2686984, 21, 3473436, 2686984, 20, 3538972, 2686984, 21, 3473437, 2752520, 20, 3538973, 2752520, 21, 3473438, 2818056, 20, 3538974, 2818056, 21, 2752466, 2490376, 22, 2818002, 2490376, 23, 2752467, 2555912, 22, 2818003, 2555912, 23, 2686983, 3538952, 28, 2686984, 3604488, 28, 2686985, 3538952, 30, 2686986, 3604488, 30, 2686987, 3538952, 28, 2686988, 3604488, 28, 2752519, 3538952, 29, 2752520, 3604488, 29, 2752521, 3538952, 31, 2752522, 3604488, 31, 2752523, 3538952, 29, 2752524, 3604488, 29, 917480, 2490376, 20, 983016, 2490376, 21, 917481, 2555912, 20, 983017, 2555912, 21, 917482, 2621448, 20, 983018, 2621448, 21, 917483, 2686984, 20, 983019, 2686984, 21, 917484, 2752520, 20, 983020, 2752520, 21, 917485, 2818056, 20, 983021, 2818056, 21, 917486, 3670024, 22, 983022, 3670024, 23, 917487, 3735560, 22, 983023, 3735560, 23, 917452, 2555912, 20, 982988, 2555912, 21, 917453, 2621448, 20, 982989, 2621448, 21, 917454, 2686984, 20, 982990, 2686984, 21, 917455, 2752520, 20, 982991, 2752520, 21, 917456, 2818056, 20, 982992, 2818056, 21, 917459, 3866632, 22, 982995, 3866632, 23, 917451, 2490376, 20, 982987, 2490376, 21, 917458, 3801096, 22, 982994, 3801096, 23, -39, 2490376, 18, 65497, 2490376, 19, -38, 2555912, 18, 65498, 2555912, 19, -33, 2490376, 18, 65503, 2490376, 19, -32, 2555912, 18, 65504, 2555912, 19, 196680, 2621448, 16, 262216, 2621448, 17, 196681, 2686984, 16, 262217, 2686984, 17, 196682, 3538952, 28, 262218, 3538952, 29, 196683, 3604488, 28, 262219, 3604488, 29, 196684, 2883592, 17, 262220, 2883592, 18, 327756, 2883592, 19, 196685, 2949128, 17, 262221, 2949128, 18, 327757, 2949128, 19, 131150, 2752520, 16, 196686, 2752520, 17, 262222, 2752520, 18, 131151, 2818056, 16, 196687, 2818056, 17, 262223, 2818056, 18, 112, 3801096, 20, 131177, 3014664, 16, 196713, 3014664, 17, 131178, 3080200, 16, 196714, 3080200, 17, 131180, 2490376, 20, 196716, 2490376, 21, 131181, 2555912, 20, 196717, 2555912, 21, 131182, 2621448, 20, 196718, 2621448, 21, 131183, 2686984, 20, 196719, 2686984, 21, 65648, 3801096, 21, 131184, 2752520, 20, 196720, 2752520, 21, 113, 3866632, 20, 65649, 3866632, 21, 131185, 2621448, 20, 196721, 2621448, 21, 131186, 2686984, 20, 196722, 2686984, 21, 131187, 2555912, 20, 196723, 2555912, 21, 131188, 2621448, 20, 196724, 2621448, 21, 131189, 2686984, 20, 196725, 2686984, 21, 131190, 2752520, 20, 196726, 2752520, 21, 131191, 2818056, 20, 196727, 2818056, 21, 196728, 3670024, 22, 262264, 3670024, 23, 196729, 3735560, 22, 262265, 3735560, 23, -1310647, 3801096, 20, -1245111, 3801096, 21, -1310646, 3866632, 20, -1245110, 3866632, 21, -36, 2490376, 22, 65500, 2490376, 23, -35, 2555912, 22, 65501, 2555912, 23, -458654, 3801096, 22, -393118, 3801096, 23, -458653, 3866632, 22, -393117, 3866632, 23)
 
-[node name="door_level_2" parent="." groups=["good_door"] instance=ExtResource("3_1nsy1")]
-z_index = 1
-position = Vector2(-422, 382)
+[node name="door_level_2" parent="." groups=["good_door"] instance=ExtResource("3_gowhs")]
+position = Vector2(-419, 382)
 scale = Vector2(2, 2)
-destination_position = Vector2(-342, -20)
+destination_position = Vector2(-341, -20)
 
 [node name="door_level_2_2" parent="." instance=ExtResource("4_lfwqa")]
 position = Vector2(280, 382)
@@ -127,17 +127,32 @@ destination_position = Vector2(1562, -173)
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("3_ftl8w")]
 z_index = 5
-position = Vector2(-460, -169)
+position = Vector2(-175, 848)
 scale = Vector2(2, 2)
 
 [node name="Enemy" parent="." groups=["enemies"] instance=ExtResource("4_8sabk")]
 z_index = 5
-position = Vector2(-493, 754)
+position = Vector2(-583, 617)
 scale = Vector2(2, 2)
 
 [node name="Enemy2" parent="." groups=["enemies"] instance=ExtResource("4_8sabk")]
 z_index = 5
-position = Vector2(545, 568)
+position = Vector2(-287, 445)
+scale = Vector2(2, 2)
+
+[node name="Enemy3" parent="." groups=["enemies"] instance=ExtResource("4_8sabk")]
+z_index = 5
+position = Vector2(-45, 697)
+scale = Vector2(2, 2)
+
+[node name="Enemy4" parent="." groups=["enemies"] instance=ExtResource("4_8sabk")]
+z_index = 5
+position = Vector2(363, 532)
+scale = Vector2(2, 2)
+
+[node name="Enemy5" parent="." groups=["enemies"] instance=ExtResource("4_8sabk")]
+z_index = 5
+position = Vector2(757, 849)
 scale = Vector2(2, 2)
 
 [node name="skeleton_statue" parent="." instance=ExtResource("7_nfldc")]
@@ -241,19 +256,19 @@ position = Vector2(702, 485)
 scale = Vector2(2.5, 2.5)
 
 [node name="key" parent="." groups=["key"] instance=ExtResource("10_1gore")]
-position = Vector2(703, 500)
+position = Vector2(702, 498)
 scale = Vector2(1.5, 1.5)
 carry_point_path = NodePath("../Player")
 
 [node name="just to help determine the teleportation point" type="Button" parent="."]
 visible = false
-offset_left = 1562.0
-offset_top = -173.0
-offset_right = 1570.0
-offset_bottom = -165.0
+offset_left = -342.0
+offset_top = -20.0
+offset_right = -334.0
+offset_bottom = -12.0
 pivot_offset = Vector2(4, 5)
 
-[node name="door_statue" parent="." instance=ExtResource("18_vsfkm")]
+[node name="door_statue" parent="." groups=["door_statue"] instance=ExtResource("18_vsfkm")]
 z_index = 3
 position = Vector2(-340, -276)
 scale = Vector2(1.25, 1.25)
@@ -307,8 +322,7 @@ position = Vector2(-63, -266)
 scale = Vector2(1.5, 1.5)
 carry_point_path = NodePath("../Player")
 
-[node name="key2" parent="." groups=["key_2"] instance=ExtResource("10_1gore")]
-z_index = 2
+[node name="key2" parent="." groups=["key"] instance=ExtResource("17_x87cd")]
 position = Vector2(-560, -268)
 scale = Vector2(1.5, 1.5)
 
@@ -386,9 +400,54 @@ z_index = 2
 position = Vector2(1750, -630)
 scale = Vector2(1.5, 1.5)
 
-[node name="Enemy5" parent="." groups=["enemies"] instance=ExtResource("4_8sabk")]
+[node name="Enemy6" parent="." groups=["enemies"] instance=ExtResource("4_8sabk")]
 z_index = 5
-position = Vector2(1741, -564)
+position = Vector2(1492, -252)
+scale = Vector2(2, 2)
+
+[node name="Enemy7" parent="." groups=["enemies"] instance=ExtResource("4_8sabk")]
+z_index = 5
+position = Vector2(1549, -408)
+scale = Vector2(2, 2)
+
+[node name="Enemy8" parent="." groups=["enemies"] instance=ExtResource("4_8sabk")]
+z_index = 5
+position = Vector2(1398, -517)
+scale = Vector2(2, 2)
+
+[node name="Enemy9" parent="." groups=["enemies"] instance=ExtResource("4_8sabk")]
+z_index = 5
+position = Vector2(1681, -543)
+scale = Vector2(2, 2)
+
+[node name="Enemy10" parent="." groups=["enemies"] instance=ExtResource("4_8sabk")]
+z_index = 5
+position = Vector2(1916, -526)
+scale = Vector2(2, 2)
+
+[node name="Enemy11" parent="." groups=["enemies"] instance=ExtResource("4_8sabk")]
+z_index = 5
+position = Vector2(1873, -268)
+scale = Vector2(2, 2)
+
+[node name="Enemy12" parent="." groups=["enemies"] instance=ExtResource("4_8sabk")]
+z_index = 5
+position = Vector2(2163, -228)
+scale = Vector2(2, 2)
+
+[node name="Enemy13" parent="." groups=["enemies"] instance=ExtResource("4_8sabk")]
+z_index = 5
+position = Vector2(1707, -366)
+scale = Vector2(2, 2)
+
+[node name="Enemy14" parent="." groups=["enemies"] instance=ExtResource("4_8sabk")]
+z_index = 5
+position = Vector2(1928, -407)
+scale = Vector2(2, 2)
+
+[node name="Enemy15" parent="." groups=["enemies"] instance=ExtResource("4_8sabk")]
+z_index = 5
+position = Vector2(2151, -444)
 scale = Vector2(2, 2)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

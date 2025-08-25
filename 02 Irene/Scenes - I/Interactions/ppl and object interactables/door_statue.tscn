@@ -1,15 +1,129 @@
-[gd_scene load_steps=7 format=3 uid="uid://cl6qfc2sk5ue2"]
+[gd_scene load_steps=16 format=3 uid="uid://cl6qfc2sk5ue2"]
 
 [ext_resource type="Script" path="res://02 Irene/Scenes - I/Interactions/ppl and object interactables/door_statue.gd" id="1_koqgi"]
 [ext_resource type="Texture2D" uid="uid://bi0lbljecj4o6" path="res://02 Irene/Assets - I/isolated objects/SkeletonStatue.png" id="1_ock75"]
 [ext_resource type="PackedScene" uid="uid://dnkxxwhgim1qy" path="res://02 Irene/Scenes - I/Interactions/InteractionArea.tscn" id="2_3biw4"]
 [ext_resource type="PackedScene" uid="uid://ckdmd1fbc1nxb" path="res://02 Irene/Scenes - I/levels and all that/interactable_dialogue.tscn" id="3_om4w1"]
+[ext_resource type="Shader" path="res://02 Irene/Scripts - I/levels and all that - script/dialogue_thank_you.gdshader" id="5_ky8my"]
+[ext_resource type="FontFile" uid="uid://cg03ls2khnai" path="res://02 Irene/fonts - I/dogica.otf" id="5_w8r8g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_te2sd"]
 size = Vector2(12, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k1h0o"]
 size = Vector2(49, 47)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l55v3"]
+shader = ExtResource("5_ky8my")
+shader_parameter/lod = 0.0
+
+[sub_resource type="Theme" id="Theme_ab2nu"]
+default_font = ExtResource("5_w8r8g")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f24mh"]
+bg_color = Color(0, 0, 0, 0.313726)
+
+[sub_resource type="Animation" id="Animation_780ns"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ThanksForThePayment/Panel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/ColorRect2:material:shader_parameter/lod")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RegretfullyNo/Panel:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_l8d4c"]
+resource_name = "blur"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ThanksForThePayment/Panel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/ColorRect2:material:shader_parameter/lod")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.8]
+}
+
+[sub_resource type="Animation" id="Animation_cmkyb"]
+resource_name = "blur_2"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect2:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.8]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RegretfullyNo/Panel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j0itp"]
+_data = {
+"RESET": SubResource("Animation_780ns"),
+"blur": SubResource("Animation_l8d4c"),
+"blur_2": SubResource("Animation_cmkyb")
+}
 
 [node name="door_statue" type="Node2D"]
 script = ExtResource("1_koqgi")
@@ -30,3 +144,87 @@ position = Vector2(0, 11.5)
 shape = SubResource("RectangleShape2D_k1h0o")
 
 [node name="dialogue" parent="." instance=ExtResource("3_om4w1")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_l55v3")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+title = "Do you want to..."
+initial_position = 1
+size = Vector2i(432, 132)
+theme = SubResource("Theme_ab2nu")
+ok_button_text = "Yes"
+dialog_text = "
+...truly lose your health?"
+cancel_button_text = "NO!"
+
+[node name="ThanksForThePayment" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Panel" type="Panel" parent="ThanksForThePayment"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -151.0
+offset_bottom = 149.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_f24mh")
+
+[node name="Label" type="Label" parent="ThanksForThePayment/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_w8r8g")
+text = "Thank you for your payment. Your reward will be given to you soon."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RegretfullyNo" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Panel" type="Panel" parent="RegretfullyNo"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -151.0
+offset_bottom = 149.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="RegretfullyNo/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_w8r8g")
+text = "Sorry, but no can do, Player.
+
+You'd die otherwise."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_j0itp")
+}
+
+[connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]

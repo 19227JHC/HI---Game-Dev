@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://e5675q23mg02"
+path="res://.godot/imported/Breath Howling - Free Sound.mp3-fdbc43fa6f2bf691a19a1edc6b0730b4.mp3str"
+
+[deps]
+
+source_file="res://01 Hannah/Assets/SOund/Breath Howling - Free Sound.mp3"
+dest_files=["res://.godot/imported/Breath Howling - Free Sound.mp3-fdbc43fa6f2bf691a19a1edc6b0730b4.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

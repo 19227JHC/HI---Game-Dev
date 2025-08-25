@@ -12,8 +12,10 @@ var active_areas = []
 var can_interact = true
 
 
+# --------------------------REGISTER AND UNREGISTER THE INTERACTION AREA----------------------------
 func register_area(area: InteractionArea):
 	active_areas.push_back(area)	
+
 
 func unregister_area(area: InteractionArea):
 	var index = active_areas.find(area)
@@ -21,10 +23,12 @@ func unregister_area(area: InteractionArea):
 		active_areas.remove_at(index)
 
 
+# --------------------------------------time to interact--------------------------------------------
 func interact():
 	print("Interact signal triggered for:", self.name)
 
 
+# --------------------------------------------------------------------------------------------------
 func _process(delta):
 	if player == null:
 		player = get_tree().get_first_node_in_group("player")
@@ -48,6 +52,7 @@ func _process(delta):
 		label.hide()
 
 
+ # which one to interact with first?
 func _sort_by_distance_to_player(area1, area2):
 	if player == null:
 		player = get_tree().get_first_node_in_group("player")
@@ -70,6 +75,7 @@ func _sort_by_distance_to_player(area1, area2):
 	return dist1 < dist2
 
 
+# ---------------------------------what happens when you interact-----------------------------------
 func _input(event):
 	if event.is_action_pressed("interact") && can_interact:
 		if active_areas.size() > 0 :
