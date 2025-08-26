@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=3 uid="uid://c3pwgfw52q8jc"]
+
+[ext_resource type="Script" path="res://02 Irene/Scenes - I/Interactions/ppl and object interactables/Amanda_Computer.gd" id="1_blu3n"]
+[ext_resource type="Texture2D" uid="uid://bglflfg6ki7ti" path="res://02 Irene/Assets - I/isolated objects/BlackScreenComputer.png" id="1_t3y8t"]
+[ext_resource type="Texture2D" uid="uid://c7kfdbwjx01gb" path="res://02 Irene/Assets - I/amanda #1.png" id="2_w3nyf"]
+[ext_resource type="PackedScene" uid="uid://dnkxxwhgim1qy" path="res://02 Irene/Scenes - I/Interactions/InteractionArea.tscn" id="3_dp6bk"]
+[ext_resource type="PackedScene" uid="uid://ckdmd1fbc1nxb" path="res://02 Irene/Scenes - I/levels and all that/interactable_dialogue.tscn" id="5_3s4xq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gial7"]
+radius = 35.0571
+
+[node name="the_amanda_computer" type="Node2D"]
+script = ExtResource("1_blu3n")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_t3y8t")
+
+[node name="amanda_lols" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(2.5, -2.5)
+scale = Vector2(0.0357143, 0.0180505)
+texture = ExtResource("2_w3nyf")
+
+[node name="InteractionArea" parent="." instance=ExtResource("3_dp6bk")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_gial7")
+
+[node name="dialogue" parent="." instance=ExtResource("5_3s4xq")]

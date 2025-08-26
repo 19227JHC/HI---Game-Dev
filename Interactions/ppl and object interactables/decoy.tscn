@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://dkvcoh6se6t46"]
+
+[ext_resource type="Texture2D" uid="uid://bu13d5eu6ctvn" path="res://02 Irene/Assets - I/doors/door-1.png" id="1_8sbj8"]
+[ext_resource type="Script" path="res://02 Irene/Scenes - I/Interactions/ppl and object interactables/decoy.gd" id="1_vraix"]
+[ext_resource type="PackedScene" uid="uid://dnkxxwhgim1qy" path="res://02 Irene/Scenes - I/Interactions/InteractionArea.tscn" id="2_3x1lg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ooed"]
+size = Vector2(28, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ysv5"]
+size = Vector2(44, 40)
+
+[node name="decoy" type="Node2D"]
+script = ExtResource("1_vraix")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+texture = ExtResource("1_8sbj8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_7ooed")
+debug_color = Color(0.936597, 1.54981e-05, 0.631537, 0.42)
+
+[node name="InteractionArea" parent="." instance=ExtResource("2_3x1lg")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_0ysv5")
