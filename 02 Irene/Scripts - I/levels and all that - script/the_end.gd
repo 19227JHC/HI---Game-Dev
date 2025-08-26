@@ -16,7 +16,8 @@ signal option_selected(index: int)
 @onready var buttons: Array[Button] = [
 	$CanvasLayer2/OptionsBox/Button,
 	$CanvasLayer2/OptionsBox/Button2,
-	$CanvasLayer2/OptionsBox/Button3
+	$CanvasLayer2/OptionsBox/Button3,
+	$CanvasLayer2/OptionsBox/Button4 # just in case
 ]
 
 # GLITCHES (and its toggle)

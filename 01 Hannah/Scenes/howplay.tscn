@@ -161,8 +161,7 @@ theme_override_constants/outline_size = 0
 theme_override_constants/caret_width = 0
 theme_override_fonts/font = ExtResource("3_yiapm")
 theme_override_font_sizes/font_size = 21
-text = "Attack --->
-"
+text = "Attack --->"
 
 [node name="Move" type="TextEdit" parent="Panel"]
 layout_mode = 0
@@ -206,13 +205,13 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -148.0
-offset_top = -178.0
-offset_right = 73.0
-offset_bottom = -148.0
+offset_left = -132.0
+offset_top = -132.0
+offset_right = 60.0
+offset_bottom = -79.0
 grow_horizontal = 2
 grow_vertical = 0
-scale = Vector2(1.3627, 3.92908)
+scale = Vector2(1.5, 1.5)
 focus_mode = 0
 theme_override_fonts/font = ExtResource("3_do8cy")
 theme_override_styles/normal = SubResource("StyleBoxFlat_n3rjc")

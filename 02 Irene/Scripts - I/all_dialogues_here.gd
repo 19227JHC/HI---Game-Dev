@@ -289,7 +289,7 @@ var all_interaction_dialogue_sets = {
 	"skeleton_statue_too_bad": {
 		"too_bad": {
 			"lines": [
-				"OH MY!\n\nMy apologies, Player, but you have too much blood on your hands.",
+				"OH MY!\n\nMy apologies, Player, but you have\n\ntoo much blood on your hands.",
 				"We're afraid you may not enter,\n\nthe tiles have been pristine since the day this world was created."
 			],
 			"options": ["Aw, come on!", "I've barely killed anyone!", "It's unfair!"],
@@ -342,7 +342,7 @@ var all_interaction_dialogue_sets = {
 			"lines": [
 				"What do you mean, Player?",
 				"[The statue let out a hearty laugh]",
-				"Surely you're not insinuating that you'll KILL me as you killed our brethren, are you,\n\nPlayer?"
+				"Surely you're not insinuating that you'll KILL me as you\n\nkilled our brethren, are you, Player?"
 			],
 			"options": [
 				"And what if I am...?",
@@ -1031,7 +1031,7 @@ var all_endings_dialogues_set = {
 			"lines": [
 				{"speakers": Speakers.H, "line": "Yes.\n\nSchools are where the young learn and grow!"},
 				{"speakers": Speakers.I, "line": "Are you not in one yourself?"},
-				{"speakers": Speakers.H, "line": "Eh.\n\nNever mind that,\n\nWe should really get this over and done with..."},
+				{"speakers": Speakers.H, "line": "Eww.\n\nNever mind that,\n\nWe should really get this over and done with..."},
 				{"speakers": Speakers.I, "line": "True...\n\nToo much secrets of thsi world has been spilled."},
 				{"speakers": Speakers.H, "line": "Goodbye, Player."},
 				{"speakers": Speakers.I, "line": "It's time for your [font_size=24][color=red][i]eternal sleep[/i][/color][/font_size]."},
@@ -1066,11 +1066,9 @@ var all_endings_dialogues_set = {
 				{"speakers": Speakers.I, "line": "But the Player killed-"},
 				{"speakers": Speakers.H, "line": "-Many, yes. But also saved one."},
 				{"speakers": Speakers.I, "line": "[color=red]AND YOU THINK SAVING ONE\n\nOUTWEIGHS ALL THE PAIN?![/color]"},
-				{"speakers": Speakers.H, "line": "No, but.
-				\n\nIt [font_size=24][i]was[/i][/font_size] the mission we gave the Player."},
+				{"speakers": Speakers.H, "line": "No, but.\n\nIt [font_size=24][i]was[/i][/font_size] the mission we gave the Player."},
 				{"speakers": Speakers.I, "line": "But-"},
-				{"speakers": Speakers.H, "line": "I thought [font_size=24][i]you[/i][/font_size] wanted us to be kind
-				\n\nto Players? The Good or Bad?"},
+				{"speakers": Speakers.H, "line": "I thought [font_size=24][i]you[/i][/font_size] wanted us to be kind\n\nto Players? The Good or Bad?"},
 				{"speakers": Speakers.I, "line": "I-"},
 				{"speakers": Speakers.I, "line": "..."},
 				{"speakers": Speakers.I, "line": "Ugh, very well, then."},
@@ -1112,8 +1110,7 @@ var all_endings_dialogues_set = {
 		"totally_your_fault": {
 			"lines": [
 				{"speakers": Speakers.H, "line": "I'm sorry..."},
-				{"speakers": Speakers.I, "line": "But [font_size=24][i]you're[/i][/font_size] the one who\n\n
-				[font_size=24][i]chose[/i]\n\nto entered this world."},
+				{"speakers": Speakers.I, "line": "But [font_size=24][i]you're[/i][/font_size] the one who\n\n[font_size=24][i]chose[/i]\n\nto entered this world."},
 				{"speakers": Speakers.H, "line": "Your argument does not have any merit,\n\nI'm afraid."},
 				{"speakers": Speakers.I, "line": "It means it's quite stupid,\n\nand that you're a doofus."},
 				{"speakers": Speakers.H, "line": "Hey! We speak corteously to humans."},
@@ -1135,15 +1132,13 @@ var all_endings_dialogues_set = {
 			"lines": [
 				{"speakers": Speakers.H, "line": "Who-"},
 				{"speakers": Speakers.I, "line": "Pssh, look, over there!"},
-				{"speakers": Speakers.H, "line": "What the?! Who invited [font_size=24][i]that[/i][/font_size] bum?"},
+				{"speakers": Speakers.H, "line": "What the?! Who invited [font_size=24][i]that[/i][/font_size] loser?"},
 				{"speakers": Speakers.I, "line": "I'm guessing it's no one."},
 				{"speakers": Speakers.I, "line": "Now, don't you know eavesdropping is bad,\n\nlittle Player?"},
-				{"speakers": Speakers.H, "line": "How horrible!\n\nnThey've been destorying our world
-				and killing our little creations;
-				\n\nand now, tresprassing to our [font_size=24][i][color=red]sacred place[/color][/i][/font_size]?!"},
+				{"speakers": Speakers.H, "line": "How horrible!\n\nThey've been destorying our world\n\nand killing our little creations."},
+				{"speakers": Speakers.H, "line": "\n\nand now, tresprassing to our [font_size=24][i][color=red]sacred place[/color][/i][/font_size]?!"},
 				{"speakers": Speakers.I, "line": "Destructive [b]AND[/b] disrespectful."},
-				{"speakers": Speakers.I, "line": "I propose we get rid of them\n\n
-				before they accidentally hear a secret of this world..."},
+				{"speakers": Speakers.I, "line": "I propose we get rid of them\n\n	before they accidentally hear\n\na secret of this world..."},
 				{"speakers": Speakers.H, "line": "Yes, most definitely."},
 				{"speakers": Speakers.H, "line": "Nighty-night, Player!"},
 			],
@@ -1161,12 +1156,11 @@ var all_endings_dialogues_set = {
 				{"speakers": Speakers.H, "line": "This little...dares to-"},
 				{"speakers": Speakers.I, "line": "Oho! You're getting it [font_size=24][i]now[/i][/font_size]."},
 				{"speakers": Speakers.H,
-				 "line": "[font_size=32]WE ARE THIS WORLD'S CREATORS!\n\nHOW DARE YOU, A PUNY HUMAN, INSULT US?![/font_size]"},
+				 "line": "[font_size=32]WE ARE THIS\n\nWORLD'S CREATORS!\n\nHOW DARE YOU, A\n\nPUNY HUMAN,\n\nINSULT US?![/font_size]"},
 				{"speakers": Speakers.I,
-				 "line": "[color=red]An insult to us is an insult to this world.\n\nI cannot let such an offense slide.[/color]"},
+				 "line": "[color=red]An insult to us is\n\nan insult to this world.\n\nI cannot let such an offense slide.[/color]"},
 				{"speakers": Speakers.H,
-				 "line": "WE BANISH YOU TO THE OBLIVION, PLAYER!\n\nTHE PRIVILEGRE OF CHOOSING YOUR AFTERLIFE
-					\n\nSHALL [font_size=24][i]NEVER[/i][/font_size] BE GIVEN TO YOUOU!"},
+				 "line": "WE BANISH YOU TO THE OBLIVION, PLAYER!\n\nTHE PRIVILEGRE OF CHOOSING YOUR\n\nAFTERLIFE SHALL [font_size=24][i]NEVER[/i][/font_size] BE GIVEN TO\n\nYOUOU!"},
 				{"speakers": Speakers.I, "line": "[color=red]Goodbye.[/color]"},
 				{"speakers": Speakers.H, "line": "KARMA-"},
 				{"speakers": Speakers.I, "line": "-[font_size=24][i]Never[/i][/font_size] forgets."}

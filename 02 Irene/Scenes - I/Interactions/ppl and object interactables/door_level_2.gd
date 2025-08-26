@@ -15,6 +15,7 @@ var my_statue = null
 
 func _ready():
 	my_statue = get_tree().get_first_node_in_group("skeleton_statue")
+	my_statue.changeActionName.connect(change_action_name) #BRUH I FORGOT TO ADD THIS
 	interaction_area.interact = Callable(self, "_on_interact")
 	interaction_area.action_name = item_name
 
@@ -102,6 +103,9 @@ func _process(delta):
 	if key_is_consumed == true:
 		var interact_key = get_key_for_action("interact")
 		interaction_area.action_name = "[" + interact_key + "] to enter"
+	elif gobal.bad_moral_points >= 2:
+		interaction_area.action_name = item_name
+	elif my_statue.alive == false:
+		interaction_area.action_name = "You've done a\n\nterrible crime, Player."
 	#else:
 		#interaction_area.action_name = item_name
-	pass

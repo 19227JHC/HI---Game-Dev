@@ -13,11 +13,14 @@ var dialogue_task = null
 var player = null
 var the_good_door = null
 
+var alive = true
+
 
 func _ready():
 	player = get_tree().get_first_node_in_group("player")
 	the_good_door = get_tree().get_first_node_in_group("good_door")
 
+	alive = true
 	var interact_key = get_key_for_action("interact")
 	interaction_area.action_name = "[" + interact_key + "] to interact"
 	interaction_area.interact = Callable(self, "_on_item_interacted")
@@ -50,10 +53,6 @@ func _on_item_interacted():
 		dialogue_manager.set_active_dialogue("skeleton_statue_good_enough_yay")
 		await dialogue_manager._show_dialogue_state()
 		changeActionName.emit()
-	elif gobal.bad_moral_points == 0:
-		dialogue_manager.set_active_dialogue("skeleton_statue_good_enough_yay")
-		await dialogue_manager._show_dialogue_state()
-		changeActionName.emit()
 	else:
 		dialogue_manager.set_active_dialogue("skeleton_statue_too_bad")
 		await dialogue_manager._show_dialogue_state()
@@ -75,3 +74,5 @@ func the_fade_out():
 	tween.tween_callback(func(): sprite.queue_free())
 	$InteractionArea/CollisionShape2D.disabled = true
 	$StaticBody2D/CollisionShape2D.disabled = true # just in case.
+	
+	alive = false

@@ -15,9 +15,6 @@ var player = null
 
 func _ready():
 	player = get_tree().get_first_node_in_group("player")
-
-	var interact_key = get_key_for_action("interact")
-	interaction_area.action_name = "[" + interact_key + "] to interact"
 	interaction_area.interact = Callable(self, "_on_item_interacted")
 
 
@@ -62,3 +59,8 @@ func _on_item_interacted():
 # -------------------------------------RUN DIALOGUE-------------------------------------------------
 func _run_item_dialogue():
 	await dialogue_manager._show_dialogue_state()
+
+
+func _process(delta):
+	var interact_key = get_key_for_action("interact")
+	interaction_area.action_name = "[" + interact_key + "] to interact"

@@ -10,8 +10,6 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var interact_key = get_key_for_action("interact")
-	interaction_area.action_name = "[" + interact_key + "] " + item_name
 	interaction_area.interact = Callable(self, "disappear")
 
 
@@ -42,5 +40,6 @@ func the_fade_out():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-	#pass
+func _process(delta):
+	var interact_key = get_key_for_action("interact")
+	interaction_area.action_name = "[" + interact_key + "] " + item_name

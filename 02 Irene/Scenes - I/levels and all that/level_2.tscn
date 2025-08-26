@@ -155,7 +155,7 @@ z_index = 5
 position = Vector2(757, 849)
 scale = Vector2(2, 2)
 
-[node name="skeleton_statue" parent="." instance=ExtResource("7_nfldc")]
+[node name="skeleton_statue" parent="." groups=["skeleton_statue"] instance=ExtResource("7_nfldc")]
 z_index = 3
 position = Vector2(-500, 396)
 scale = Vector2(1.25, 1.25)

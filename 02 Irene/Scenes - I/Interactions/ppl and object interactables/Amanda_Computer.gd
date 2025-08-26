@@ -83,3 +83,7 @@ func trigger_amanda_fade_out():
 	tween.tween_property(sprite, "modulate:a", 0.0, 1.0) # 1 second fade
 	tween.tween_callback(func(): sprite.queue_free())
 	$InteractionArea/CollisionShape2D.disabled = true
+	
+func _process(delta):
+	var interact_key = get_key_for_action("interact")
+	interaction_area.action_name = "[" + interact_key + "] to interact\nwith Amanda the Computer"

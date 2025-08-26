@@ -4,7 +4,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$VBoxContainer/start_button.grab_focus()
+	# $VBoxContainer/start_button.grab_focus() cuz it doesn't look good
 	$CanvasLayer/Settings.visible = false
 	$CanvasLayer/Howplay.visible = false
 	gobal.reset()
